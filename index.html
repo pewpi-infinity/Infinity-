@@ -49,134 +49,182 @@
         </header>
 
     <main>
-        <!-- Realm Navigation -->
-        <section class="realm-selector">
-            <h2>Choose Your Realm</h2>
-            <div class="realm-grid">
-                <div class="realm-card" onclick="enterRealm('portal')">
-                    <div class="realm-icon">🌀</div>
-                    <h3>Portal Realm</h3>
-                    <p>Gateway to all features</p>
-                    <button class="btn-primary">Enter with AI Guide</button>
+        <!-- Main Hub - 3 Button Zoom Interface -->
+        <section id="mainHub" class="hub-selector">
+            <h2>Infinity Portal Hub</h2>
+            <p class="hub-subtitle">Choose Your Destination</p>
+            <div class="hub-grid">
+                <div class="hub-card zoom-card" onclick="showHub('portal')">
+                    <div class="hub-icon">🏠</div>
+                    <h3>Portal</h3>
+                    <p>Personal Daily Utilities</p>
+                    <ul class="hub-features">
+                        <li>Calculator & Alarm</li>
+                        <li>Bible Verses</li>
+                        <li>Pet Care & Garden</li>
+                        <li>Physical Therapy</li>
+                    </ul>
+                    <button class="btn-primary">Enter Portal</button>
                 </div>
                 
-                <div class="realm-card" onclick="enterRealm('marketplace')">
-                    <div class="realm-icon">🛍️</div>
-                    <h3>Marketplace Realm</h3>
-                    <p>Deluxe packaging products</p>
-                    <button class="btn-primary">Enter with AI Guide</button>
+                <div class="hub-card zoom-card" onclick="showHub('marketplace')">
+                    <div class="hub-icon">🏪</div>
+                    <h3>Marketplace</h3>
+                    <p>Trade & Infinity Tokens</p>
+                    <ul class="hub-features">
+                        <li>Token Trading (No USD)</li>
+                        <li>Clothing & Food Trade</li>
+                        <li>Glass Packaging</li>
+                        <li>Truth Database</li>
+                    </ul>
+                    <button class="btn-primary">Enter Marketplace</button>
                 </div>
                 
-                <div class="realm-card" onclick="enterRealm('socializer')">
-                    <div class="realm-icon">💬</div>
-                    <h3>Socializer Realm</h3>
-                    <p>Connect and chat</p>
-                    <button class="btn-primary">Enter with AI Guide</button>
-                </div>
-                
-                <div class="realm-card" onclick="enterRealm('aibuilder')">
-                    <div class="realm-icon">🤖</div>
-                    <h3>AI Builder Realm</h3>
-                    <p>Build with autopilot</p>
-                    <button class="btn-primary">Enter with AI Guide</button>
+                <div class="hub-card zoom-card" onclick="showHub('socializer')">
+                    <div class="hub-icon">👥</div>
+                    <h3>Socializer</h3>
+                    <p>People & Media</p>
+                    <ul class="hub-features">
+                        <li>Local Zip Chat</li>
+                        <li>Video Game Generator</li>
+                        <li>DIY & School</li>
+                        <li>Channel Generator</li>
+                    </ul>
+                    <button class="btn-primary">Enter Socializer</button>
                 </div>
             </div>
         </section>
 
-        <!-- Active Realm Content -->
-        <section id="realmContent" class="realm-content" style="display: none;">
-            <!-- AI Assistant Steering Wheel -->
-            <div class="ai-steering">
-                <div class="ai-assistant">
-                    <div class="assistant-avatar">🤖</div>
-                    <div class="assistant-info">
-                        <h4 id="assistantName">AI Developer Assistant</h4>
-                        <p id="assistantStatus">Ready to help you build</p>
-                    </div>
+        <!-- Portal Hub Apps -->
+        <section id="portalHub" class="app-hub" style="display: none;">
+            <h2>Portal - Personal Daily Utilities</h2>
+            <div class="hub-grid">
+                <div class="hub-card" onclick="loadApp('calculator')">
+                    <div class="hub-icon">🔢</div>
+                    <h3>Calculator</h3>
+                    <p>Standard & Token calculator</p>
+                    <button class="btn-primary">Open</button>
                 </div>
-                <button class="btn-secondary" onclick="toggleAssistant()">Toggle AI Help</button>
+                <div class="hub-card" onclick="loadApp('alarm')">
+                    <div class="hub-icon">⏰</div>
+                    <h3>Alarm Clock</h3>
+                    <p>Smart voice-enabled alarms</p>
+                    <button class="btn-primary">Open</button>
+                </div>
+                <div class="hub-card" onclick="loadApp('bible')">
+                    <div class="hub-icon">📖</div>
+                    <h3>Bible Verses</h3>
+                    <p>Rogers-analyzed divine messages</p>
+                    <button class="btn-primary">Open</button>
+                </div>
+                <div class="hub-card" onclick="loadApp('pets')">
+                    <div class="hub-icon">🐾</div>
+                    <h3>Pet Care</h3>
+                    <p>Feed schedules & health tracking</p>
+                    <button class="btn-primary">Open</button>
+                </div>
+                <div class="hub-card" onclick="loadApp('therapy')">
+                    <div class="hub-icon">💪</div>
+                    <h3>Physical Therapy</h3>
+                    <p>Exercise routines & tracking</p>
+                    <button class="btn-primary">Open</button>
+                </div>
+                <div class="hub-card" onclick="loadApp('garden')">
+                    <div class="hub-icon">🌱</div>
+                    <h3>Garden</h3>
+                    <p>Seed swapping & growing tips</p>
+                    <button class="btn-primary">Open</button>
+                </div>
             </div>
+            <button class="btn-back" onclick="backToMainHub()">← Back to Main Hub</button>
+        </section>
 
-            <!-- Portal Realm Content -->
-            <div id="portalRealm" class="realm-section" style="display: none;">
-                <h2>Portal Realm</h2>
-                <p>Your gateway to all Infinity features</p>
-                <div class="feature-list">
-                    <button class="feature-btn" onclick="activateFeature('search')">
-                        🔍 Advanced Search
-                    </button>
-                    <button class="feature-btn" onclick="activateFeature('voice')">
-                        🎤 Voice Modules
-                    </button>
-                    <button class="feature-btn" onclick="activateFeature('autopilot')">
-                        🎵 Autopilot Synthesis
-                    </button>
-                    <button class="feature-btn" onclick="activateFeature('coding')">
-                        💻 Coding Agents
-                    </button>
+        <!-- Marketplace Hub Apps -->
+        <section id="marketplaceHub" class="app-hub" style="display: none;">
+            <h2>Marketplace - Trade & Infinity Tokens</h2>
+            <div class="hub-grid">
+                <div class="hub-card" onclick="loadApp('trade')">
+                    <div class="hub-icon">🏪</div>
+                    <h3>Infinity Token Trading</h3>
+                    <p>eBay-style marketplace - No USD</p>
+                    <button class="btn-primary">Open</button>
                 </div>
-                <div id="featureContent" class="feature-content"></div>
+                <div class="hub-card" onclick="loadApp('clothing')">
+                    <div class="hub-icon">👔</div>
+                    <h3>Clothing Design</h3>
+                    <p>Design & trade custom clothing</p>
+                    <button class="btn-primary">Open</button>
+                </div>
+                <div class="hub-card" onclick="loadApp('foodtextile')">
+                    <div class="hub-icon">🌾</div>
+                    <h3>Food & Textiles</h3>
+                    <p>Global trading platform</p>
+                    <button class="btn-primary">Open</button>
+                </div>
+                <div class="hub-card" onclick="loadApp('glass')">
+                    <div class="hub-icon">🏺</div>
+                    <h3>Glass Packaging</h3>
+                    <p>Standardized packaging system</p>
+                    <button class="btn-primary">Open</button>
+                </div>
+                <div class="hub-card" onclick="loadApp('banned')">
+                    <div class="hub-icon">⚠️</div>
+                    <h3>Truth Database</h3>
+                    <p>Banned products & transparency</p>
+                    <button class="btn-primary">Open</button>
+                </div>
+                <div class="hub-card" onclick="loadApp('leather')">
+                    <div class="hub-icon">🧤</div>
+                    <h3>Leather Craft</h3>
+                    <p>Tutorials & marketplace</p>
+                    <button class="btn-primary">Open</button>
+                </div>
             </div>
+            <button class="btn-back" onclick="backToMainHub()">← Back to Main Hub</button>
+        </section>
 
-            <!-- Marketplace Realm Content -->
-            <div id="marketplaceRealm" class="realm-section" style="display: none;">
-                <h2>Marketplace Realm</h2>
-                <p>Premium products with deluxe packaging</p>
-                <div class="search-box">
-                    <input type="text" id="productSearch" placeholder="Search products...">
-                    <button class="btn-primary" onclick="searchProducts()">Search</button>
+        <!-- Socializer Hub Apps -->
+        <section id="socializerHub" class="app-hub" style="display: none;">
+            <h2>Socializer - People & Media</h2>
+            <div class="hub-grid">
+                <div class="hub-card" onclick="loadApp('locals')">
+                    <div class="hub-icon">📍</div>
+                    <h3>Locals Chat</h3>
+                    <p>Zip code-based local connections</p>
+                    <button class="btn-primary">Open</button>
                 </div>
-                <div id="productResults" class="product-grid"></div>
+                <div class="hub-card" onclick="loadApp('videogame')">
+                    <div class="hub-icon">🎮</div>
+                    <h3>Video Game Generator</h3>
+                    <p>AI-powered game creation</p>
+                    <button class="btn-primary">Open</button>
+                </div>
+                <div class="hub-card" onclick="loadApp('diy')">
+                    <div class="hub-icon">🔨</div>
+                    <h3>DIY Modeling</h3>
+                    <p>Instructables-style projects</p>
+                    <button class="btn-primary">Open</button>
+                </div>
+                <div class="hub-card" onclick="loadApp('school')">
+                    <div class="hub-icon">🎓</div>
+                    <h3>Infinity School</h3>
+                    <p>Lifelong learning platform</p>
+                    <button class="btn-primary">Open</button>
+                </div>
+                <div class="hub-card" onclick="loadApp('channel')">
+                    <div class="hub-icon">📺</div>
+                    <h3>Channel Generator</h3>
+                    <p>Merit-based TV programming</p>
+                    <button class="btn-primary">Open</button>
+                </div>
             </div>
+            <button class="btn-back" onclick="backToMainHub()">← Back to Main Hub</button>
+        </section>
 
-            <!-- Socializer Realm Content -->
-            <div id="socializerRealm" class="realm-section" style="display: none;">
-                <h2>Socializer Realm</h2>
-                <div class="chat-container">
-                    <div id="chatMessages" class="chat-messages"></div>
-                    <div class="chat-input-box">
-                        <input type="text" id="chatInput" placeholder="Type your message...">
-                        <button class="btn-primary" onclick="sendMessage()">Send</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- AI Builder Realm Content -->
-            <div id="aibuilderRealm" class="realm-section" style="display: none;">
-                <h2>AI Builder Realm</h2>
-                <p>Build your ideas with AI autopilot assistance</p>
-                
-                <div class="builder-interface">
-                    <div class="idea-input">
-                        <h3>What would you like to build?</h3>
-                        <textarea id="ideaInput" placeholder="Describe your idea here..."></textarea>
-                        <button class="btn-primary" onclick="startBuilding()">Start Building with AI</button>
-                    </div>
-                    
-                    <div class="autopilot-controls">
-                        <h3>Autopilot Sound Synthesis</h3>
-                        <div class="status-display">
-                            <span id="autopilotStatus">Status: Ready</span>
-                        </div>
-                        <button class="btn-primary" onclick="toggleAutopilot()">Start Autopilot</button>
-                        <canvas id="soundVisualizer" width="100%" height="150"></canvas>
-                        <div class="autopilot-settings">
-                            <label>Sensitivity: <input type="range" id="sensitivity" min="1" max="100" value="50"></label>
-                            <label>Mode: 
-                                <select id="synthesisMode">
-                                    <option value="direct">Direct Repeat</option>
-                                    <option value="enhanced">Enhanced</option>
-                                    <option value="harmonic">Harmonic</option>
-                                </select>
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div id="buildProgress" class="build-progress"></div>
-                </div>
-            </div>
-            
-            <button class="btn-back" onclick="backToRealms()">← Back to Realms</button>
+        <!-- Dynamic App Content Area -->
+        <section id="appContent" class="app-content" style="display: none;">
+            <div id="appContainer"></div>
+            <button class="btn-back" onclick="backToHub()">← Back</button>
         </section>
     </main>
 

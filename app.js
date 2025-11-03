@@ -81,40 +81,721 @@ window.addEventListener('load', function() {
     }
 });
 
-// Realm Navigation
-function enterRealm(realmName) {
-    currentRealm = realmName;
+// Global Variables
+let currentUser = null;
+let currentHub = 'main';
+let currentApp = null;
+let autopilotActive = false;
+let audioContext = null;
+let analyser = null;
+let microphone = null;
+let userTokens = 0;
+let messageCount = 0;
+let aiAssistantActive = true;
+
+// Voice UI Variables
+let voiceRecognition = null;
+let voiceSynthesis = window.speechSynthesis;
+let elevenLabsApiKey = null; // Will be set from user config
+
+// Google Authentication
+function handleCredentialResponse(response) {
+    const responsePayload = decodeJwtResponse(response.credential);
     
-    // Hide realm selector
-    document.querySelector('.realm-selector').style.display = 'none';
+    currentUser = {
+        email: responsePayload.email,
+        name: responsePayload.name,
+        picture: responsePayload.picture,
+        sub: responsePayload.sub
+    };
     
-    // Show realm content
-    document.getElementById('realmContent').style.display = 'block';
-    
-    // Hide all realm sections
-    document.querySelectorAll('.realm-section').forEach(section => {
-        section.style.display = 'none';
-    });
-    
-    // Show selected realm
-    const realmId = realmName + 'Realm';
-    const realmElement = document.getElementById(realmId);
-    if (realmElement) {
-        realmElement.style.display = 'block';
+    // Check if authorized email
+    if (currentUser.email === 'marvaseater@gmail.com') {
+        currentUser.isAdmin = true;
+        currentUser.tokens = 1000;
+    } else {
+        currentUser.isAdmin = false;
+        currentUser.tokens = 10;
     }
     
-    // Update AI assistant
-    updateAssistant(realmName);
+    userTokens = currentUser.tokens;
     
-    // Award token for hard work (navigating realms)
-    awardTokenForHardWork('realm_navigation');
+    // Hide auth section and show main app
+    document.getElementById('authSection').style.display = 'none';
+    document.getElementById('mainApp').style.display = 'block';
+    
+    // Update user info in header
+    document.getElementById('userAvatar').src = currentUser.picture;
+    updateTokenDisplay();
+    
+    // Save to localStorage
+    localStorage.setItem('infinityUser', JSON.stringify(currentUser));
+    
+    console.log('User signed in:', currentUser);
+    showWelcomeMessage();
+    initializeVoiceUI();
 }
 
-function backToRealms() {
-    currentRealm = null;
-    document.querySelector('.realm-selector').style.display = 'block';
-    document.getElementById('realmContent').style.display = 'none';
+function decodeJwtResponse(token) {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    return JSON.parse(jsonPayload);
 }
+
+function signOut() {
+    google.accounts.id.disableAutoSelect();
+    localStorage.removeItem('infinityUser');
+    currentUser = null;
+    document.getElementById('mainApp').style.display = 'none';
+    document.getElementById('authSection').style.display = 'flex';
+    location.reload();
+}
+
+function showWelcomeMessage() {
+    speak(`Welcome to Infinity, ${currentUser.name}! You have ${userTokens} Infinity Tokens. Type "ti rigers" in chat to earn 1 token per reply!`);
+}
+
+function updateTokenDisplay() {
+    const display = document.getElementById('tokenDisplay');
+    if (display) {
+        display.textContent = `Tokens: ${userTokens.toFixed(1)}`;
+    }
+}
+
+// Check for existing session on load
+window.addEventListener('load', function() {
+    const savedUser = localStorage.getItem('infinityUser');
+    if (savedUser) {
+        currentUser = JSON.parse(savedUser);
+        userTokens = currentUser.tokens || 10;
+        document.getElementById('authSection').style.display = 'none';
+        document.getElementById('mainApp').style.display = 'block';
+        if (currentUser.picture) {
+            document.getElementById('userAvatar').src = currentUser.picture;
+        }
+        updateTokenDisplay();
+        initializeVoiceUI();
+    }
+});
+
+// SPA Navigation
+function showHub(hubName) {
+    // Hide all sections
+    document.getElementById('mainHub').style.display = 'none';
+    document.getElementById('portalHub').style.display = 'none';
+    document.getElementById('marketplaceHub').style.display = 'none';
+    document.getElementById('socializerHub').style.display = 'none';
+    document.getElementById('appContent').style.display = 'none';
+    
+    // Show selected hub
+    currentHub = hubName;
+    document.getElementById(hubName + 'Hub').style.display = 'block';
+    
+    awardTokenForHardWork('hub_navigation');
+    speak(`Entering ${hubName} hub`);
+}
+
+function backToMainHub() {
+    document.getElementById('portalHub').style.display = 'none';
+    document.getElementById('marketplaceHub').style.display = 'none';
+    document.getElementById('socializerHub').style.display = 'none';
+    document.getElementById('appContent').style.display = 'none';
+    document.getElementById('mainHub').style.display = 'block';
+    currentHub = 'main';
+    currentApp = null;
+}
+
+function backToHub() {
+    document.getElementById('appContent').style.display = 'none';
+    document.getElementById(currentHub + 'Hub').style.display = 'block';
+    currentApp = null;
+}
+
+function loadApp(appName) {
+    currentApp = appName;
+    document.getElementById('portalHub').style.display = 'none';
+    document.getElementById('marketplaceHub').style.display = 'none';
+    document.getElementById('socializerHub').style.display = 'none';
+    document.getElementById('appContent').style.display = 'block';
+    
+    const container = document.getElementById('appContainer');
+    container.innerHTML = getAppContent(appName);
+    
+    awardTokenForHardWork('app_load');
+    speak(`Loading ${appName} app`);
+    
+    // Initialize app-specific functionality
+    initializeApp(appName);
+}
+
+// Voice UI System
+function initializeVoiceUI() {
+    // Initialize Web Speech API
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        voiceRecognition = new SpeechRecognition();
+        voiceRecognition.continuous = false;
+        voiceRecognition.interimResults = false;
+        voiceRecognition.lang = 'en-US';
+        
+        voiceRecognition.onresult = function(event) {
+            const transcript = event.results[0][0].transcript;
+            handleVoiceCommand(transcript);
+        };
+        
+        console.log('Voice UI initialized');
+    }
+    
+    // Check for ElevenLabs API key in localStorage
+    elevenLabsApiKey = localStorage.getItem('elevenLabsApiKey');
+}
+
+function speak(text) {
+    if (voiceSynthesis) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 1.0;
+        utterance.pitch = 1.0;
+        voiceSynthesis.speak(utterance);
+    }
+}
+
+function startVoiceListening() {
+    if (voiceRecognition) {
+        voiceRecognition.start();
+        speak('Listening');
+    }
+}
+
+function stopVoiceListening() {
+    if (voiceRecognition) {
+        voiceRecognition.stop();
+    }
+}
+
+function handleVoiceCommand(command) {
+    console.log('Voice command:', command);
+    const lowerCommand = command.toLowerCase();
+    
+    // Check for ti rigers
+    if (lowerCommand.includes('ti rigers')) {
+        userTokens += 1;
+        currentUser.tokens = userTokens;
+        localStorage.setItem('infinityUser', JSON.stringify(currentUser));
+        updateTokenDisplay();
+        speak(`You earned 1 token! You now have ${userTokens} tokens.`);
+        return;
+    }
+    
+    // Navigation commands
+    if (lowerCommand.includes('portal')) {
+        showHub('portal');
+    } else if (lowerCommand.includes('marketplace')) {
+        showHub('marketplace');
+    } else if (lowerCommand.includes('socializer')) {
+        showHub('socializer');
+    } else if (lowerCommand.includes('home') || lowerCommand.includes('main')) {
+        backToMainHub();
+    } else {
+        speak('Command not recognized. Try saying portal, marketplace, socializer, or home.');
+    }
+}
+
+// Token System
+function awardTokenForHardWork(action) {
+    userTokens += 0.5;
+    currentUser.tokens = userTokens;
+    localStorage.setItem('infinityUser', JSON.stringify(currentUser));
+    updateTokenDisplay();
+    console.log(`Token awarded for ${action}. Total: ${userTokens.toFixed(1)}`);
+}
+
+function checkForTiRigers(message) {
+    if (message.toLowerCase().includes('ti rigers')) {
+        userTokens += 1;
+        currentUser.tokens = userTokens;
+        localStorage.setItem('infinityUser', JSON.stringify(currentUser));
+        updateTokenDisplay();
+        return true;
+    }
+    return false;
+}
+
+// App Content Generator
+function getAppContent(appName) {
+    const apps = {
+        calculator: `
+            <h2>🔢 Calculator</h2>
+            <div style="max-width: 400px; margin: 0 auto; padding: 20px; background: white; border-radius: 12px;">
+                <div id="calcDisplay" style="background: #f8f9fa; padding: 20px; font-size: 32px; text-align: right; border-radius: 8px; margin-bottom: 16px; min-height: 60px;">0</div>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+                    <button class="calc-btn" onclick="calcInput('7')">7</button>
+                    <button class="calc-btn" onclick="calcInput('8')">8</button>
+                    <button class="calc-btn" onclick="calcInput('9')">9</button>
+                    <button class="calc-btn" onclick="calcInput('/')">/</button>
+                    <button class="calc-btn" onclick="calcInput('4')">4</button>
+                    <button class="calc-btn" onclick="calcInput('5')">5</button>
+                    <button class="calc-btn" onclick="calcInput('6')">6</button>
+                    <button class="calc-btn" onclick="calcInput('*')">*</button>
+                    <button class="calc-btn" onclick="calcInput('1')">1</button>
+                    <button class="calc-btn" onclick="calcInput('2')">2</button>
+                    <button class="calc-btn" onclick="calcInput('3')">3</button>
+                    <button class="calc-btn" onclick="calcInput('-')">-</button>
+                    <button class="calc-btn" onclick="calcInput('0')">0</button>
+                    <button class="calc-btn" onclick="calcInput('.')">.</button>
+                    <button class="calc-btn" onclick="calcEqual()">=</button>
+                    <button class="calc-btn" onclick="calcInput('+')">+</button>
+                </div>
+                <button class="btn-secondary" style="width: 100%; margin-top: 10px;" onclick="calcClear()">Clear</button>
+                <button class="btn-primary" style="width: 100%; margin-top: 10px;" onclick="startVoiceListening()">🎤 Voice Input</button>
+            </div>
+        `,
+        
+        alarm: `
+            <h2>⏰ Smart Alarm Clock</h2>
+            <div style="max-width: 500px; margin: 0 auto; padding: 20px; background: white; border-radius: 12px;">
+                <div style="text-align: center; font-size: 64px; color: #0070ba; margin: 20px 0;" id="currentTime"></div>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                    <h3>Set Alarm</h3>
+                    <input type="time" id="alarmTime" style="width: 100%; padding: 12px; font-size: 18px; border: 2px solid #0070ba; border-radius: 8px;">
+                    <button class="btn-primary" style="width: 100%; margin-top: 10px;" onclick="setAlarm()">Set Alarm</button>
+                    <button class="btn-primary" style="width: 100%; margin-top: 10px;" onclick="startVoiceListening()">🎤 Set with Voice</button>
+                </div>
+                <div id="alarmList"></div>
+            </div>
+            <script>
+                setInterval(() => {
+                    const now = new Date();
+                    document.getElementById('currentTime').textContent = now.toLocaleTimeString();
+                }, 1000);
+            </script>
+        `,
+        
+        bible: `
+            <h2>📖 Bible Verse Infinity</h2>
+            <p style="text-align: center; color: #6c757d;">Rogers-analyzed divine messages with time-date correlation</p>
+            <div style="max-width: 600px; margin: 20px auto; padding: 30px; background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <div style="background: linear-gradient(135deg, #0070ba 0%, #003087 100%); color: white; padding: 30px; border-radius: 8px; margin-bottom: 20px;">
+                    <h3 style="color: white; margin-bottom: 10px;">Today's Verse</h3>
+                    <p style="font-size: 18px; font-style: italic;">"Your country is desolate, your cities are burned with fire: your land, strangers devour it in your presence, and it is desolate, as overthrown by strangers." - Isaiah 1:7</p>
+                </div>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px;">
+                    <h4 style="color: #0070ba;">Rogers Analysis</h4>
+                    <p>This verse speaks to transparency and truth - revealing what has been hidden. In the context of Infinity, it represents our mission to expose corruption and bring light to darkness, including revelations about corporate manipulation and technological control.</p>
+                </div>
+                <button class="btn-primary" style="width: 100%; margin-top: 20px;" onclick="getNewVerse()">Get New Verse</button>
+                <button class="btn-secondary" style="width: 100%; margin-top: 10px;" onclick="speakVerse()">🔊 Read Aloud</button>
+            </div>
+        `,
+        
+        pets: `
+            <h2>🐾 Pet Care Manager</h2>
+            <div style="max-width: 600px; margin: 0 auto;">
+                <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>Add Pet</h3>
+                    <input type="text" id="petName" placeholder="Pet name..." style="width: 100%; padding: 12px; margin: 8px 0; border: 2px solid #d9d9d9; border-radius: 8px;">
+                    <select id="petType" style="width: 100%; padding: 12px; margin: 8px 0; border: 2px solid #d9d9d9; border-radius: 8px;">
+                        <option>Dog</option>
+                        <option>Cat</option>
+                        <option>Bird</option>
+                        <option>Fish</option>
+                        <option>Other</option>
+                    </select>
+                    <button class="btn-primary" onclick="addPet()">Add Pet</button>
+                </div>
+                <div id="petList"></div>
+            </div>
+        `,
+        
+        therapy: `
+            <h2>💪 Physical Therapy & Exercise</h2>
+            <div style="max-width: 600px; margin: 0 auto;">
+                <div style="background: white; padding: 20px; border-radius: 12px;">
+                    <h3>Exercise Routines</h3>
+                    <div class="exercise-card">
+                        <h4>Stretching Routine</h4>
+                        <p>10 minutes • Flexibility</p>
+                        <button class="btn-primary">Start Routine</button>
+                    </div>
+                    <div class="exercise-card">
+                        <h4>Strength Training</h4>
+                        <p>20 minutes • Building strength</p>
+                        <button class="btn-primary">Start Routine</button>
+                    </div>
+                    <div class="exercise-card">
+                        <h4>Recovery Exercises</h4>
+                        <p>15 minutes • Post-injury recovery</p>
+                        <button class="btn-primary">Start Routine</button>
+                    </div>
+                </div>
+            </div>
+        `,
+        
+        garden: `
+            <h2>🌱 Garden & Seed Swapping</h2>
+            <div style="max-width: 600px; margin: 0 auto;">
+                <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>My Garden</h3>
+                    <button class="btn-primary" onclick="addPlant()">Add Plant</button>
+                    <div id="gardenList" style="margin-top: 20px;"></div>
+                </div>
+                <div style="background: white; padding: 20px; border-radius: 12px;">
+                    <h3>Seed Exchange Network</h3>
+                    <p>Connect with other gardeners to swap seeds</p>
+                    <button class="btn-secondary">Browse Available Seeds</button>
+                </div>
+            </div>
+        `,
+        
+        trade: `
+            <h2>🏪 Infinity Token Trading</h2>
+            <p style="text-align: center; color: #0070ba; font-weight: bold;">NO USD ACCEPTED - Tokens Only</p>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>List Item for Sale</h3>
+                    <input type="text" placeholder="Item name..." style="width: 100%; padding: 12px; margin: 8px 0; border: 2px solid #d9d9d9; border-radius: 8px;">
+                    <textarea placeholder="Description..." style="width: 100%; padding: 12px; margin: 8px 0; border: 2px solid #d9d9d9; border-radius: 8px; min-height: 100px;"></textarea>
+                    <input type="number" placeholder="Price in tokens..." style="width: 100%; padding: 12px; margin: 8px 0; border: 2px solid #d9d9d9; border-radius: 8px;">
+                    <button class="btn-primary">List Item</button>
+                </div>
+                <div id="marketplace Grid"></div>
+            </div>
+        `,
+        
+        clothing: `
+            <h2>👔 Clothing Design Studio</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div style="background: white; padding: 20px; border-radius: 12px;">
+                    <h3>Design Your Clothing</h3>
+                    <p>AI-powered design assistance</p>
+                    <canvas id="designCanvas" width="600" height="400" style="border: 2px solid #0070ba; border-radius: 8px; display: block; margin: 20px auto;"></canvas>
+                    <div style="display: flex; gap: 10px; margin-top: 20px;">
+                        <button class="btn-primary">Save Design</button>
+                        <button class="btn-secondary">Get AI Suggestions</button>
+                        <button class="btn-secondary">List for Sale</button>
+                    </div>
+                </div>
+            </div>
+        `,
+        
+        foodtextile: `
+            <h2>🌾 Food & Textiles Trading Platform</h2>
+            <p style="text-align: center;">Global network for fair trade</p>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div class="trade-category">
+                        <h3>Food Products</h3>
+                        <button class="btn-primary">Browse</button>
+                    </div>
+                    <div class="trade-category">
+                        <h3>Textiles</h3>
+                        <button class="btn-primary">Browse</button>
+                    </div>
+                    <div class="trade-category">
+                        <h3>Raw Materials</h3>
+                        <button class="btn-primary">Browse</button>
+                    </div>
+                </div>
+            </div>
+        `,
+        
+        glass: `
+            <h2>🏺 Infinity Glass Packaging</h2>
+            <p style="text-align: center;">Standardized eco-friendly packaging system</p>
+            <div style="max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px;">
+                <h3>Standard Sizes</h3>
+                <div style="display: grid; gap: 15px;">
+                    <div class="glass-size">Small: 250ml</div>
+                    <div class="glass-size">Medium: 500ml</div>
+                    <div class="glass-size">Large: 1000ml</div>
+                    <div class="glass-size">XL: 2000ml</div>
+                </div>
+                <button class="btn-primary" style="margin-top: 20px;">Order Packaging</button>
+            </div>
+        `,
+        
+        banned: `
+            <h2>⚠️ Truth & Transparency Database</h2>
+            <p style="text-align: center; color: #dc3545; font-weight: bold;">Exposing Corruption and Protecting Consumers</p>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div style="background: #fff3cd; border: 2px solid #ffc107; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3 style="color: #856404;">⚡ Breaking Investigation</h3>
+                    <h4>Tesla Driverless Vehicle Brain Chip Technology</h4>
+                    <p>Investigation reveals potential use of aluminum oxide chips in autonomous vehicle control systems. Designs from 2-1 years ago show concerning implementation details.</p>
+                    <button class="btn-primary">Read Full Report</button>
+                </div>
+                <div style="background: white; padding: 20px; border-radius: 12px;">
+                    <h3>Report Database</h3>
+                    <button class="btn-secondary">Submit New Report</button>
+                    <div id="reportsList" style="margin-top: 20px;"></div>
+                </div>
+            </div>
+        `,
+        
+        leather: `
+            <h2>🧤 Leather Craft Hub</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <div class="craft-section">
+                        <h3>Tutorials</h3>
+                        <p>Step-by-step leather crafting guides</p>
+                        <button class="btn-primary">Browse Tutorials</button>
+                    </div>
+                    <div class="craft-section">
+                        <h3>Patterns</h3>
+                        <p>Downloadable pattern library</p>
+                        <button class="btn-primary">View Patterns</button>
+                    </div>
+                    <div class="craft-section">
+                        <h3>Marketplace</h3>
+                        <p>Buy and sell leather goods</p>
+                        <button class="btn-primary">Visit Marketplace</button>
+                    </div>
+                </div>
+            </div>
+        `,
+        
+        locals: `
+            <h2>📍 Locals Chat</h2>
+            <p style="text-align: center;">Connect with people in your area</p>
+            <div style="max-width: 600px; margin: 0 auto;">
+                <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>Find Your Local Chat</h3>
+                    <input type="text" id="zipCode" placeholder="Enter your zip code..." maxlength="5" style="width: 100%; padding: 12px; font-size: 18px; border: 2px solid #0070ba; border-radius: 8px;">
+                    <button class="btn-primary" style="width: 100%; margin-top: 10px;" onclick="findLocalChat()">Find Chat Room</button>
+                </div>
+                <div id="localChatRoom" class="chat-container" style="display: none;">
+                    <div id="localMessages" class="chat-messages"></div>
+                    <div class="chat-input-box">
+                        <input type="text" id="localChatInput" placeholder="Type your message...">
+                        <button class="btn-primary" onclick="sendLocalMessage()">Send</button>
+                    </div>
+                </div>
+            </div>
+        `,
+        
+        videogame: `
+            <h2>🎮 Video Game Generator</h2>
+            <p style="text-align: center;">AI-powered video game creation</p>
+            <div style="max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px;">
+                <h3>Describe Your Game</h3>
+                <textarea id="gameIdea" placeholder="Describe your game idea..." style="width: 100%; min-height: 150px; padding: 15px; border: 2px solid #0070ba; border-radius: 8px; font-size: 16px;"></textarea>
+                <div style="margin: 20px 0;">
+                    <label>Genre:</label>
+                    <select style="width: 100%; padding: 12px; border: 2px solid #d9d9d9; border-radius: 8px; margin-top: 8px;">
+                        <option>Action</option>
+                        <option>Adventure</option>
+                        <option>RPG</option>
+                        <option>Puzzle</option>
+                        <option>Strategy</option>
+                    </select>
+                </div>
+                <button class="btn-primary" onclick="generateGame()">Generate Game</button>
+                <div id="gamePreview" style="margin-top: 30px;"></div>
+            </div>
+        `,
+        
+        diy: `
+            <h2>🔨 DIY Modeling Hub</h2>
+            <p style="text-align: center;">Instructables-style project sharing</p>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>Create New Project</h3>
+                    <button class="btn-primary">Start Project Guide</button>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div class="project-card">
+                        <h4>Woodworking</h4>
+                        <p>125 projects</p>
+                        <button class="btn-secondary">Browse</button>
+                    </div>
+                    <div class="project-card">
+                        <h4>Electronics</h4>
+                        <p>89 projects</p>
+                        <button class="btn-secondary">Browse</button>
+                    </div>
+                    <div class="project-card">
+                        <h4>Crafts</h4>
+                        <p>203 projects</p>
+                        <button class="btn-secondary">Browse</button>
+                    </div>
+                </div>
+            </div>
+        `,
+        
+        school: `
+            <h2>🎓 Infinity School</h2>
+            <p style="text-align: center;">Lifelong learning from newborn to elderly</p>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                    <div class="age-group">
+                        <h3>Early Childhood</h3>
+                        <p>Ages 0-5</p>
+                        <button class="btn-primary">Enter</button>
+                    </div>
+                    <div class="age-group">
+                        <h3>Elementary</h3>
+                        <p>Ages 6-12</p>
+                        <button class="btn-primary">Enter</button>
+                    </div>
+                    <div class="age-group">
+                        <h3>Teen</h3>
+                        <p>Ages 13-18</p>
+                        <button class="btn-primary">Enter</button>
+                    </div>
+                    <div class="age-group">
+                        <h3>Adult</h3>
+                        <p>Ages 19-65</p>
+                        <button class="btn-primary">Enter</button>
+                    </div>
+                    <div class="age-group">
+                        <h3>Senior</h3>
+                        <p>Ages 65+</p>
+                        <button class="btn-primary">Enter</button>
+                    </div>
+                </div>
+            </div>
+        `,
+        
+        channel: `
+            <h2>📺 Channel Generator</h2>
+            <p style="text-align: center;">Merit-based TV programming with AI analysis</p>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div style="background: white; padding: 30px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>Submit Your Audition</h3>
+                    <form>
+                        <input type="text" placeholder="Your name..." style="width: 100%; padding: 12px; margin: 8px 0; border: 2px solid #d9d9d9; border-radius: 8px;">
+                        <select style="width: 100%; padding: 12px; margin: 8px 0; border: 2px solid #d9d9d9; border-radius: 8px;">
+                            <option>Educational</option>
+                            <option>Entertainment</option>
+                            <option>Documentary</option>
+                            <option>Mystery</option>
+                            <option>Adventure</option>
+                        </select>
+                        <textarea placeholder="Describe your programming idea..." style="width: 100%; min-height: 150px; padding: 12px; margin: 8px 0; border: 2px solid #d9d9d9; border-radius: 8px;"></textarea>
+                        <button type="button" class="btn-primary">Submit Audition</button>
+                    </form>
+                </div>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 12px;">
+                    <h3>How It Works</h3>
+                    <ol style="color: #6c757d; padding-left: 20px;">
+                        <li>Submit your audition and program idea</li>
+                        <li>AI analyzes your content and merit</li>
+                        <li>Get assigned to appropriate digital channel</li>
+                        <li>Build audience through quality content</li>
+                        <li>Earn Infinity Tokens for engagement</li>
+                    </ol>
+                </div>
+            </div>
+        `
+    };
+    
+    return apps[appName] || '<h2>App content loading...</h2>';
+}
+
+// Initialize app-specific features
+function initializeApp(appName) {
+    // App-specific initialization code
+    if (appName === 'alarm') {
+        // Start clock
+        setInterval(() => {
+            const timeEl = document.getElementById('currentTime');
+            if (timeEl) {
+                const now = new Date();
+                timeEl.textContent = now.toLocaleTimeString();
+            }
+        }, 1000);
+    }
+}
+
+// Calculator functions
+let calcCurrentInput = '';
+function calcInput(val) {
+    calcCurrentInput += val;
+    document.getElementById('calcDisplay').textContent = calcCurrentInput || '0';
+}
+function calcClear() {
+    calcCurrentInput = '';
+    document.getElementById('calcDisplay').textContent = '0';
+}
+function calcEqual() {
+    try {
+        calcCurrentInput = eval(calcCurrentInput).toString();
+        document.getElementById('calcDisplay').textContent = calcCurrentInput;
+        awardTokenForHardWork('calculation');
+    } catch (e) {
+        document.getElementById('calcDisplay').textContent = 'Error';
+        calcCurrentInput = '';
+    }
+}
+
+// Helper functions for various apps
+function setAlarm() {
+    const time = document.getElementById('alarmTime').value;
+    if (time) {
+        alert(`Alarm set for ${time}`);
+        speak(`Alarm set for ${time}`);
+        awardTokenForHardWork('alarm_set');
+    }
+}
+
+function getNewVerse() {
+    speak('Loading new verse');
+    awardTokenForHardWork('bible_reading');
+}
+
+function speakVerse() {
+    speak('Your country is desolate, your cities are burned with fire: your land, strangers devour it in your presence, and it is desolate, as overthrown by strangers. Isaiah 1:7');
+}
+
+function addPet() {
+    const name = document.getElementById('petName').value;
+    const type = document.getElementById('petType').value;
+    if (name) {
+        alert(`Added ${type}: ${name}`);
+        speak(`Added ${type} named ${name}`);
+        awardTokenForHardWork('pet_added');
+    }
+}
+
+function addPlant() {
+    speak('Adding plant to your garden');
+    awardTokenForHardWork('garden_activity');
+}
+
+function findLocalChat() {
+    const zip = document.getElementById('zipCode').value;
+    if (zip && zip.length === 5) {
+        document.getElementById('localChatRoom').style.display = 'block';
+        speak(`Connecting to chat room for zip code ${zip}`);
+        awardTokenForHardWork('local_chat_join');
+    }
+}
+
+function sendLocalMessage() {
+    const input = document.getElementById('localChatInput');
+    const message = input.value.trim();
+    if (message) {
+        checkForTiRigers(message);
+        input.value = '';
+        awardTokenForHardWork('chat_message');
+    }
+}
+
+function generateGame() {
+    const idea = document.getElementById('gameIdea').value;
+    if (idea) {
+        speak('Generating your game with AI');
+        awardTokenForHardWork('game_generation');
+        userTokens += 2; // Bonus for creation
+        updateTokenDisplay();
+    }
+}
+
+console.log('Infinity SPA Platform Loaded - Powered by Rogers Core System with Voice UI');
+
 
 // AI Assistant
 function updateAssistant(realmName) {
