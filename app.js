@@ -3737,6 +3737,610 @@ function getAppContent(appName) {
                     </div>
                 </div>
             </div>
+        `,
+        
+        globalID: `
+            <h2>🌐 Global ID Number Portal</h2>
+            <p style="text-align: center;">Universal identification system for all citizens</p>
+            <div style="max-width: 1000px; margin: 0 auto;">
+                <div style="background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3 style="color: white; margin-bottom: 15px;">🆔 Universal Identity Platform</h3>
+                    <p style="font-size: 15px;">Secure, decentralized global identification system. One ID for all services, governments, and platforms worldwide.</p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>👤 Your Global ID</h3>
+                        <div style="background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); color: white; padding: 30px; border-radius: 12px; text-align: center; margin-bottom: 15px;">
+                            <div style="font-size: 48px; font-weight: 700; letter-spacing: 3px; margin-bottom: 10px;">INF-8472-3901</div>
+                            <div style="font-size: 14px; opacity: 0.9;">marvaseater@gmail.com</div>
+                            <div style="font-size: 12px; opacity: 0.8; margin-top: 10px;">Verified ✓ • Issued: 2025-01-15</div>
+                        </div>
+                        <button class="btn-primary" style="width: 100%; margin-bottom: 10px;" onclick="downloadIDCard()">💳 Download ID Card</button>
+                        <button class="btn-secondary" style="width: 100%;" onclick="shareID()">📤 Share ID</button>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>🔐 Verification Status</h3>
+                        <div style="margin-bottom: 15px;">
+                            <div style="padding: 12px; background: #f0fdf4; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid #16a34a;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="font-weight: 600;">Email Verified</span>
+                                    <span style="color: #16a34a;">✓</span>
+                                </div>
+                            </div>
+                            <div style="padding: 12px; background: #f0fdf4; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid #16a34a;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="font-weight: 600;">Phone Verified</span>
+                                    <span style="color: #16a34a;">✓</span>
+                                </div>
+                            </div>
+                            <div style="padding: 12px; background: #f0fdf4; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid #16a34a;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="font-weight: 600;">Biometric Scan</span>
+                                    <span style="color: #16a34a;">✓</span>
+                                </div>
+                            </div>
+                            <div style="padding: 12px; background: #fef3c7; border-radius: 8px; border-left: 4px solid #fbbf24;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="font-weight: 600;">Government Link</span>
+                                    <span style="color: #fbbf24;">⏳ Pending</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn-primary" style="width: 100%;" onclick="completeVerification()">Complete All Verifications</button>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>🌍 Connected Services</h3>
+                        <div style="font-size: 13px; line-height: 2;">
+                            <div>✓ Infinity Token Wallet</div>
+                            <div>✓ Healthcare Records</div>
+                            <div>✓ Education Credentials</div>
+                            <div>✓ Financial Accounts (3)</div>
+                            <div>✓ Government Services (47)</div>
+                            <div>✓ Travel Documents</div>
+                        </div>
+                        <button class="btn-secondary" style="width: 100%; margin-top: 15px;" onclick="manageServices()">⚙️ Manage Connections</button>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>🔒 Privacy & Security</h3>
+                    <div style="background: #f0fdf4; padding: 20px; border-radius: 8px; border-left: 4px solid #16a34a; margin-bottom: 15px;">
+                        <div style="font-weight: 600; margin-bottom: 10px;">Your data is encrypted and decentralized</div>
+                        <div style="font-size: 13px; color: #6c757d; line-height: 1.8;">
+                            • No single government or corporation controls your ID<br>
+                            • You choose what data to share with each service<br>
+                            • Blockchain-verified for security<br>
+                            • Revocable access permissions
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+                        <button class="btn-secondary" onclick="viewActivityLog()">📜 Activity Log</button>
+                        <button class="btn-secondary" onclick="revokeAccess()">🚫 Revoke Access</button>
+                        <button class="btn-secondary" onclick="exportData()">📥 Export My Data</button>
+                        <button class="btn-secondary" onclick="deleteID()">🗑️ Delete ID</button>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px;">
+                    <h3>📊 Global Network Stats</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px;">
+                        <div style="background: #dbeafe; padding: 20px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 28px; font-weight: 700; color: #0ea5e9;">2.4B</div>
+                            <div style="font-size: 13px; color: #6c757d; margin-top: 5px;">Registered IDs</div>
+                        </div>
+                        <div style="background: #f0fdf4; padding: 20px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 28px; font-weight: 700; color: #16a34a;">193</div>
+                            <div style="font-size: 13px; color: #6c757d; margin-top: 5px;">Countries</div>
+                        </div>
+                        <div style="background: #ede9fe; padding: 20px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 28px; font-weight: 700; color: #6366f1;">847K</div>
+                            <div style="font-size: 13px; color: #6c757d; margin-top: 5px;">Services Connected</div>
+                        </div>
+                        <div style="background: #fef3c7; padding: 20px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 28px; font-weight: 700; color: #fbbf24;">99.97%</div>
+                            <div style="font-size: 13px; color: #6c757d; margin-top: 5px;">Uptime</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `,
+        
+        genesisCell: `
+            <h2>🌱 Genesis Cell - Website Builder</h2>
+            <p style="text-align: center;">Build custom websites from a single cell - AI-powered no-code platform</p>
+            <div style="max-width: 1400px; margin: 0 auto;">
+                <div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3 style="color: white; margin-bottom: 15px;">🧬 From One Cell to Complete Website</h3>
+                    <p style="font-size: 15px;">Start with a single idea (the "cell"), and watch as AI expands it into a full website. No coding required - just describe what you want.</p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 20px; margin-bottom: 20px;">
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>🌱 Start Your Cell</h3>
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: block; font-size: 13px; margin-bottom: 8px; font-weight: 600;">Website Type:</label>
+                            <select id="siteType" onchange="updateTemplates(this.value)" style="width: 100%; padding: 10px; border: 2px solid #d9d9d9; border-radius: 8px; margin-bottom: 15px;">
+                                <option>Business/Portfolio</option>
+                                <option>E-commerce Store</option>
+                                <option>Blog/Magazine</option>
+                                <option>Landing Page</option>
+                                <option>App/SaaS</option>
+                                <option>Personal Site</option>
+                                <option>Non-Profit</option>
+                            </select>
+                            <label style="display: block; font-size: 13px; margin-bottom: 8px; font-weight: 600;">Describe Your Vision:</label>
+                            <textarea id="siteVision" placeholder="e.g., 'A modern portfolio for a photographer specializing in nature photography. Clean design with large images.'" style="width: 100%; min-height: 120px; padding: 12px; border: 2px solid #d9d9d9; border-radius: 8px; font-family: inherit; margin-bottom: 15px;"></textarea>
+                            <button class="btn-primary" style="width: 100%;" onclick="generateWebsite()">✨ Generate Website</button>
+                        </div>
+                        <div style="background: #ede9fe; padding: 15px; border-radius: 8px; margin-top: 20px;">
+                            <div style="font-weight: 600; margin-bottom: 8px;">Quick Templates:</div>
+                            <div style="display: grid; gap: 8px;">
+                                <button class="btn-secondary" style="font-size: 12px;" onclick="loadTemplate('startup')">🚀 Startup</button>
+                                <button class="btn-secondary" style="font-size: 12px;" onclick="loadTemplate('restaurant')">🍽️ Restaurant</button>
+                                <button class="btn-secondary" style="font-size: 12px;" onclick="loadTemplate('creative')">🎨 Creative</button>
+                                <button class="btn-secondary" style="font-size: 12px;" onclick="loadTemplate('tech')">💻 Tech</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <h3 style="margin: 0;">🖥️ Live Preview</h3>
+                            <div style="display: flex; gap: 10px;">
+                                <button class="btn-secondary" onclick="previewMode('desktop')">🖥️ Desktop</button>
+                                <button class="btn-secondary" onclick="previewMode('tablet')">📱 Tablet</button>
+                                <button class="btn-secondary" onclick="previewMode('mobile')">📱 Mobile</button>
+                            </div>
+                        </div>
+                        <div id="websitePreview" style="background: #f8f9fa; border: 2px solid #d9d9d9; border-radius: 8px; min-height: 500px; overflow: auto;">
+                            <div style="padding: 60px 20px; text-align: center; color: #6c757d;">
+                                <div style="font-size: 64px; margin-bottom: 20px;">🌱</div>
+                                <div style="font-size: 18px; font-weight: 600; margin-bottom: 10px;">Your website will appear here</div>
+                                <div style="font-size: 14px;">Describe your vision and click "Generate Website"</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 10px; margin-top: 15px;">
+                            <button class="btn-secondary" onclick="editContent()">✏️ Edit Content</button>
+                            <button class="btn-secondary" onclick="changeColors()">🎨 Change Colors</button>
+                            <button class="btn-secondary" onclick="addSection()">➕ Add Section</button>
+                            <button class="btn-primary" onclick="publishSite()">🚀 Publish</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>🎨 AI Design Assistant</h3>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px;">
+                        <div style="margin-bottom: 15px;">
+                            <div style="font-weight: 600; margin-bottom: 10px;">🤖 AI Suggestions:</div>
+                            <div style="font-size: 13px; line-height: 2; color: #6c757d;">
+                                <div>• Consider adding a testimonials section to build trust</div>
+                                <div>• Your call-to-action button could be more prominent</div>
+                                <div>• Add social proof (client logos or metrics)</div>
+                                <div>• Include a contact form for lead generation</div>
+                            </div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+                            <button class="btn-secondary" onclick="applyAISuggestion('testimonials')">Add Testimonials</button>
+                            <button class="btn-secondary" onclick="applyAISuggestion('cta')">Enhance CTA</button>
+                            <button class="btn-secondary" onclick="applyAISuggestion('social')">Add Social Proof</button>
+                            <button class="btn-secondary" onclick="applyAISuggestion('form')">Add Contact Form</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>📦 Features & Integrations</h3>
+                        <div style="font-size: 13px; line-height: 2;">
+                            <div style="padding: 8px; background: #f0fdf4; border-radius: 6px; margin-bottom: 8px;">
+                                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                                    <input type="checkbox" checked> Contact Forms
+                                </label>
+                            </div>
+                            <div style="padding: 8px; background: #f0fdf4; border-radius: 6px; margin-bottom: 8px;">
+                                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                                    <input type="checkbox" checked> SEO Optimization
+                                </label>
+                            </div>
+                            <div style="padding: 8px; background: #f8f9fa; border-radius: 6px; margin-bottom: 8px;">
+                                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                                    <input type="checkbox"> E-commerce (+$10/mo)
+                                </label>
+                            </div>
+                            <div style="padding: 8px; background: #f8f9fa; border-radius: 6px; margin-bottom: 8px;">
+                                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                                    <input type="checkbox"> Blog System (+$5/mo)
+                                </label>
+                            </div>
+                            <div style="padding: 8px; background: #f8f9fa; border-radius: 6px;">
+                                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                                    <input type="checkbox"> Analytics (+Free)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>🌐 Deployment Options</h3>
+                        <div style="display: grid; gap: 10px;">
+                            <button class="btn-secondary" onclick="deployTo('infinity')">🌀 Infinity Hosting (Free)</button>
+                            <button class="btn-secondary" onclick="deployTo('github')">📂 GitHub Pages</button>
+                            <button class="btn-secondary" onclick="deployTo('netlify')">🌐 Netlify</button>
+                            <button class="btn-secondary" onclick="deployTo('vercel')">▲ Vercel</button>
+                            <button class="btn-secondary" onclick="deployTo('cloudflare')">☁️ Cloudflare Pages</button>
+                        </div>
+                        <div style="background: #ede9fe; padding: 15px; border-radius: 8px; margin-top: 15px; font-size: 13px;">
+                            <div style="font-weight: 600; margin-bottom: 5px;">Custom Domain:</div>
+                            <input type="text" placeholder="yourdomain.com" style="width: 100%; padding: 8px; border: 2px solid #d9d9d9; border-radius: 6px;">
+                        </div>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>💎 Export & Code</h3>
+                        <div style="display: grid; gap: 10px;">
+                            <button class="btn-secondary" onclick="exportHTML()">📄 Export HTML</button>
+                            <button class="btn-secondary" onclick="exportCSS()">🎨 Export CSS</button>
+                            <button class="btn-secondary" onclick="exportJS()">⚡ Export JavaScript</button>
+                            <button class="btn-primary" onclick="downloadFullSite()">📦 Download Full Site (.zip)</button>
+                        </div>
+                        <div style="background: #f0fdf4; padding: 15px; border-radius: 8px; margin-top: 15px; font-size: 13px; text-align: center;">
+                            <div style="font-weight: 600; color: #16a34a; margin-bottom: 5px;">100% Your Code</div>
+                            <div style="color: #6c757d;">No lock-in, fully customizable</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px;">
+                    <h3>📚 Your Websites</h3>
+                    <div id="websiteGallery" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;">
+                        <div style="border: 2px solid #d9d9d9; border-radius: 8px; padding: 15px; cursor: pointer;" onclick="editWebsite('site1')">
+                            <div style="background: #dbeafe; height: 120px; border-radius: 6px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; font-size: 36px;">🏠</div>
+                            <div style="font-weight: 600;">My Portfolio</div>
+                            <div style="font-size: 12px; color: #6c757d; margin-top: 5px;">Published • myportfolio.infinity</div>
+                        </div>
+                        <div style="border: 2px dashed #d9d9d9; border-radius: 8px; padding: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; min-height: 180px;" onclick="createNewSite()">
+                            <div style="text-align: center; color: #6c757d;">
+                                <div style="font-size: 48px; margin-bottom: 10px;">➕</div>
+                                <div>Create New Website</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `,
+        
+        ancientFollis: `
+            <h2>🏛️ Ancient Follis Magazine</h2>
+            <p style="text-align: center;">Aggregate of ancient coin finds, archeological discoveries, and numismatic research</p>
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <div style="background: linear-gradient(135deg, #92400e 0%, #78350f 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3 style="color: white; margin-bottom: 15px;">⚱️ Ancient Coin & Artifact Discovery Network</h3>
+                    <p style="font-size: 15px;">Continuous aggregation of Roman follis discoveries, Byzantine coins, ancient artifacts, and archeological finds from around the world.</p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>🪙 Recent Follis Discoveries</h3>
+                        <div style="max-height: 350px; overflow-y: auto;">
+                            <div style="padding: 15px; background: #fef3c7; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid #fbbf24;">
+                                <div style="font-weight: 600; margin-bottom: 5px;">Constantine I Follis - Ticinum Mint</div>
+                                <div style="font-size: 12px; color: #6c757d; margin-bottom: 8px;">Found: Bulgaria • 307-337 AD</div>
+                                <div style="font-size: 13px; margin-bottom: 8px;">Excellent preservation, reverse shows two soldiers with standards</div>
+                                <div style="font-size: 11px; color: #fbbf24;">Est. Value: $120-180 • Rarity: R2</div>
+                            </div>
+                            <div style="padding: 15px; background: #dbeafe; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid #3b82f6;">
+                                <div style="font-weight: 600; margin-bottom: 5px;">Diocletian Follis - Cyzicus</div>
+                                <div style="font-size: 12px; color: #6c757d; margin-bottom: 8px;">Found: Turkey • 284-305 AD</div>
+                                <div style="font-size: 13px; margin-bottom: 8px;">Genius reverse type, well-centered strike</div>
+                                <div style="font-size: 11px; color: #3b82f6;">Est. Value: $85-140 • Rarity: R1</div>
+                            </div>
+                            <div style="padding: 15px; background: #f0fdf4; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid #16a34a;">
+                                <div style="font-weight: 600; margin-bottom: 5px;">Justinian I Half Follis - Constantinople</div>
+                                <div style="font-size: 12px; color: #6c757d; margin-bottom: 8px;">Found: Greece • 527-565 AD</div>
+                                <div style="font-size: 13px; margin-bottom: 8px;">Large K reverse, regnal year visible</div>
+                                <div style="font-size: 11px; color: #16a34a;">Est. Value: $45-75 • Rarity: C</div>
+                            </div>
+                        </div>
+                        <button class="btn-primary" style="width: 100%; margin-top: 10px;" onclick="viewAllFollis()">View All Discoveries (2,847)</button>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>🏺 Archeological News</h3>
+                        <div style="max-height: 350px; overflow-y: auto;">
+                            <div style="padding: 15px; background: #ede9fe; border-radius: 8px; margin-bottom: 10px;">
+                                <div style="font-size: 11px; color: #6c757d; margin-bottom: 5px;">3 hours ago • Archeology News</div>
+                                <div style="font-weight: 600; margin-bottom: 8px;">Massive Roman Coin Hoard Found in Spain</div>
+                                <div style="font-size: 13px; color: #6c757d;">Over 1,300 bronze folles discovered in ceramic jar near Seville. Dating to late 3rd century AD.</div>
+                            </div>
+                            <div style="padding: 15px; background: #f8f9fa; border-radius: 8px; margin-bottom: 10px;">
+                                <div style="font-size: 11px; color: #6c757d; margin-bottom: 5px;">Yesterday • British Museum</div>
+                                <div style="font-weight: 600; margin-bottom: 8px;">New Byzantine Gold Solidus Attribution</div>
+                                <div style="font-size: 13px; color: #6c757d;">Researchers identify previously unknown mint mark on Heraclius solidus.</div>
+                            </div>
+                            <div style="padding: 15px; background: #f8f9fa; border-radius: 8px; margin-bottom: 10px;">
+                                <div style="font-size: 11px; color: #6c757d; margin-bottom: 5px;">2 days ago • Metal Detecting UK</div>
+                                <div style="font-weight: 600; margin-bottom: 8px;">Saxon Brooch Discovery Linked to Royal Site</div>
+                                <div style="font-size: 13px; color: #6c757d;">7th century gilt bronze brooch suggests high-status settlement.</div>
+                            </div>
+                        </div>
+                        <button class="btn-primary" style="width: 100%; margin-top: 10px;" onclick="refreshArchNews()">🔄 Refresh News Feed</button>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>📊 Market Trends</h3>
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 15px;">
+                            <div style="margin-bottom: 15px;">
+                                <div style="font-size: 12px; color: #6c757d; margin-bottom: 5px;">Roman Bronze Index:</div>
+                                <div style="font-size: 24px; font-weight: 700; color: #16a34a;">+12.3%</div>
+                                <div style="font-size: 11px; color: #16a34a;">30-day trend ↑</div>
+                            </div>
+                            <div style="margin-bottom: 15px;">
+                                <div style="font-size: 12px; color: #6c757d; margin-bottom: 5px;">Byzantine Gold:</div>
+                                <div style="font-size: 24px; font-weight: 700; color: #fbbf24;">+8.7%</div>
+                                <div style="font-size: 11px; color: #fbbf24;">90-day trend ↑</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 12px; color: #6c757d; margin-bottom: 5px;">Greek Silver:</div>
+                                <div style="font-size: 24px; font-weight: 700; color: #dc2626;">-2.1%</div>
+                                <div style="font-size: 11px; color: #dc2626;">30-day trend ↓</div>
+                            </div>
+                        </div>
+                        <button class="btn-secondary" style="width: 100%;" onclick="viewFullMarket()">📈 Full Market Analysis</button>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>🔍 Identification Assistant</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 20px;">
+                        <div>
+                            <div style="background: #f8f9fa; border: 2px dashed #d9d9d9; border-radius: 8px; padding: 40px; text-align: center; margin-bottom: 15px;">
+                                <div style="font-size: 48px; margin-bottom: 10px;">📷</div>
+                                <div style="color: #6c757d; font-size: 14px;">Upload coin photo for AI identification</div>
+                            </div>
+                            <button class="btn-primary" style="width: 100%;" onclick="uploadCoinPhoto()">📤 Upload Photo</button>
+                        </div>
+                        <div>
+                            <div style="background: #f0fdf4; padding: 20px; border-radius: 8px; border-left: 4px solid #16a34a;">
+                                <div style="font-weight: 600; margin-bottom: 10px;">AI Identification Results:</div>
+                                <div style="font-size: 13px; line-height: 1.8; color: #6c757d;">
+                                    <div><strong>Emperor:</strong> Constantine I (The Great)</div>
+                                    <div><strong>Denomination:</strong> Follis (AE3)</div>
+                                    <div><strong>Mint:</strong> Trier (TRP)</div>
+                                    <div><strong>Date:</strong> 310-313 AD</div>
+                                    <div><strong>Reverse:</strong> Soli Invicto Comiti</div>
+                                    <div><strong>RIC:</strong> VI Trier 899</div>
+                                    <div><strong>Grade:</strong> VF (Very Fine)</div>
+                                    <div><strong>Est. Value:</strong> $65-95</div>
+                                    <div style="color: #16a34a; margin-top: 10px;"><strong>Confidence:</strong> 94%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px;">
+                    <h3>📚 Research Sources</h3>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px;">
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <span class="source-badge">RIC (Roman Imperial Coinage)</span>
+                            <span class="source-badge">OCRE Database</span>
+                            <span class="source-badge">CoinArchives</span>
+                            <span class="source-badge">WildWinds</span>
+                            <span class="source-badge">British Museum</span>
+                            <span class="source-badge">American Numismatic Society</span>
+                            <span class="source-badge">Portable Antiquities Scheme</span>
+                            <span class="source-badge">NumisWiki</span>
+                        </div>
+                        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #d9d9d9; font-size: 13px; color: #6c757d;">
+                            <strong>Auto-scraping frequency:</strong> Every 2 hours • <strong>Last update:</strong> 23 minutes ago • <strong>New entries:</strong> 34
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="width: 100%; margin-top: 15px;" onclick="configureSources()">⚙️ Configure Research Sources</button>
+                </div>
+            </div>
+        `,
+        
+        keyboardQuest: `
+            <h2>⌨️ Keyboard Quest</h2>
+            <p style="text-align: center;">Build custom keyboards and debug vintage models</p>
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <div style="background: linear-gradient(135deg, #ec4899 0%, #db2777 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3 style="color: white; margin-bottom: 15px;">⌨️ Mechanical Keyboard Lab</h3>
+                    <p style="font-size: 15px;">Design custom keyboards, troubleshoot vintage models, test switches, program firmware, and join the mechanical keyboard community.</p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>🛠️ Keyboard Builder</h3>
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 15px;">
+                            <div style="margin-bottom: 15px;">
+                                <label style="display: block; font-size: 13px; margin-bottom: 8px; font-weight: 600;">Layout:</label>
+                                <select id="kbLayout" style="width: 100%; padding: 10px; border: 2px solid #d9d9d9; border-radius: 8px;">
+                                    <option>60% (61 keys)</option>
+                                    <option>65% (68 keys)</option>
+                                    <option>75% (84 keys)</option>
+                                    <option>TKL (87 keys)</option>
+                                    <option>Full Size (104 keys)</option>
+                                    <option>40% Ortho (48 keys)</option>
+                                </select>
+                            </div>
+                            <div style="margin-bottom: 15px;">
+                                <label style="display: block; font-size: 13px; margin-bottom: 8px; font-weight: 600;">Switch Type:</label>
+                                <select id="switchType" style="width: 100%; padding: 10px; border: 2px solid #d9d9d9; border-radius: 8px;">
+                                    <option>Cherry MX Brown (Tactile)</option>
+                                    <option>Cherry MX Blue (Clicky)</option>
+                                    <option>Cherry MX Red (Linear)</option>
+                                    <option>Gateron Yellow (Linear)</option>
+                                    <option>Holy Panda (Tactile)</option>
+                                    <option>Kailh Box White (Clicky)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="display: block; font-size: 13px; margin-bottom: 8px; font-weight: 600;">Case Material:</label>
+                                <select id="caseMaterial" style="width: 100%; padding: 10px; border: 2px solid #d9d9d9; border-radius: 8px;">
+                                    <option>Aluminum (CNC)</option>
+                                    <option>Acrylic (Laser Cut)</option>
+                                    <option>3D Printed (PLA)</option>
+                                    <option>Wood (Walnut/Oak)</option>
+                                    <option>Carbon Fiber</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="btn-primary" style="width: 100%;" onclick="generateKeyboardBuild()">🎨 Generate Build Guide</button>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>🔧 Debug Assistant</h3>
+                        <div style="background: #fee2e2; padding: 20px; border-radius: 8px; border-left: 4px solid #dc2626; margin-bottom: 15px;">
+                            <div style="font-weight: 600; margin-bottom: 10px;">Common Issues:</div>
+                            <div style="font-size: 13px; line-height: 2;">
+                                <div style="cursor: pointer; padding: 8px; background: white; border-radius: 6px; margin-bottom: 8px;" onclick="diagnose('chattering')">🔧 Key Chattering</div>
+                                <div style="cursor: pointer; padding: 8px; background: white; border-radius: 6px; margin-bottom: 8px;" onclick="diagnose('deadkeys')">🔧 Dead Keys</div>
+                                <div style="cursor: pointer; padding: 8px; background: white; border-radius: 6px; margin-bottom: 8px;" onclick="diagnose('stabilizer')">🔧 Stabilizer Rattle</div>
+                                <div style="cursor: pointer; padding: 8px; background: white; border-radius: 6px;" onclick="diagnose('firmware')">🔧 Firmware Not Flashing</div>
+                            </div>
+                        </div>
+                        <div style="background: #f0fdf4; padding: 15px; border-radius: 8px; border-left: 4px solid #16a34a;">
+                            <div style="font-weight: 600; margin-bottom: 8px;">✓ Solution Found:</div>
+                            <div style="font-size: 13px; color: #6c757d;">For key chattering, try: 1) Clean switch contacts 2) Increase debounce delay in firmware 3) Replace affected switches</div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>🎹 Switch Tester</h3>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 15px;">
+                            <div onclick="testSwitch('linear')" style="padding: 20px; background: #dbeafe; border-radius: 8px; text-align: center; cursor: pointer;">
+                                <div style="font-size: 24px; margin-bottom: 5px;">━</div>
+                                <div style="font-size: 12px; font-weight: 600;">Linear</div>
+                                <div style="font-size: 10px; color: #6c757d;">Smooth</div>
+                            </div>
+                            <div onclick="testSwitch('tactile')" style="padding: 20px; background: #fef3c7; border-radius: 8px; text-align: center; cursor: pointer;">
+                                <div style="font-size: 24px; margin-bottom: 5px;">⌃</div>
+                                <div style="font-size: 12px; font-weight: 600;">Tactile</div>
+                                <div style="font-size: 10px; color: #6c757d;">Bump</div>
+                            </div>
+                            <div onclick="testSwitch('clicky')" style="padding: 20px; background: #f0fdf4; border-radius: 8px; text-align: center; cursor: pointer;">
+                                <div style="font-size: 24px; margin-bottom: 5px;">♪</div>
+                                <div style="font-size: 12px; font-weight: 600;">Clicky</div>
+                                <div style="font-size: 10px; color: #6c757d;">Click</div>
+                            </div>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                            <div style="font-size: 12px; color: #6c757d; margin-bottom: 5px;">Force Curve:</div>
+                            <div style="background: white; height: 80px; border-radius: 6px; border: 1px solid #d9d9d9; display: flex; align-items: center; justify-content: center; color: #6c757d; font-size: 12px;">
+                                Switch force diagram would appear here
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>📐 Layout Designer</h3>
+                    <div id="layoutCanvas" style="background: #f8f9fa; border: 2px solid #d9d9d9; border-radius: 8px; min-height: 300px; padding: 20px;">
+                        <div style="display: grid; grid-template-columns: repeat(15, 1fr); gap: 4px;">
+                            ${Array(61).fill(0).map((_, i) => `
+                                <div onclick="toggleKey(${i})" style="background: white; border: 2px solid #d9d9d9; border-radius: 4px; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 10px; cursor: pointer; user-select: none;">
+                                    ${['`','1','2','3','4','5','6','7','8','9','0','-','=','\\u232B','Tab','Q','W','E','R','T','Y','U','I','O','P','[',']','\\\\','Caps','A','S','D','F','G','H','J','K','L',';','\\'','Enter','Shift','Z','X','C','V','B','N','M',',','.','/','Shift','Ctrl','Win','Alt','Space','Alt','Win','Menu','Ctrl'][i] || ''}
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 10px; margin-top: 15px;">
+                        <button class="btn-secondary" onclick="exportLayout()">📥 Export Layout (JSON)</button>
+                        <button class="btn-secondary" onclick="importLayout()">📤 Import Layout</button>
+                        <button class="btn-primary" onclick="generateFirmware()">⚡ Generate QMK Firmware</button>
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>🏪 Parts Estimator</h3>
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span style="font-size: 13px;">PCB:</span>
+                                <span style="font-weight: 600;">$45</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span style="font-size: 13px;">Switches (61x):</span>
+                                <span style="font-weight: 600;">$36</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span style="font-size: 13px;">Case:</span>
+                                <span style="font-weight: 600;">$75</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span style="font-size: 13px;">Keycaps:</span>
+                                <span style="font-weight: 600;">$50</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span style="font-size: 13px;">Stabilizers:</span>
+                                <span style="font-weight: 600;">$15</span>
+                            </div>
+                            <div style="border-top: 2px solid #d9d9d9; margin: 15px 0; padding-top: 15px; display: flex; justify-content: space-between;">
+                                <span style="font-weight: 700;">Total:</span>
+                                <span style="font-weight: 700; font-size: 18px; color: #ec4899;">$221</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>📚 Vintage Keyboards</h3>
+                        <div style="font-size: 13px; line-height: 2;">
+                            <div style="padding: 10px; background: #f0fdf4; border-radius: 6px; margin-bottom: 8px;">
+                                <strong>IBM Model M</strong>
+                                <div style="font-size: 11px; color: #6c757d;">Buckling spring • 1985-present</div>
+                            </div>
+                            <div style="padding: 10px; background: #dbeafe; border-radius: 6px; margin-bottom: 8px;">
+                                <strong>Apple Extended Keyboard II</strong>
+                                <div style="font-size: 11px; color: #6c757d;">Alps SKCM Orange • 1990</div>
+                            </div>
+                            <div style="padding: 10px; background: #fef3c7; border-radius: 6px; margin-bottom: 8px;">
+                                <strong>Northgate OmniKey</strong>
+                                <div style="font-size: 11px; color: #6c757d;">Alps SKCM Blue • 1987</div>
+                            </div>
+                        </div>
+                        <button class="btn-secondary" style="width: 100%; margin-top: 10px;" onclick="browseVintage()">View Full Database</button>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>💬 Community</h3>
+                        <div style="display: grid; gap: 10px;">
+                            <button class="btn-secondary" onclick="joinCommunity('reddit')">🔗 r/MechanicalKeyboards</button>
+                            <button class="btn-secondary" onclick="joinCommunity('discord')">💬 Keyboard Discord</button>
+                            <button class="btn-secondary" onclick="joinCommunity('geekhack')">🌐 GeekHack Forums</button>
+                            <button class="btn-primary" onclick="shareYourBuild()">📸 Share Your Build</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px;">
+                    <h3>🎓 Learning Resources</h3>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px;">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                            <div style="padding: 15px; background: white; border-radius: 8px; border: 1px solid #d9d9d9;">
+                                <div style="font-weight: 600; margin-bottom: 5px;">⚙️ QMK Firmware Guide</div>
+                                <div style="font-size: 12px; color: #6c757d;">Program custom layouts</div>
+                            </div>
+                            <div style="padding: 15px; background: white; border-radius: 8px; border: 1px solid #d9d9d9;">
+                                <div style="font-weight: 600; margin-bottom: 5px;">🔧 Soldering Tutorial</div>
+                                <div style="font-size: 12px; color: #6c757d;">Build from scratch</div>
+                            </div>
+                            <div style="padding: 15px; background: white; border-radius: 8px; border: 1px solid #d9d9d9;">
+                                <div style="font-weight: 600; margin-bottom: 5px;">🎨 Keycap Guide</div>
+                                <div style="font-size: 12px; color: #6c757d;">Profiles & materials</div>
+                            </div>
+                            <div style="padding: 15px; background: white; border-radius: 8px; border: 1px solid #d9d9d9;">
+                                <div style="font-weight: 600; margin-bottom: 5px;">📐 Layout Theory</div>
+                                <div style="font-size: 12px; color: #6c757d;">Ergonomics & efficiency</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         `
     };
     
