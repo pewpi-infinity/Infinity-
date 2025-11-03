@@ -53,6 +53,15 @@
                 </div>
                 
                 <div class="sidebar-section">
+                    <h3>Infinity Tools</h3>
+                    <button class="sidebar-btn" onclick="loadApp('peerlink')">📞 PeerLink P2P</button>
+                    <button class="sidebar-btn" onclick="loadApp('deployer')">🚀 Deployer</button>
+                    <button class="sidebar-btn" onclick="loadApp('funding')">💰 Funding Pad</button>
+                    <button class="sidebar-btn" onclick="loadApp('risk')">🎲 RISK Companion</button>
+                    <button class="sidebar-btn" onclick="showTreasuryMap()">🏛️ Treasury Map</button>
+                </div>
+                
+                <div class="sidebar-section">
                     <h3>Chat Sessions</h3>
                     <div id="chatSessions" class="chat-sessions">
                         <button class="session-btn" onclick="loadChatSession('default')">💬 Main Chat</button>
@@ -85,6 +94,17 @@
                 </div>
             </div>
         </aside>
+
+        <!-- Required Hook IDs for Scripts -->
+        <div id="rogers-button" style="display: none;"></div>
+        <div id="intake-agent" style="display: none;"></div>
+        <div id="infinity-deployer" style="display: none;"></div>
+        <div id="nwo-panel" style="display: none;"></div>
+        <div id="p2p-panel" style="display: none;"></div>
+        <div id="funding-pad" style="display: none;"></div>
+        <div id="marketplace-panel" style="display: none;"></div>
+        <div id="watson-core" style="display: none;"></div>
+        <div id="gemini-image-intake" style="display: none;"></div>
 
         <!-- Vector Transition System -->
         <div id="vectorTransition" class="vector-transition">
