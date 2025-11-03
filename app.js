@@ -1,5 +1,7 @@
 // Global Variables
 let currentUser = null;
+let currentHub = 'main';
+let currentApp = null;
 let currentRealm = null;
 let autopilotActive = false;
 let audioContext = null;
@@ -8,6 +10,11 @@ let microphone = null;
 let userTokens = 0;
 let messageCount = 0;
 let aiAssistantActive = true;
+
+// Voice UI Variables
+let voiceRecognition = null;
+let voiceSynthesis = window.speechSynthesis;
+let elevenLabsApiKey = null; // Will be set from user config
 
 // Google Authentication
 function handleCredentialResponse(response) {
@@ -81,24 +88,7 @@ window.addEventListener('load', function() {
     }
 });
 
-// Global Variables
-let currentUser = null;
-let currentHub = 'main';
-let currentApp = null;
-let autopilotActive = false;
-let audioContext = null;
-let analyser = null;
-let microphone = null;
-let userTokens = 0;
-let messageCount = 0;
-let aiAssistantActive = true;
-
-// Voice UI Variables
-let voiceRecognition = null;
-let voiceSynthesis = window.speechSynthesis;
-let elevenLabsApiKey = null; // Will be set from user config
-
-// Google Authentication
+// Google Authentication (continued from top)
 function handleCredentialResponse(response) {
     const responsePayload = decodeJwtResponse(response.credential);
     
