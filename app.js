@@ -1618,6 +1618,14 @@ function getAppContent(appName) {
                     </div>
                 </div>
                 
+                <!-- Edison Cylinder Resonance Analysis Results -->
+                <div id="coinAnalysisResult" style="background: white; padding: 30px; border-radius: 12px; margin-bottom: 20px; min-height: 100px;">
+                    <div style="text-align: center; color: #6c757d; padding: 40px;">
+                        <p>Upload a coin image and scan to see Thomas Edison's cylinder resonance data extraction</p>
+                        <p style="font-size: 13px; margin-top: 10px;">Every conversation, transaction, and moment near this coin is stored in Watson particles</p>
+                    </div>
+                </div>
+                
                 <div style="background: white; padding: 30px; border-radius: 12px; margin-bottom: 20px;">
                     <h3>🏛️ Echoes of the Past - Verified Coins</h3>
                     <div class="coin-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
@@ -2077,6 +2085,15 @@ function getAppContent(appName) {
                             <div style="background: #fef3c7; padding: 15px; border-radius: 8px; border-left: 4px solid #fbbf24;">
                                 <strong>Transmission:</strong> <span id="goldTransmission">0.9900</span>
                                 <p style="font-size: 13px; color: #64748b; margin-top: 5px;">T = exp(-t / (f · A))</p>
+                            </div>
+                            
+                            <div style="background: #f0fdf4; padding: 12px; border-radius: 8px; border-left: 4px solid #16a34a; margin-top: 15px;">
+                                <div id="empathyBandStatus" style="font-size: 13px;">
+                                    ❌ Outside Empathy Band - Attenuated
+                                </div>
+                                <p style="font-size: 11px; color: #64748b; margin-top: 5px; margin-bottom: 0;">
+                                    Alpha Waves (8-14 Hz): Love, Trust, Empathy pass through
+                                </p>
                             </div>
                         </div>
                         <div style="background: #f8f9fa; padding: 20px; border-radius: 8px;">
@@ -2889,26 +2906,136 @@ function configureRSSFeeds() {
     speak('RSS feed configuration');
 }
 
-// Coin Identity - Cylinder Resonance Renderings
+// Coin Identity - Cylinder Resonance Renderings (Thomas Edison Theory)
 function analyzeCoinResonance() {
-    speak('Analyzing coin with cylinder resonance technology');
+    speak('Analyzing coin with Edison cylinder resonance technology');
     
-    const context = 'Explain how cylinder resonance technology can authenticate ancient coins by analyzing metal composition echoes and manufacturing patterns without carbon dating. Be scientific but accessible.';
+    const coinData = simulateCoinResonanceReading();
     
-    callGeminiAI('How does cylinder resonance authenticate ancient coins?', context).then(response => {
-        alert('Coin Resonance Analysis:\n\n' + response);
-        awardTokenForHardWork('coin_analysis');
-    });
+    const report = `🪙 EDISON CYLINDER RESONANCE ANALYSIS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📡 WATSON FIELD EXTRACTION COMPLETE
+
+🔬 Physical Properties:
+   • Metal Composition: ${coinData.metal}
+   • Density Resonance: ${coinData.density.toFixed(3)} g/cm³
+   • Age Estimate: ${coinData.age} years
+   • Manufacturing Era: ${coinData.era}
+
+🌌 SPACE-TIME DATA RECORDED IN COIN:
+
+📍 Location History (Last 3 Transactions):
+   1. ${coinData.locations[0]}
+   2. ${coinData.locations[1]}
+   3. ${coinData.locations[2]}
+
+🗣️ CONVERSATION FRAGMENTS (Edison Cylinder Echo):
+   "${coinData.conversations[0]}"
+   "${coinData.conversations[1]}"
+   "${coinData.conversations[2]}"
+
+⚛️ Watson Particle Count: ${coinData.watsonParticles.toLocaleString()}
+   • Compressed: ${(coinData.watsonParticles * 0.3).toFixed(0)} particles
+   • Expanded: ${(coinData.watsonParticles * 1.7).toFixed(0)} particles
+   • Phase: ${coinData.phase}
+
+🔮 TIME TRAVEL POTENTIAL:
+   Audio/Visual Access: ${coinData.timeAccessLevel}
+   Physical Matter Transport: ${coinData.matterTransport}
+   
+⚠️ Note: Every thought, action, and conversation that 
+occurred within 3 feet of this coin is permanently 
+stored in Watson particle resonance fields.
+
+Edison was right — cylinders record everything.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Confidence: ${coinData.confidence}% | Method: Cylinder Resonance`;
+
+    const resultDiv = document.getElementById('coinAnalysisResult');
+    if (resultDiv) {
+        resultDiv.innerHTML = `<pre style="white-space: pre-wrap; font-family: monospace; font-size: 12px; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #0070ba;">${report}</pre>`;
+    } else {
+        alert(report);
+    }
+    
+    awardTokenForHardWork('coin_analysis');
+    userTokens += 10; // Bonus for advanced analysis
+    updateTokenDisplay();
+}
+
+function simulateCoinResonanceReading() {
+    // Simulate Edison's cylinder resonance reading of coin data
+    const eras = [
+        { name: 'Roman Empire', range: '100-400 AD', metal: 'Silver (92% Ag, 8% Cu)' },
+        { name: 'Medieval Europe', range: '1200-1400 AD', metal: 'Gold (96% Au, 4% Ag)' },
+        { name: 'Colonial America', range: '1650-1780 AD', metal: 'Copper (98% Cu, 2% Sn)' },
+        { name: 'Victorian England', range: '1850-1900 AD', metal: 'Bronze (95% Cu, 5% Zn)' },
+        { name: 'Early Republic', range: '1790-1850 AD', metal: 'Silver (90% Ag, 10% Cu)' }
+    ];
+    
+    const selectedEra = eras[Math.floor(Math.random() * eras.length)];
+    const currentYear = new Date().getFullYear();
+    const ageRange = selectedEra.range.split('-');
+    const avgYear = parseInt(ageRange[0].replace(/[^\d]/g, ''));
+    const age = currentYear - avgYear;
+    
+    const locations = [
+        'Market Square, ' + selectedEra.name + ' - 2 people bargaining',
+        'Tavern Table - 4 people gambling',
+        'Royal Treasury - Official counting coins',
+        'Merchant Ship - Trade negotiations',
+        'Temple Offering - Prayer ceremony',
+        'Blacksmith Shop - Payment for tools'
+    ];
+    
+    const conversations = [
+        'How much for the wheat? Five denarii.',
+        'I wager three coins on the next hand.',
+        'The tax collector demands payment by sunset.',
+        'This gold is from the eastern mines.',
+        'May the gods bless this offering.',
+        'Your finest blade is worth twenty pieces.'
+    ];
+    
+    // Shuffle and select
+    const shuffledLocations = locations.sort(() => 0.5 - Math.random()).slice(0, 3);
+    const shuffledConversations = conversations.sort(() => 0.5 - Math.random()).slice(0, 3);
+    
+    return {
+        metal: selectedEra.metal,
+        density: 8.5 + Math.random() * 2,
+        age: age,
+        era: selectedEra.range,
+        locations: shuffledLocations,
+        conversations: shuffledConversations,
+        watsonParticles: Math.floor(age * 1000000 + Math.random() * 5000000),
+        phase: Math.random() > 0.5 ? 'Compressed (Finite)' : 'Expanded (Infinite)',
+        timeAccessLevel: '✅ Audio & Visual Ready',
+        matterTransport: '🔬 Research Phase (Infinity Lab)',
+        confidence: 92 + Math.floor(Math.random() * 8)
+    };
 }
 
 function scanCoinImage() {
-    speak('Scanning coin image for resonance analysis');
+    speak('Scanning coin image for Edison resonance analysis');
+    
+    const loadingDiv = document.getElementById('coinAnalysisResult');
+    if (loadingDiv) {
+        loadingDiv.innerHTML = `
+            <div style="text-align: center; padding: 30px;">
+                <div class="loading-spinner" style="margin: 0 auto 15px;"></div>
+                <p>📡 Exciting Watson field resonance...</p>
+                <p style="font-size: 12px; color: #6c757d;">Extracting space-time data from coin surface</p>
+            </div>`;
+    }
+    
     setTimeout(() => {
-        alert('📸 Coin Image Scanned\n\n✓ Image captured\n✓ Edge detection complete\n✓ Resonance pattern extracted\n✓ Comparing to ancient coin database\n\nPredicted Era: Roman Empire (100-200 AD)\nConfidence: 94%\nMethod: Cylinder resonance + AI pattern matching');
+        analyzeCoinResonance();
+        speak('Resonance pattern extracted - Edison cylinder data recovered');
         awardTokenForHardWork('coin_scan');
-        userTokens += 5;
-        updateTokenDisplay();
-    }, 2000);
+    }, 2500);
 }
 
 function handleCoinImageUpload(event) {
@@ -3189,31 +3316,82 @@ function calculateGoldBarrier() {
     const amp = parseFloat(document.getElementById('watsonAmp').value) || 1;
     const thickness = parseFloat(document.getElementById('goldThickness').value) || 0.1;
     
-    // T = exp(-t / (f · A))
-    const transmission = Math.exp(-thickness / (freq * amp));
+    // Empathy window (alpha-wave frequencies that pass through)
+    const empathyLow = 8;
+    const empathyHigh = 14;
+    
+    // Check if current frequency is in empathy band
+    const inEmpathyBand = (freq >= empathyLow && freq <= empathyHigh);
+    
+    // T = exp(-t / (f · A)) for baseline, but empathy band passes fully
+    const transmission = inEmpathyBand ? 1.0 : Math.exp(-thickness / (freq * amp));
     document.getElementById('goldTransmission').textContent = transmission.toFixed(4);
     
-    // Draw simple chart
+    // Update empathy band indicator
+    const empathyIndicator = document.getElementById('empathyBandStatus');
+    if (empathyIndicator) {
+        if (inEmpathyBand) {
+            empathyIndicator.textContent = '✅ In Empathy Band (8-14 Hz) - Full Transmission';
+            empathyIndicator.style.color = '#16a34a';
+            empathyIndicator.style.fontWeight = 'bold';
+        } else {
+            empathyIndicator.textContent = '❌ Outside Empathy Band - Attenuated';
+            empathyIndicator.style.color = '#dc2626';
+            empathyIndicator.style.fontWeight = 'normal';
+        }
+    }
+    
+    // Draw selective permeability chart
     const canvas = document.getElementById('goldBarrierChart');
     if (canvas && canvas.getContext) {
         const ctx = canvas.getContext('2d');
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.strokeStyle = '#0ea5e9';
-        ctx.lineWidth = 2;
+        
+        // Draw empathy band background
+        const empathyStartX = ((empathyLow - 1) / 49) * (canvas.width - 40) + 20;
+        const empathyEndX = ((empathyHigh - 1) / 49) * (canvas.width - 40) + 20;
+        ctx.fillStyle = 'rgba(134, 239, 172, 0.2)';
+        ctx.fillRect(empathyStartX, 20, empathyEndX - empathyStartX, canvas.height - 40);
+        
+        // Draw transmission curve
+        ctx.strokeStyle = 'gold';
+        ctx.lineWidth = 3;
         ctx.beginPath();
         
         for (let i = 0; i <= 100; i++) {
-            const f = 1 + (60 - 1) * (i / 100);
-            const T = Math.exp(-thickness / (f * amp));
+            const f = 1 + (50 - 1) * (i / 100);
+            const inBand = (f >= empathyLow && f <= empathyHigh);
+            const T = inBand ? 1.0 : Math.exp(-thickness / (f * amp));
             const x = (i / 100) * (canvas.width - 40) + 20;
             const y = canvas.height - 20 - T * (canvas.height - 40);
             if (i === 0) ctx.moveTo(x, y);
             else ctx.lineTo(x, y);
         }
         ctx.stroke();
+        
+        // Draw current frequency marker
+        const currentX = ((freq - 1) / 49) * (canvas.width - 40) + 20;
+        const currentY = canvas.height - 20 - transmission * (canvas.height - 40);
+        ctx.fillStyle = '#ef4444';
+        ctx.beginPath();
+        ctx.arc(currentX, currentY, 5, 0, 2 * Math.PI);
+        ctx.fill();
+        
+        // Labels
+        ctx.fillStyle = '#16a34a';
+        ctx.font = '11px sans-serif';
+        ctx.fillText('Empathy Band (Love/Trust)', empathyStartX + 5, 35);
+        
+        // Axes
+        ctx.strokeStyle = '#e5e7eb';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(20, canvas.height - 20);
+        ctx.lineTo(canvas.width - 20, canvas.height - 20);
+        ctx.stroke();
     }
     
-    speak('Gold barrier calculated');
+    speak(inEmpathyBand ? 'In empathy band - full transmission' : 'Outside empathy band - attenuated');
     awardTokenForHardWork('physics_calc');
 }
 
