@@ -2022,6 +2022,134 @@ function getAppContent(appName) {
                     border-color: #0070ba;
                 }
             </style>
+        `,
+        
+        fieldlab: `
+            <h2>🔬 Infinity Field Lab</h2>
+            <p style="text-align: center;">Ultra-Lite Watson Physics • Love Reflector • Gold Barrier • Resonance Detection</p>
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3 style="color: white; margin-bottom: 15px;">⚡ Infinity Physics Experiments</h3>
+                    <p style="font-size: 15px; line-height: 1.6;">
+                        Pure scientific instruments for Watson Field experiments. No external packages. ES5-safe calculations.
+                    </p>
+                </div>
+                
+                <!-- Mirror Law of Infinity -->
+                <div style="background: white; padding: 30px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>🪞 Mirror Law of Infinity (Love Reflector)</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Infinite Wave (Hz):</label>
+                            <input type="number" id="infiniteWave" value="10" step="0.1" style="width: 100%; padding: 10px; border: 2px solid #d9d9d9; border-radius: 8px; margin-bottom: 15px;">
+                            
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Love Frequency (Hz):</label>
+                            <input type="number" id="loveFreq" value="5" step="0.1" style="width: 100%; padding: 10px; border: 2px solid #d9d9d9; border-radius: 8px; margin-bottom: 15px;">
+                            
+                            <div style="background: #f0f9ff; padding: 15px; border-radius: 8px; border-left: 4px solid #0ea5e9;">
+                                <strong>Reflected Love:</strong> <span id="reflectedLove">50.0000</span>
+                                <p style="font-size: 13px; color: #64748b; margin-top: 5px;">L_ref = ω_inf × f_love</p>
+                            </div>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px;">
+                            <p style="font-size: 14px; line-height: 1.6; color: #334155;">
+                                <strong>Coherent intention multiplies love's carrier wave.</strong> Raising the baseline amplifies compassion without saturating boundaries. The Mirror Law states that infinite consciousness reflects finite love at exponential rates.
+                            </p>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="margin-top: 15px;" onclick="calculateMirrorLaw()">🔄 Recalculate</button>
+                </div>
+                
+                <!-- Gold Barrier -->
+                <div style="background: white; padding: 30px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>🥇 Gold Barrier — Selective Permeability</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Watson Frequency (Hz):</label>
+                            <input type="number" id="watsonFreq" value="10" step="0.1" style="width: 100%; padding: 10px; border: 2px solid #d9d9d9; border-radius: 8px; margin-bottom: 15px;">
+                            
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Watson Amplitude:</label>
+                            <input type="number" id="watsonAmp" value="1" step="0.01" style="width: 100%; padding: 10px; border: 2px solid #d9d9d9; border-radius: 8px; margin-bottom: 15px;">
+                            
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Gold Thickness (mm):</label>
+                            <input type="number" id="goldThickness" value="0.1" step="0.01" style="width: 100%; padding: 10px; border: 2px solid #d9d9d9; border-radius: 8px; margin-bottom: 15px;">
+                            
+                            <div style="background: #fef3c7; padding: 15px; border-radius: 8px; border-left: 4px solid #fbbf24;">
+                                <strong>Transmission:</strong> <span id="goldTransmission">0.9900</span>
+                                <p style="font-size: 13px; color: #64748b; margin-top: 5px;">T = exp(-t / (f · A))</p>
+                            </div>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px;">
+                            <canvas id="goldBarrierChart" width="400" height="200" style="width: 100%; max-width: 400px;"></canvas>
+                            <p style="font-size: 13px; color: #64748b; margin-top: 10px; text-align: center;">Transmission vs Frequency</p>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="margin-top: 15px;" onclick="calculateGoldBarrier()">📊 Calculate Barrier</button>
+                </div>
+                
+                <!-- Particle Duality -->
+                <div style="background: white; padding: 30px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>⚛️ Finite ↔ Infinite Particle Duality</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Base Energy E0:</label>
+                            <input type="number" id="baseEnergy" value="10" step="0.1" style="width: 100%; padding: 10px; border: 2px solid #d9d9d9; border-radius: 8px; margin-bottom: 15px;">
+                            
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Phase φ (radians):</label>
+                            <input type="number" id="phase" value="0.785" step="0.01" style="width: 100%; padding: 10px; border: 2px solid #d9d9d9; border-radius: 8px; margin-bottom: 15px;">
+                            
+                            <div style="background: #f0fdf4; padding: 15px; border-radius: 8px; border-left: 4px solid #22c55e;">
+                                <strong>Duality Energy:</strong> <span id="dualityEnergy">7.0711</span>
+                                <p style="font-size: 13px; color: #64748b; margin-top: 5px;">
+                                    Finite (φ < π/2): E = E₀ · sin(φ)<br>
+                                    Infinite (φ ≥ π/2): E = E₀ · e^φ
+                                </p>
+                            </div>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px;">
+                            <canvas id="dualityChart" width="400" height="200" style="width: 100%; max-width: 400px;"></canvas>
+                            <p style="font-size: 13px; color: #64748b; margin-top: 10px; text-align: center;">Energy vs Phase</p>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="margin-top: 15px;" onclick="calculateDuality()">⚡ Calculate Energy</button>
+                </div>
+                
+                <!-- Watson Field Resonance -->
+                <div style="background: white; padding: 30px; border-radius: 12px;">
+                    <h3>📡 Watson Field Resonance — Matched Filter</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Resonance f0 (Hz):</label>
+                            <input type="number" id="resonanceFreq" value="10" step="0.1" style="width: 100%; padding: 10px; border: 2px solid #d9d9d9; border-radius: 8px; margin-bottom: 15px;">
+                            
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">SNR (dB):</label>
+                            <input type="number" id="snrDb" value="-3" step="0.1" style="width: 100%; padding: 10px; border: 2px solid #d9d9d9; border-radius: 8px; margin-bottom: 15px;">
+                            
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Coil Sensitivity:</label>
+                            <input type="number" id="coilSens" value="0.1" step="0.01" style="width: 100%; padding: 10px; border: 2px solid #d9d9d9; border-radius: 8px; margin-bottom: 15px;">
+                            
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">SQUID Sensitivity:</label>
+                            <input type="number" id="squidSens" value="0.01" step="0.001" style="width: 100%; padding: 10px; border: 2px solid #d9d9d9; border-radius: 8px; margin-bottom: 15px;">
+                            
+                            <div id="resonanceResult" style="background: #dbeafe; padding: 15px; border-radius: 8px; border-left: 4px solid #3b82f6;">
+                                <strong>Correlation:</strong> <span id="correlation">0.0000</span>
+                                <div id="detectionStatus" style="margin-top: 8px; padding: 6px 12px; border-radius: 999px; background: #fee2e2; color: #991b1b; display: inline-block; font-size: 12px;">
+                                    Not detected
+                                </div>
+                            </div>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px;">
+                            <canvas id="resonanceChart" width="400" height="200" style="width: 100%; max-width: 400px;"></canvas>
+                            <p style="font-size: 13px; color: #64748b; margin-top: 10px; text-align: center;">Signal Time Series</p>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="margin-top: 15px;" onclick="detectResonance()">🔍 Detect Resonance</button>
+                </div>
+                
+                <div style="text-align: center; margin-top: 20px; padding: 20px; color: #64748b; font-size: 12px;">
+                    Infinity Field Lab • Ultra-Lite v1.3 — Rogers-ready • Pure JavaScript • No packages
+                </div>
+            </div>
         `
     };
     
@@ -3043,6 +3171,173 @@ function forgeNewApp() {
 function loadForgeTemplate(template) {
     speak(`Loading ${template} template`);
     alert(`📋 ${template.toUpperCase()} Template Loaded\n\nPre-built structure ready for customization!`);
+}
+
+// Infinity Field Lab Functions
+function calculateMirrorLaw() {
+    const infiniteWave = parseFloat(document.getElementById('infiniteWave').value) || 10;
+    const loveFreq = parseFloat(document.getElementById('loveFreq').value) || 5;
+    const reflectedLove = infiniteWave * loveFreq;
+    
+    document.getElementById('reflectedLove').textContent = reflectedLove.toFixed(4);
+    speak('Mirror law calculated');
+    awardTokenForHardWork('physics_calc');
+}
+
+function calculateGoldBarrier() {
+    const freq = parseFloat(document.getElementById('watsonFreq').value) || 10;
+    const amp = parseFloat(document.getElementById('watsonAmp').value) || 1;
+    const thickness = parseFloat(document.getElementById('goldThickness').value) || 0.1;
+    
+    // T = exp(-t / (f · A))
+    const transmission = Math.exp(-thickness / (freq * amp));
+    document.getElementById('goldTransmission').textContent = transmission.toFixed(4);
+    
+    // Draw simple chart
+    const canvas = document.getElementById('goldBarrierChart');
+    if (canvas && canvas.getContext) {
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.strokeStyle = '#0ea5e9';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        
+        for (let i = 0; i <= 100; i++) {
+            const f = 1 + (60 - 1) * (i / 100);
+            const T = Math.exp(-thickness / (f * amp));
+            const x = (i / 100) * (canvas.width - 40) + 20;
+            const y = canvas.height - 20 - T * (canvas.height - 40);
+            if (i === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+    }
+    
+    speak('Gold barrier calculated');
+    awardTokenForHardWork('physics_calc');
+}
+
+function calculateDuality() {
+    const E0 = parseFloat(document.getElementById('baseEnergy').value) || 10;
+    const phase = parseFloat(document.getElementById('phase').value) || 0.785;
+    
+    // Finite: E = E0 · sin(phi) if phi < pi/2
+    // Infinite: E = E0 · e^phi if phi >= pi/2
+    const dualityE = phase < Math.PI / 2 
+        ? E0 * Math.sin(phase) 
+        : E0 * Math.exp(phase);
+    
+    document.getElementById('dualityEnergy').textContent = dualityE.toFixed(4);
+    
+    // Draw chart
+    const canvas = document.getElementById('dualityChart');
+    if (canvas && canvas.getContext) {
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.strokeStyle = '#8b5cf6';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        
+        for (let i = 0; i <= 100; i++) {
+            const p = (Math.PI * i) / 100;
+            const E = p < Math.PI / 2 ? E0 * Math.sin(p) : E0 * Math.exp(p);
+            const x = (i / 100) * (canvas.width - 40) + 20;
+            const maxE = E0 * Math.exp(Math.PI);
+            const y = canvas.height - 20 - (E / maxE) * (canvas.height - 40);
+            if (i === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+    }
+    
+    speak('Duality energy calculated');
+    awardTokenForHardWork('physics_calc');
+}
+
+function detectResonance() {
+    const f0 = parseFloat(document.getElementById('resonanceFreq').value) || 10;
+    const snrDb = parseFloat(document.getElementById('snrDb').value) || -3;
+    const coil = parseFloat(document.getElementById('coilSens').value) || 0.1;
+    const squid = parseFloat(document.getElementById('squidSens').value) || 0.01;
+    
+    // Generate synthetic signal with noise
+    const duration = 2;
+    const fs = 1000;
+    const n = Math.floor(duration * fs);
+    const TAU = 2 * Math.PI;
+    
+    // Reference signal
+    const ref = [];
+    for (let i = 0; i < n; i++) {
+        const t = i / fs;
+        ref.push(Math.sin(TAU * f0 * t));
+    }
+    
+    // Noisy signal
+    const snrLin = Math.pow(10, snrDb / 10);
+    const signalAmp = Math.sqrt(2 * Math.max(snrLin, 0));
+    const chain = [];
+    for (let i = 0; i < n; i++) {
+        const noise = (Math.random() - 0.5) * 2; // Simple noise
+        const signal = signalAmp * ref[i];
+        chain.push((noise + signal) * coil * squid);
+    }
+    
+    // Calculate correlation
+    let dot = 0, n1 = 0, n2 = 0;
+    for (let i = 0; i < n; i++) {
+        dot += chain[i] * ref[i];
+        n1 += chain[i] * chain[i];
+        n2 += ref[i] * ref[i];
+    }
+    const corr = dot / Math.sqrt((n1 || 1e-12) * (n2 || 1e-12));
+    
+    const detected = corr > 0.02;
+    
+    document.getElementById('correlation').textContent = corr.toFixed(4);
+    const statusDiv = document.getElementById('detectionStatus');
+    if (detected) {
+        statusDiv.textContent = 'Detected';
+        statusDiv.style.background = '#dcfce7';
+        statusDiv.style.color = '#166534';
+    } else {
+        statusDiv.textContent = 'Not detected';
+        statusDiv.style.background = '#fee2e2';
+        statusDiv.style.color = '#991b1b';
+    }
+    
+    // Draw time series (first 200 samples)
+    const canvas = document.getElementById('resonanceChart');
+    if (canvas && canvas.getContext) {
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.strokeStyle = '#0ea5e9';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        
+        const samples = 200;
+        for (let i = 0; i < samples; i++) {
+            const y = chain[i];
+            const x = (i / samples) * (canvas.width - 40) + 20;
+            const yPos = canvas.height / 2 - y * 100;
+            if (i === 0) ctx.moveTo(x, yPos);
+            else ctx.lineTo(x, yPos);
+        }
+        ctx.stroke();
+        
+        // Zero line
+        ctx.strokeStyle = '#e5e7eb';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(20, canvas.height / 2);
+        ctx.lineTo(canvas.width - 20, canvas.height / 2);
+        ctx.stroke();
+    }
+    
+    speak(detected ? 'Resonance detected' : 'No resonance detected');
+    awardTokenForHardWork('resonance_detection');
+    userTokens += 5;
+    updateTokenDisplay();
 }
 
 // Government Robots Treasury Tracker
