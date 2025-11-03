@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Infinity - Rogers Core System</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <!-- Google Sign-In Section -->
+    <div id="authSection" class="auth-section">
+        <div class="auth-container">
+            <div class="logo">
+                <h1>Infinity</h1>
+                <p class="tagline">Rogers Core System</p>
+            </div>
+            <div id="g_id_onload"
+                 data-client_id="16937806382-leqbaginj3igrhei58nsab7tb4hsb7435.apps.googleusercontent.com"
+                 data-callback="handleCredentialResponse"
+                 data-auto_prompt="false">
+            </div>
+            <div class="g_id_signin" 
+                 data-type="standard"
+                 data-size="large"
+                 data-theme="outline"
+                 data-text="sign_in_with"
+                 data-shape="rectangular"
+                 data-logo_alignment="left">
+            </div>
+            <p class="auth-info">Sign in to access all realms</p>
+            <p class="auth-email">Contact: marvaseater@gmail.com</p>
+        </div>
+    </div>
+
+    <!-- Main App (Hidden until authenticated) -->
+    <div id="mainApp" class="main-app" style="display: none;">
+        <header>
+            <div class="header-container">
+                <div class="logo">
+                    <h1>Infinity</h1>
+                    <span class="core-label">Rogers Core</span>
+                </div>
+                <div class="user-info">
+                    <img id="userAvatar" class="user-avatar" src="" alt="User">
+                    <button class="btn-logout" onclick="signOut()">Sign Out</button>
+                </div>
+            </div>
+        </header>
+
+    <main>
+        <!-- Realm Navigation -->
+        <section class="realm-selector">
+            <h2>Choose Your Realm</h2>
+            <div class="realm-grid">
+                <div class="realm-card" onclick="enterRealm('portal')">
+                    <div class="realm-icon">🌀</div>
+                    <h3>Portal Realm</h3>
+                    <p>Gateway to all features</p>
+                    <button class="btn-primary">Enter with AI Guide</button>
+                </div>
+                
+                <div class="realm-card" onclick="enterRealm('marketplace')">
+                    <div class="realm-icon">🛍️</div>
+                    <h3>Marketplace Realm</h3>
+                    <p>Deluxe packaging products</p>
+                    <button class="btn-primary">Enter with AI Guide</button>
+                </div>
+                
+                <div class="realm-card" onclick="enterRealm('socializer')">
+                    <div class="realm-icon">💬</div>
+                    <h3>Socializer Realm</h3>
+                    <p>Connect and chat</p>
+                    <button class="btn-primary">Enter with AI Guide</button>
+                </div>
+                
+                <div class="realm-card" onclick="enterRealm('aibuilder')">
+                    <div class="realm-icon">🤖</div>
+                    <h3>AI Builder Realm</h3>
+                    <p>Build with autopilot</p>
+                    <button class="btn-primary">Enter with AI Guide</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Active Realm Content -->
+        <section id="realmContent" class="realm-content" style="display: none;">
+            <!-- AI Assistant Steering Wheel -->
+            <div class="ai-steering">
+                <div class="ai-assistant">
+                    <div class="assistant-avatar">🤖</div>
+                    <div class="assistant-info">
+                        <h4 id="assistantName">AI Developer Assistant</h4>
+                        <p id="assistantStatus">Ready to help you build</p>
+                    </div>
+                </div>
+                <button class="btn-secondary" onclick="toggleAssistant()">Toggle AI Help</button>
+            </div>
+
+            <!-- Portal Realm Content -->
+            <div id="portalRealm" class="realm-section" style="display: none;">
+                <h2>Portal Realm</h2>
+                <p>Your gateway to all Infinity features</p>
+                <div class="feature-list">
+                    <button class="feature-btn" onclick="activateFeature('search')">
+                        🔍 Advanced Search
+                    </button>
+                    <button class="feature-btn" onclick="activateFeature('voice')">
+                        🎤 Voice Modules
+                    </button>
+                    <button class="feature-btn" onclick="activateFeature('autopilot')">
+                        🎵 Autopilot Synthesis
+                    </button>
+                    <button class="feature-btn" onclick="activateFeature('coding')">
+                        💻 Coding Agents
+                    </button>
+                </div>
+                <div id="featureContent" class="feature-content"></div>
+            </div>
+
+            <!-- Marketplace Realm Content -->
+            <div id="marketplaceRealm" class="realm-section" style="display: none;">
+                <h2>Marketplace Realm</h2>
+                <p>Premium products with deluxe packaging</p>
+                <div class="search-box">
+                    <input type="text" id="productSearch" placeholder="Search products...">
+                    <button class="btn-primary" onclick="searchProducts()">Search</button>
+                </div>
+                <div id="productResults" class="product-grid"></div>
+            </div>
+
+            <!-- Socializer Realm Content -->
+            <div id="socializerRealm" class="realm-section" style="display: none;">
+                <h2>Socializer Realm</h2>
+                <div class="chat-container">
+                    <div id="chatMessages" class="chat-messages"></div>
+                    <div class="chat-input-box">
+                        <input type="text" id="chatInput" placeholder="Type your message...">
+                        <button class="btn-primary" onclick="sendMessage()">Send</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Builder Realm Content -->
+            <div id="aibuilderRealm" class="realm-section" style="display: none;">
+                <h2>AI Builder Realm</h2>
+                <p>Build your ideas with AI autopilot assistance</p>
+                
+                <div class="builder-interface">
+                    <div class="idea-input">
+                        <h3>What would you like to build?</h3>
+                        <textarea id="ideaInput" placeholder="Describe your idea here..."></textarea>
+                        <button class="btn-primary" onclick="startBuilding()">Start Building with AI</button>
+                    </div>
+                    
+                    <div class="autopilot-controls">
+                        <h3>Autopilot Sound Synthesis</h3>
+                        <div class="status-display">
+                            <span id="autopilotStatus">Status: Ready</span>
+                        </div>
+                        <button class="btn-primary" onclick="toggleAutopilot()">Start Autopilot</button>
+                        <canvas id="soundVisualizer" width="100%" height="150"></canvas>
+                        <div class="autopilot-settings">
+                            <label>Sensitivity: <input type="range" id="sensitivity" min="1" max="100" value="50"></label>
+                            <label>Mode: 
+                                <select id="synthesisMode">
+                                    <option value="direct">Direct Repeat</option>
+                                    <option value="enhanced">Enhanced</option>
+                                    <option value="harmonic">Harmonic</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div id="buildProgress" class="build-progress"></div>
+                </div>
+            </div>
+            
+            <button class="btn-back" onclick="backToRealms()">← Back to Realms</button>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="powered-by">
+                <strong>Powered by Infinity</strong>
+            </div>
+            
+            <div class="footer-sections">
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: <a href="mailto:infinitystockinvesting@gmail.com">infinitystockinvesting@gmail.com</a></p>
+                    <p>Auth: <a href="mailto:marvaseater@gmail.com">marvaseater@gmail.com</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Credits & Partnerships</h4>
+                    <p>Chat got script design credits - Space available for advertisements</p>
+                    <p>OpenAI VP Program - Contributing to the future of AI</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <p><a href="#privacy">Privacy Policy</a></p>
+                    <p><a href="#terms">Terms of Service</a></p>
+                    <p>&copy; 2025 Infinity Platform. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

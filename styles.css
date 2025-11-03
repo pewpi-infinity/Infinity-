@@ -1,0 +1,683 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #ffffff;
+    color: #2c2e2f;
+    line-height: 1.6;
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
+/* Prevent horizontal scroll */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Auth Section */
+.auth-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0070ba 0%, #003087 100%);
+    padding: 20px;
+}
+
+.auth-container {
+    background: white;
+    padding: 40px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+}
+
+.auth-container .logo h1 {
+    font-size: 32px;
+    color: #0070ba;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.auth-container .tagline {
+    color: #6c757d;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.auth-info {
+    margin-top: 20px;
+    color: #6c757d;
+    font-size: 14px;
+}
+
+.auth-email {
+    margin-top: 10px;
+    color: #0070ba;
+    font-size: 12px;
+}
+
+/* Header */
+header {
+    background: white;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.header-container {
+    max-width: 100%;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 24px;
+    color: #0070ba;
+    font-weight: 600;
+    margin: 0;
+}
+
+.core-label {
+    font-size: 12px;
+    color: #6c757d;
+    margin-left: 8px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid #0070ba;
+}
+
+.btn-logout {
+    background: #f5f5f5;
+    color: #2c2e2f;
+    border: 1px solid #d9d9d9;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-logout:hover {
+    background: #e5e5e5;
+}
+
+/* Main App */
+.main-app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+    max-width: 100%;
+}
+
+/* Buttons - PayPal Style */
+.btn-primary {
+    background: #0070ba;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 24px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+}
+
+.btn-primary:hover {
+    background: #003087;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 112, 186, 0.3);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: white;
+    color: #0070ba;
+    border: 1px solid #0070ba;
+    padding: 12px 24px;
+    border-radius: 24px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+    max-width: 300px;
+}
+
+.btn-secondary:hover {
+    background: #f5f5f5;
+}
+
+.btn-back {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s;
+}
+
+.btn-back:hover {
+    background: #5a6268;
+}
+
+/* Realm Selector */
+.realm-selector {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.realm-selector h2 {
+    color: #0070ba;
+    font-size: 24px;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.realm-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 100%;
+}
+
+@media (min-width: 768px) {
+    .realm-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.realm-card {
+    background: white;
+    border: 2px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 24px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.realm-card:hover {
+    border-color: #0070ba;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 112, 186, 0.1);
+}
+
+.realm-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.realm-card h3 {
+    color: #2c2e2f;
+    font-size: 20px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.realm-card p {
+    color: #6c757d;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+/* AI Steering */
+.ai-steering {
+    background: #f8f9fa;
+    border: 2px solid #0070ba;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.ai-assistant {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.assistant-avatar {
+    font-size: 32px;
+}
+
+.assistant-info h4 {
+    color: #0070ba;
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.assistant-info p {
+    color: #6c757d;
+    font-size: 12px;
+}
+
+/* Realm Content */
+.realm-content {
+    max-width: 100%;
+}
+
+.realm-section {
+    padding: 20px 0;
+}
+
+.realm-section h2 {
+    color: #0070ba;
+    font-size: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+.realm-section p {
+    color: #6c757d;
+    margin-bottom: 20px;
+}
+
+/* Feature List */
+.feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.feature-btn {
+    background: white;
+    color: #2c2e2f;
+    border: 2px solid #0070ba;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: left;
+    width: 100%;
+}
+
+.feature-btn:hover {
+    background: #0070ba;
+    color: white;
+}
+
+.feature-content {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    min-height: 200px;
+}
+
+/* Search Box */
+.search-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search-box input {
+    padding: 12px;
+    border: 2px solid #d9d9d9;
+    border-radius: 24px;
+    font-size: 16px;
+    width: 100%;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: #0070ba;
+}
+
+@media (min-width: 768px) {
+    .search-box {
+        flex-direction: row;
+    }
+    
+    .search-box input {
+        flex: 1;
+    }
+    
+    .search-box .btn-primary {
+        width: auto;
+    }
+}
+
+/* Product Grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+@media (min-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Chat Container */
+.chat-container {
+    background: white;
+    border: 2px solid #e5e5e5;
+    border-radius: 12px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    background: #f8f9fa;
+}
+
+.chat-input-box {
+    display: flex;
+    gap: 8px;
+    padding: 16px;
+    background: white;
+    border-top: 2px solid #e5e5e5;
+}
+
+.chat-input-box input {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #d9d9d9;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.chat-input-box input:focus {
+    outline: none;
+    border-color: #0070ba;
+}
+
+.chat-input-box .btn-primary {
+    width: auto;
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+/* Builder Interface */
+.builder-interface {
+    max-width: 100%;
+}
+
+.idea-input {
+    background: white;
+    border: 2px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.idea-input h3 {
+    color: #0070ba;
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.idea-input textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 12px;
+    border: 2px solid #d9d9d9;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    resize: vertical;
+    margin-bottom: 12px;
+}
+
+.idea-input textarea:focus {
+    outline: none;
+    border-color: #0070ba;
+}
+
+/* Autopilot Controls */
+.autopilot-controls {
+    background: white;
+    border: 2px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.autopilot-controls h3 {
+    color: #0070ba;
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.status-display {
+    background: #f8f9fa;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    text-align: center;
+    font-weight: 500;
+}
+
+#soundVisualizer {
+    width: 100%;
+    max-width: 100%;
+    height: 150px;
+    background: #000;
+    border-radius: 8px;
+    margin: 16px 0;
+    display: block;
+}
+
+.autopilot-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.autopilot-settings label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 14px;
+    color: #2c2e2f;
+}
+
+.autopilot-settings input[type="range"] {
+    width: 100%;
+}
+
+.autopilot-settings select {
+    padding: 8px;
+    border: 2px solid #d9d9d9;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.autopilot-settings select:focus {
+    outline: none;
+    border-color: #0070ba;
+}
+
+.build-progress {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    min-height: 100px;
+}
+
+/* Footer */
+footer {
+    background: #f8f9fa;
+    border-top: 1px solid #e5e5e5;
+    padding: 40px 20px 20px;
+    margin-top: 40px;
+}
+
+.footer-container {
+    max-width: 100%;
+}
+
+.powered-by {
+    text-align: center;
+    font-size: 18px;
+    color: #0070ba;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.footer-sections {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    max-width: 100%;
+}
+
+@media (min-width: 768px) {
+    .footer-sections {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.footer-section h4 {
+    color: #0070ba;
+    font-size: 16px;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.footer-section p {
+    color: #6c757d;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.footer-section a {
+    color: #0070ba;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-section a:hover {
+    color: #003087;
+    text-decoration: underline;
+}
+
+/* Message Styles */
+.message {
+    margin-bottom: 12px;
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 80%;
+}
+
+.message.user {
+    background: #0070ba;
+    color: white;
+    margin-left: auto;
+    text-align: right;
+}
+
+.message.assistant {
+    background: #e5e5e5;
+    color: #2c2e2f;
+}
+
+/* Product Card */
+.product-card {
+    background: white;
+    border: 2px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 16px;
+    transition: all 0.3s;
+}
+
+.product-card:hover {
+    border-color: #0070ba;
+    box-shadow: 0 4px 12px rgba(0, 112, 186, 0.1);
+}
+
+.product-card h3 {
+    color: #0070ba;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.product-card p {
+    color: #6c757d;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.product-badge {
+    display: inline-block;
+    background: #0070ba;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+/* Responsive Typography */
+@media (max-width: 480px) {
+    .logo h1 {
+        font-size: 20px;
+    }
+    
+    .realm-selector h2 {
+        font-size: 20px;
+    }
+    
+    .realm-section h2 {
+        font-size: 20px;
+    }
+}
+
+/* Ensure no horizontal overflow */
+img, video, canvas {
+    max-width: 100%;
+    height: auto;
+}
