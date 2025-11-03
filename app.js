@@ -158,8 +158,118 @@ function showWelcomeMessage() {
 
 function updateTokenDisplay() {
     const display = document.getElementById('tokenDisplay');
+    const sidebarTokens = document.getElementById('sidebarTokens');
     if (display) {
         display.textContent = `Tokens: ${userTokens.toFixed(1)}`;
+    }
+    if (sidebarTokens) {
+        sidebarTokens.textContent = `Tokens: ${userTokens.toFixed(1)}`;
+    }
+}
+
+// Update sidebar user info
+function updateSidebarUserInfo() {
+    if (currentUser) {
+        const sidebarName = document.getElementById('sidebarName');
+        const sidebarAvatar = document.getElementById('sidebarAvatar');
+        
+        if (sidebarName) {
+            sidebarName.textContent = currentUser.name || currentUser.email;
+        }
+        if (sidebarAvatar && currentUser.picture) {
+            sidebarAvatar.src = currentUser.picture;
+        }
+        updateTokenDisplay();
+    }
+}
+
+// Sidebar Functions
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('collapsed');
+}
+
+function navigateToHome() {
+    backToMainHub();
+}
+
+// Chat Session Management
+let chatSessions = JSON.parse(localStorage.getItem('chatSessions')) || {
+    'default': { name: 'Main Chat', messages: [] }
+};
+let currentSession = 'default';
+
+function loadChatSession(sessionId) {
+    currentSession = sessionId;
+    // Load session messages
+    console.log('Loading chat session:', sessionId);
+    speak('Chat session loaded');
+}
+
+function newChatSession() {
+    const sessionId = 'session_' + Date.now();
+    const sessionName = prompt('Enter chat session name:') || 'New Chat';
+    chatSessions[sessionId] = { name: sessionName, messages: [] };
+    localStorage.setItem('chatSessions', JSON.stringify(chatSessions));
+    
+    // Add to sidebar
+    const sessionsDiv = document.getElementById('chatSessions');
+    const newBtn = sessionsDiv.querySelector('.new-session');
+    const sessionBtn = document.createElement('button');
+    sessionBtn.className = 'session-btn';
+    sessionBtn.textContent = `💬 ${sessionName}`;
+    sessionBtn.onclick = () => loadChatSession(sessionId);
+    sessionsDiv.insertBefore(sessionBtn, newBtn);
+    
+    loadChatSession(sessionId);
+}
+
+// Developer Mode
+let devMode = false;
+
+function toggleDevMode() {
+    devMode = !devMode;
+    localStorage.setItem('devMode', devMode);
+    console.log('Developer Mode:', devMode ? 'ON' : 'OFF');
+    
+    if (devMode) {
+        speak('Developer mode activated');
+        // Enable additional features
+        window.infinityDebug = {
+            user: currentUser,
+            tokens: userTokens,
+            sessions: chatSessions,
+            currentHub,
+            currentApp
+        };
+        console.log('Infinity Debug Info:', window.infinityDebug);
+    } else {
+        speak('Developer mode deactivated');
+    }
+}
+
+function openConsole() {
+    if (devMode) {
+        console.log('=== INFINITY CONSOLE ===');
+        console.log('User:', currentUser);
+        console.log('Tokens:', userTokens);
+        console.log('Current Hub:', currentHub);
+        console.log('Current App:', currentApp);
+        console.log('Chat Sessions:', chatSessions);
+        alert('Console output in browser DevTools (F12)');
+    } else {
+        alert('Enable Developer Mode first');
+    }
+}
+
+function viewLogs() {
+    if (devMode) {
+        const logs = localStorage.getItem('infinityLogs') || 'No logs yet';
+        console.log('=== INFINITY LOGS ===');
+        console.log(logs);
+        alert('Logs output in browser DevTools (F12)');
+    } else {
+        alert('Enable Developer Mode first');
     }
 }
 
@@ -955,7 +1065,115 @@ function generateGame() {
     }
 }
 
-console.log('Infinity SPA Platform Loaded - Powered by Rogers Core System with Voice UI');
+// Time Machine Theme Switcher
+const themes = {
+    'apple1': { name: '1976 Apple I', sound: 'beep' },
+    'mac1984': { name: '1984 Macintosh', sound: 'welcome' },
+    'amiga': { name: '1985 Amiga Workbench', sound: 'startup' },
+    'win31': { name: '1990 Windows 3.1', sound: 'tada' },
+    'win95': { name: '1995 Windows 95', sound: 'startup' },
+    'imac': { name: '1998 iMac G3', sound: 'bondi' },
+    'xp': { name: '2001 Windows XP', sound: 'startup' },
+    'iphone': { name: '2007 iPhone', sound: 'marimba' },
+    'win7': { name: '2009 Windows 7 Aero', sound: 'startup' },
+    'metro': { name: '2011 Metro UI', sound: 'modern' },
+    'ios7': { name: '2013 iOS 7 Flat', sound: 'note' },
+    'material': { name: '2014 Material Design', sound: 'chime' },
+    'dark': { name: '2018 Dark Mode', sound: 'swoosh' },
+    'neuro': { name: '2019 Neumorphism', sound: 'soft' },
+    'glass': { name: '2020 Glassmorphism', sound: 'glass' },
+    'web3': { name: '2021 Web3 Neon', sound: 'cyber' },
+    'y2k': { name: '2022 Y2K Revival', sound: 'retro' },
+    'ai': { name: '2024 AI Era', sound: 'future' },
+    'infinity': { name: '2025 Infinity', sound: 'infinity' }
+};
+
+let currentTheme = 'infinity';
+
+function switchTheme(themeName) {
+    // Remove all theme classes
+    Object.keys(themes).forEach(theme => {
+        document.body.classList.remove(`theme-${theme}`);
+    });
+    
+    // Add new theme class
+    document.body.classList.add(`theme-${themeName}`);
+    currentTheme = themeName;
+    
+    // Update active button
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+    
+    // Save preference
+    localStorage.setItem('infinityTheme', themeName);
+    
+    // Announce theme change
+    const themeInfo = themes[themeName];
+    speak(`Time traveling to ${themeInfo.name}`);
+    
+    // Visual feedback - flash transition
+    const transition = document.getElementById('vectorTransition');
+    if (transition) {
+        transition.style.background = 'white';
+        transition.classList.add('active');
+        setTimeout(() => {
+            transition.style.background = '';
+            transition.classList.remove('active');
+        }, 300);
+    }
+    
+    // Award token for time traveling
+    awardTokenForHardWork('time_travel');
+    
+    console.log(`⏰ Time Machine: Traveled to ${themeInfo.name}`);
+}
+
+// Load saved theme on startup
+function loadSavedTheme() {
+    const saved = localStorage.getItem('infinityTheme');
+    if (saved && themes[saved]) {
+        switchTheme(saved);
+        // Update button without triggering animation
+        document.querySelectorAll('.theme-btn').forEach(btn => {
+            if (btn.getAttribute('onclick').includes(saved)) {
+                btn.classList.add('active');
+            }
+        });
+    }
+}
+
+// Auto-cycle through themes (for fun demo)
+let autoCycleInterval = null;
+
+function startTimeMachineAutoCycle() {
+    if (autoCycleInterval) {
+        clearInterval(autoCycleInterval);
+        autoCycleInterval = null;
+        speak('Auto cycle stopped');
+        return;
+    }
+    
+    const themeKeys = Object.keys(themes);
+    let index = themeKeys.indexOf(currentTheme);
+    
+    speak('Starting time machine auto cycle');
+    
+    autoCycleInterval = setInterval(() => {
+        index = (index + 1) % themeKeys.length;
+        const themeName = themeKeys[index];
+        
+        // Simulate click on theme button
+        const buttons = document.querySelectorAll('.theme-btn');
+        buttons[index].click();
+    }, 3000); // Change theme every 3 seconds
+}
+
+// Initialize theme on page load
+window.addEventListener('load', () => {
+    setTimeout(loadSavedTheme, 100);
+});
 
 
 // AI Assistant

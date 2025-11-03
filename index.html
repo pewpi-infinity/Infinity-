@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Infinity - Rogers Core System</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="themes.css">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
@@ -35,10 +36,63 @@
 
     <!-- Main App (Hidden until authenticated) -->
     <div id="mainApp" class="main-app" style="display: none;">
+        <!-- Sidebar Menu -->
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h2>Infinity</h2>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+            </div>
+            
+            <div class="sidebar-content">
+                <div class="sidebar-section">
+                    <h3>Navigation</h3>
+                    <button class="sidebar-btn" onclick="navigateToHome()">🏠 Home</button>
+                    <button class="sidebar-btn" onclick="showHub('portal')">🔧 Portal</button>
+                    <button class="sidebar-btn" onclick="showHub('marketplace')">🏪 Marketplace</button>
+                    <button class="sidebar-btn" onclick="showHub('socializer')">👥 Socializer</button>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3>Chat Sessions</h3>
+                    <div id="chatSessions" class="chat-sessions">
+                        <button class="session-btn" onclick="loadChatSession('default')">💬 Main Chat</button>
+                        <button class="session-btn new-session" onclick="newChatSession()">+ New Chat</button>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3>Developer Tools</h3>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="devMode" onchange="toggleDevMode()">
+                        <span class="slider"></span>
+                        <span class="label-text">Rogers Dev Mode</span>
+                    </label>
+                    <button class="sidebar-btn" onclick="openConsole()">🔍 Console</button>
+                    <button class="sidebar-btn" onclick="viewLogs()">📋 View Logs</button>
+                    <button class="sidebar-btn" onclick="startTimeMachineAutoCycle()">⏰ Auto Theme Cycle</button>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3>Account</h3>
+                    <div class="user-profile">
+                        <img id="sidebarAvatar" class="sidebar-avatar" src="" alt="User">
+                        <div class="user-details">
+                            <div id="sidebarName" class="user-name"></div>
+                            <div id="sidebarTokens" class="user-tokens">Tokens: 0</div>
+                        </div>
+                    </div>
+                    <button class="sidebar-btn logout-btn" onclick="signOut()">🚪 Sign Out</button>
+                </div>
+            </div>
+        </aside>
+
         <!-- Vector Transition System -->
         <div id="vectorTransition" class="vector-transition">
+            <div class="space-grid"></div>
+            <div class="hydrogen-cloud"></div>
             <svg id="vectorCanvas" width="100%" height="100%" style="position: absolute; top: 0; left: 0;"></svg>
-            <div id="vectorGuide" class="vector-guide">🚀</div>
+            <div id="vectorGuide" class="vector-guide">🧠</div>
+            <div id="portal" class="portal" style="display: none;"></div>
         </div>
         
         <!-- Loading Overlay -->
@@ -49,7 +103,9 @@
             </div>
         </div>
 
-        <header>
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <header>
             <div class="header-container">
                 <div class="logo">
                     <h1>Infinity</h1>
@@ -241,6 +297,34 @@
             <button class="btn-back" onclick="backToHub()">← Back</button>
         </section>
     </main>
+        </div><!-- End main-content -->
+        
+        <!-- Time Machine Theme Switcher -->
+        <div class="time-machine">
+            <h4>⏰ TIME MACHINE</h4>
+            <div class="theme-buttons">
+                <button class="theme-btn" onclick="switchTheme('apple1')" title="1976 Apple I">76</button>
+                <button class="theme-btn" onclick="switchTheme('mac1984')" title="1984 Macintosh">84</button>
+                <button class="theme-btn" onclick="switchTheme('amiga')" title="1985 Amiga">85</button>
+                <button class="theme-btn" onclick="switchTheme('win31')" title="1990 Windows 3.1">90</button>
+                <button class="theme-btn" onclick="switchTheme('win95')" title="1995 Windows 95">95</button>
+                <button class="theme-btn" onclick="switchTheme('imac')" title="1998 iMac G3">98</button>
+                <button class="theme-btn" onclick="switchTheme('xp')" title="2001 Windows XP">01</button>
+                <button class="theme-btn" onclick="switchTheme('iphone')" title="2007 iPhone">07</button>
+                <button class="theme-btn" onclick="switchTheme('win7')" title="2009 Windows 7">09</button>
+                <button class="theme-btn" onclick="switchTheme('metro')" title="2011 Metro">11</button>
+                <button class="theme-btn" onclick="switchTheme('ios7')" title="2013 iOS 7">13</button>
+                <button class="theme-btn" onclick="switchTheme('material')" title="2014 Material">14</button>
+                <button class="theme-btn" onclick="switchTheme('dark')" title="2018 Dark Mode">18</button>
+                <button class="theme-btn" onclick="switchTheme('neuro')" title="2019 Neumorphism">19</button>
+                <button class="theme-btn" onclick="switchTheme('glass')" title="2020 Glass">20</button>
+                <button class="theme-btn" onclick="switchTheme('web3')" title="2021 Web3">21</button>
+                <button class="theme-btn" onclick="switchTheme('y2k')" title="2022 Y2K">22</button>
+                <button class="theme-btn" onclick="switchTheme('ai')" title="2024 AI Era">24</button>
+                <button class="theme-btn active" onclick="switchTheme('infinity')" title="2025 Infinity">25</button>
+            </div>
+        </div>
+    </div><!-- End mainApp -->
 
     <footer>
         <div class="footer-container">
