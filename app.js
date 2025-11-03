@@ -3304,11 +3304,47 @@ function loadForgeTemplate(template) {
 function calculateMirrorLaw() {
     const infiniteWave = parseFloat(document.getElementById('infiniteWave').value) || 10;
     const loveFreq = parseFloat(document.getElementById('loveFreq').value) || 5;
+    
+    // Mirror Law: L_ref = ω_inf × f_love
     const reflectedLove = infiniteWave * loveFreq;
     
     document.getElementById('reflectedLove').textContent = reflectedLove.toFixed(4);
-    speak('Mirror law calculated');
+    speak(`Reflected love is ${reflectedLove.toFixed(2)} hertz`);
     awardTokenForHardWork('physics_calc');
+}
+
+// Auto-update Mirror Law on input change
+function initFieldLabAutoUpdate() {
+    const infiniteWaveInput = document.getElementById('infiniteWave');
+    const loveFreqInput = document.getElementById('loveFreq');
+    
+    if (infiniteWaveInput) {
+        infiniteWaveInput.addEventListener('input', calculateMirrorLaw);
+    }
+    if (loveFreqInput) {
+        loveFreqInput.addEventListener('input', calculateMirrorLaw);
+    }
+    
+    const watsonFreqInput = document.getElementById('watsonFreq');
+    const watsonAmpInput = document.getElementById('watsonAmp');
+    const goldThicknessInput = document.getElementById('goldThickness');
+    
+    if (watsonFreqInput) watsonFreqInput.addEventListener('input', calculateGoldBarrier);
+    if (watsonAmpInput) watsonAmpInput.addEventListener('input', calculateGoldBarrier);
+    if (goldThicknessInput) goldThicknessInput.addEventListener('input', calculateGoldBarrier);
+    
+    const baseEnergyInput = document.getElementById('baseEnergy');
+    const phaseInput = document.getElementById('phase');
+    
+    if (baseEnergyInput) baseEnergyInput.addEventListener('input', calculateDuality);
+    if (phaseInput) phaseInput.addEventListener('input', calculateDuality);
+    
+    // Initialize calculations
+    setTimeout(() => {
+        calculateMirrorLaw();
+        calculateGoldBarrier();
+        calculateDuality();
+    }, 100);
 }
 
 function calculateGoldBarrier() {
