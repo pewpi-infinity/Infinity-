@@ -35,6 +35,20 @@
 
     <!-- Main App (Hidden until authenticated) -->
     <div id="mainApp" class="main-app" style="display: none;">
+        <!-- Vector Transition System -->
+        <div id="vectorTransition" class="vector-transition">
+            <svg id="vectorCanvas" width="100%" height="100%" style="position: absolute; top: 0; left: 0;"></svg>
+            <div id="vectorGuide" class="vector-guide">🚀</div>
+        </div>
+        
+        <!-- Loading Overlay -->
+        <div id="loadingOverlay" class="loading-overlay">
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <div class="loading-text" id="loadingText">Loading...</div>
+            </div>
+        </div>
+
         <header>
             <div class="header-container">
                 <div class="logo">

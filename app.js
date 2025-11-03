@@ -16,6 +16,14 @@ let voiceRecognition = null;
 let voiceSynthesis = window.speechSynthesis;
 let elevenLabsApiKey = null; // Will be set from user config
 
+// AI API Keys
+const GEMINI_API_KEY = 'AIzaSyDWKRhBjFEt752zC86X0aQOvRQHxM5XPlc';
+const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
+
+// Vector Transition System
+const vectorGuides = ['🚀', '⚡', '✨', '🌟', '💫', '🔮', '🎯', '🧭'];
+let currentGuideIndex = 0;
+
 // Google Authentication
 function handleCredentialResponse(response) {
     const responsePayload = decodeJwtResponse(response.credential);
@@ -173,52 +181,198 @@ window.addEventListener('load', function() {
 
 // SPA Navigation
 function showHub(hubName) {
-    // Hide all sections
-    document.getElementById('mainHub').style.display = 'none';
-    document.getElementById('portalHub').style.display = 'none';
-    document.getElementById('marketplaceHub').style.display = 'none';
-    document.getElementById('socializerHub').style.display = 'none';
-    document.getElementById('appContent').style.display = 'none';
+    // Start vector transition
+    playVectorTransition(() => {
+        // Hide all sections
+        document.getElementById('mainHub').style.display = 'none';
+        document.getElementById('portalHub').style.display = 'none';
+        document.getElementById('marketplaceHub').style.display = 'none';
+        document.getElementById('socializerHub').style.display = 'none';
+        document.getElementById('appContent').style.display = 'none';
+        
+        // Show selected hub
+        currentHub = hubName;
+        const hubElement = document.getElementById(hubName + 'Hub');
+        hubElement.style.display = 'block';
+        hubElement.classList.add('panel-enter');
+        
+        awardTokenForHardWork('hub_navigation');
+        speak(`Entering ${hubName} hub`);
+    });
+}
+
+// Vector Transition Animation System
+function playVectorTransition(callback, isSlowLoad = false) {
+    const transition = document.getElementById('vectorTransition');
+    const guide = document.getElementById('vectorGuide');
+    const overlay = document.getElementById('loadingOverlay');
+    const loadingText = document.getElementById('loadingText');
     
-    // Show selected hub
-    currentHub = hubName;
-    document.getElementById(hubName + 'Hub').style.display = 'block';
+    // Rotate guide emoji
+    currentGuideIndex = (currentGuideIndex + 1) % vectorGuides.length;
+    guide.textContent = vectorGuides[currentGuideIndex];
     
-    awardTokenForHardWork('hub_navigation');
-    speak(`Entering ${hubName} hub`);
+    // Show transition
+    transition.classList.add('active');
+    
+    // Calculate random path across screen
+    const startX = Math.random() * window.innerWidth * 0.3;
+    const startY = Math.random() * window.innerHeight * 0.3;
+    const endX = window.innerWidth * 0.7 + Math.random() * window.innerWidth * 0.3;
+    const endY = window.innerHeight * 0.7 + Math.random() * window.innerHeight * 0.3;
+    
+    // Animate guide
+    guide.style.left = startX + 'px';
+    guide.style.top = startY + 'px';
+    
+    // Create SVG path for vector trail
+    const svg = document.getElementById('vectorCanvas');
+    svg.innerHTML = '';
+    
+    // Determine animation speed based on load type
+    const duration = isSlowLoad ? 1200 : 400;
+    
+    if (isSlowLoad) {
+        // Show loading overlay for slow apps
+        overlay.classList.add('active');
+        loadingText.textContent = 'Initializing AI systems...';
+    }
+    
+    // Animate vector movement
+    const startTime = Date.now();
+    
+    function animateVector() {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Ease-in-out curve
+        const easeProgress = progress < 0.5
+            ? 2 * progress * progress
+            : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+        
+        const currentX = startX + (endX - startX) * easeProgress;
+        const currentY = startY + (endY - startY) * easeProgress;
+        
+        guide.style.left = currentX + 'px';
+        guide.style.top = currentY + 'px';
+        
+        // Draw trail
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', startX);
+        line.setAttribute('y1', startY);
+        line.setAttribute('x2', currentX);
+        line.setAttribute('y2', currentY);
+        line.setAttribute('stroke', '#0070ba');
+        line.setAttribute('stroke-width', '3');
+        line.setAttribute('opacity', '0.6');
+        svg.appendChild(line);
+        
+        if (progress < 1) {
+            requestAnimationFrame(animateVector);
+        } else {
+            // Animation complete
+            setTimeout(() => {
+                transition.classList.remove('active');
+                overlay.classList.remove('active');
+                if (callback) callback();
+            }, 100);
+        }
+    }
+    
+    animateVector();
 }
 
 function backToMainHub() {
-    document.getElementById('portalHub').style.display = 'none';
-    document.getElementById('marketplaceHub').style.display = 'none';
-    document.getElementById('socializerHub').style.display = 'none';
-    document.getElementById('appContent').style.display = 'none';
-    document.getElementById('mainHub').style.display = 'block';
-    currentHub = 'main';
-    currentApp = null;
+    playVectorTransition(() => {
+        document.getElementById('portalHub').style.display = 'none';
+        document.getElementById('marketplaceHub').style.display = 'none';
+        document.getElementById('socializerHub').style.display = 'none';
+        document.getElementById('appContent').style.display = 'none';
+        const mainHub = document.getElementById('mainHub');
+        mainHub.style.display = 'block';
+        mainHub.classList.add('panel-enter');
+        currentHub = 'main';
+        currentApp = null;
+    });
 }
 
 function backToHub() {
-    document.getElementById('appContent').style.display = 'none';
-    document.getElementById(currentHub + 'Hub').style.display = 'block';
-    currentApp = null;
+    playVectorTransition(() => {
+        document.getElementById('appContent').style.display = 'none';
+        const hubElement = document.getElementById(currentHub + 'Hub');
+        hubElement.style.display = 'block';
+        hubElement.classList.add('panel-enter');
+        currentApp = null;
+    });
 }
 
 function loadApp(appName) {
-    currentApp = appName;
-    document.getElementById('portalHub').style.display = 'none';
-    document.getElementById('marketplaceHub').style.display = 'none';
-    document.getElementById('socializerHub').style.display = 'none';
-    document.getElementById('appContent').style.display = 'block';
+    // Determine if this is a slow-loading app (AI-powered features)
+    const slowApps = ['videogame', 'channel', 'diy', 'school'];
+    const isSlowLoad = slowApps.includes(appName);
     
-    const container = document.getElementById('appContainer');
-    container.innerHTML = getAppContent(appName);
-    
-    awardTokenForHardWork('app_load');
-    speak(`Loading ${appName} app`);
-    
-    // Initialize app-specific functionality
-    initializeApp(appName);
+    playVectorTransition(() => {
+        currentApp = appName;
+        document.getElementById('portalHub').style.display = 'none';
+        document.getElementById('marketplaceHub').style.display = 'none';
+        document.getElementById('socializerHub').style.display = 'none';
+        const appContent = document.getElementById('appContent');
+        appContent.style.display = 'block';
+        appContent.classList.add('panel-enter');
+        
+        const container = document.getElementById('appContainer');
+        container.innerHTML = getAppContent(appName);
+        
+        awardTokenForHardWork('app_load');
+        speak(`Loading ${appName} app`);
+        
+        // Initialize app-specific functionality
+        initializeApp(appName);
+    }, isSlowLoad);
+}
+
+// Gemini AI Integration
+async function callGeminiAI(prompt, context = '') {
+    try {
+        const fullPrompt = context ? `${context}\n\nUser: ${prompt}` : prompt;
+        
+        const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                contents: [{
+                    parts: [{
+                        text: fullPrompt
+                    }]
+                }],
+                generationConfig: {
+                    temperature: 0.7,
+                    maxOutputTokens: 1024,
+                }
+            })
+        });
+        
+        const data = await response.json();
+        
+        if (data.candidates && data.candidates[0]) {
+            return data.candidates[0].content.parts[0].text;
+        } else {
+            console.error('Gemini API error:', data);
+            return 'I encountered an issue with the AI. Please try again.';
+        }
+    } catch (error) {
+        console.error('Gemini AI error:', error);
+        return 'Unable to connect to AI services. Using local processing.';
+    }
+}
+
+// Enhanced AI Chat with Gemini
+async function sendAIMessage(message, appContext = '') {
+    const context = appContext || `You are Rogers AI assistant in the Infinity platform. Be concise and helpful.`;
+    const response = await callGeminiAI(message, context);
+    return response;
 }
 
 // Voice UI System
@@ -777,10 +931,27 @@ function sendLocalMessage() {
 function generateGame() {
     const idea = document.getElementById('gameIdea').value;
     if (idea) {
+        const preview = document.getElementById('gamePreview');
+        preview.innerHTML = '<div class="loading-spinner"></div><p>Generating your game with Gemini AI...</p>';
+        
         speak('Generating your game with AI');
-        awardTokenForHardWork('game_generation');
-        userTokens += 2; // Bonus for creation
-        updateTokenDisplay();
+        
+        const context = 'You are a video game designer AI. Create a detailed game concept including mechanics, storyline, and features based on the user\'s idea. Be creative and specific.';
+        
+        callGeminiAI(idea, context).then(response => {
+            preview.innerHTML = `
+                <div style="background: white; padding: 20px; border-radius: 12px; margin-top: 20px;">
+                    <h3 style="color: #0070ba;">Generated Game Concept</h3>
+                    <div style="white-space: pre-wrap; line-height: 1.6;">${response}</div>
+                    <button class="btn-primary" style="margin-top: 20px;" onclick="speak('Game concept generated successfully')">🔊 Read Aloud</button>
+                    <button class="btn-secondary" style="margin-top: 20px;" onclick="awardTokenForHardWork('game_generation'); alert('Concept saved!')">Save Concept</button>
+                </div>
+            `;
+            awardTokenForHardWork('game_generation');
+            userTokens += 2; // Bonus for creation
+            updateTokenDisplay();
+            speak('Your game concept is ready!');
+        });
     }
 }
 
