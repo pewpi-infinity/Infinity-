@@ -2164,7 +2164,1450 @@ function getAppContent(appName) {
                 </div>
                 
                 <div style="text-align: center; margin-top: 20px; padding: 20px; color: #64748b; font-size: 12px;">
-                    Infinity Field Lab • Ultra-Lite v1.3 — Rogers-ready • Pure JavaScript • No packages
+                    Infinity Field Lab • Ultra-Lite v1.4 — Rogers-ready • Pure JavaScript • No packages
+                </div>
+            </div>
+        `,
+        
+        antiqueScience: `
+            <h2>📻 Antique Science Magazine</h2>
+            <p style="text-align: center;">Pre-1940 Science & Electronics • Powered by Infinity</p>
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <div style="background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3 style="color: white; margin-bottom: 15px;">⚡ Vintage Innovation Archive</h3>
+                    <p style="font-size: 15px; line-height: 1.6;">
+                        Curated collection of antique radios, electronics, chemistry experiments, and scientific discoveries from the golden age of innovation (pre-1940). 
+                        Continuously updated with Google search scraping, news aggregation, and historical research feeds.
+                    </p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>📡 Antique Radio Collection</h3>
+                        <div id="radioGallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin-top: 15px;">
+                            <div class="antique-card" style="background: #f8f9fa; border-radius: 8px; padding: 12px; text-align: center;">
+                                <div style="font-size: 42px; margin-bottom: 8px;">📻</div>
+                                <p style="font-size: 12px; font-weight: 600; margin: 0;">Crosley 1920</p>
+                                <p style="font-size: 10px; color: #6c757d; margin: 5px 0 0 0;">Crystal Set</p>
+                            </div>
+                            <div class="antique-card" style="background: #f8f9fa; border-radius: 8px; padding: 12px; text-align: center;">
+                                <div style="font-size: 42px; margin-bottom: 8px;">📻</div>
+                                <p style="font-size: 12px; font-weight: 600; margin: 0;">Atwater Kent</p>
+                                <p style="font-size: 10px; color: #6c757d; margin: 5px 0 0 0;">Tube Radio 1925</p>
+                            </div>
+                            <div class="antique-card" style="background: #f8f9fa; border-radius: 8px; padding: 12px; text-align: center;">
+                                <div style="font-size: 42px; margin-bottom: 8px;">📻</div>
+                                <p style="font-size: 12px; font-weight: 600; margin: 0;">Philco Model 20</p>
+                                <p style="font-size: 10px; color: #6c757d; margin: 5px 0 0 0;">Cathedral 1930</p>
+                            </div>
+                            <div class="antique-card" style="background: #f8f9fa; border-radius: 8px; padding: 12px; text-align: center;">
+                                <div style="font-size: 42px; margin-bottom: 8px;">📻</div>
+                                <p style="font-size: 12px; font-weight: 600; margin: 0;">Zenith Tombstone</p>
+                                <p style="font-size: 10px; color: #6c757d; margin: 5px 0 0 0;">Art Deco 1935</p>
+                            </div>
+                        </div>
+                        <button class="btn-primary" style="width: 100%; margin-top: 15px;" onclick="loadMoreRadios()">View Full Collection (487 items)</button>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>🔬 Chemistry Experiments</h3>
+                        <div style="max-height: 300px; overflow-y: auto;">
+                            <div class="experiment-item" style="padding: 12px; background: #f0fdf4; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid #16a34a;">
+                                <h4 style="margin: 0 0 5px 0; font-size: 14px;">Electrolysis of Water (1800)</h4>
+                                <p style="font-size: 12px; color: #6c757d; margin: 0;">Nicholson & Carlisle discover H2/O2 separation</p>
+                            </div>
+                            <div class="experiment-item" style="padding: 12px; background: #fef3c7; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid #fbbf24;">
+                                <h4 style="margin: 0 0 5px 0; font-size: 14px;">Periodic Table (1869)</h4>
+                                <p style="font-size: 12px; color: #6c757d; margin: 0;">Mendeleev's elemental organization system</p>
+                            </div>
+                            <div class="experiment-item" style="padding: 12px; background: #dbeafe; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid #3b82f6;">
+                                <h4 style="margin: 0 0 5px 0; font-size: 14px;">Radioactivity (1896)</h4>
+                                <p style="font-size: 12px; color: #6c757d; margin: 0;">Becquerel discovers uranium radiation</p>
+                            </div>
+                            <div class="experiment-item" style="padding: 12px; background: #fce7f3; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid #ec4899;">
+                                <h4 style="margin: 0 0 5px 0; font-size: 14px;">Penicillin Discovery (1928)</h4>
+                                <p style="font-size: 12px; color: #6c757d; margin: 0;">Fleming's accidental mold breakthrough</p>
+                            </div>
+                        </div>
+                        <button class="btn-primary" style="width: 100%; margin-top: 15px;" onclick="browseExperiments()">Browse 1,200+ Experiments</button>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 30px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>📰 Live News Aggregation</h3>
+                    <p style="color: #6c757d; margin-bottom: 20px;">Auto-refreshing feed of vintage science discoveries and modern antique finds</p>
+                    <div id="newsGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 15px;">
+                        <div class="news-card" style="padding: 20px; background: #f8f9fa; border-radius: 8px; border-top: 4px solid #0070ba;">
+                            <div style="font-size: 11px; color: #6c757d; margin-bottom: 8px;">2 hours ago • eBay Finds</div>
+                            <h4 style="margin: 0 0 10px 0;">1925 Western Electric Microphone Found</h4>
+                            <p style="font-size: 13px; color: #6c757d; margin-bottom: 12px;">Rare carbon microphone from broadcast era discovered in estate sale</p>
+                            <button class="btn-secondary" onclick="viewNewsItem('mic1925')">Read More</button>
+                        </div>
+                        <div class="news-card" style="padding: 20px; background: #f8f9fa; border-radius: 8px; border-top: 4px solid #16a34a;">
+                            <div style="font-size: 11px; color: #6c757d; margin-bottom: 8px;">5 hours ago • Science History</div>
+                            <h4 style="margin: 0 0 10px 0;">Edison's Cylinder Resonance Notes Decoded</h4>
+                            <p style="font-size: 13px; color: #6c757d; margin-bottom: 12px;">New analysis reveals hidden experiments in 1890s lab journals</p>
+                            <button class="btn-secondary" onclick="viewNewsItem('edison')">Read More</button>
+                        </div>
+                        <div class="news-card" style="padding: 20px; background: #f8f9fa; border-radius: 8px; border-top: 4px solid #fbbf24;">
+                            <div style="font-size: 11px; color: #6c757d; margin-bottom: 8px;">1 day ago • Auction Alert</div>
+                            <h4 style="margin: 0 0 10px 0;">Nikola Tesla Oscillator Coil Up for Bid</h4>
+                            <p style="font-size: 13px; color: #6c757d; margin-bottom: 12px;">Original 1899 experimental apparatus from Colorado Springs lab</p>
+                            <button class="btn-secondary" onclick="viewNewsItem('tesla')">Read More</button>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="margin-top: 20px;" onclick="refreshNewsFeed()">🔄 Refresh Feed (Auto-updates every 30 min)</button>
+                </div>
+                
+                <div style="background: white; padding: 30px; border-radius: 12px;">
+                    <h3>🔍 Google Search Integration</h3>
+                    <p style="color: #6c757d; margin-bottom: 15px;">Continuously scrapes for vintage electronics, experiments, and historical science content</p>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px;">
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px;">
+                            <span class="source-badge">Antique Radio Forums</span>
+                            <span class="source-badge">Scientific American Archives</span>
+                            <span class="source-badge">Chemistry History Database</span>
+                            <span class="source-badge">Smithsonian Collections</span>
+                            <span class="source-badge">Library of Congress</span>
+                            <span class="source-badge">Popular Mechanics Archives</span>
+                            <span class="source-badge">Early Electronics Journals</span>
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 8px; border: 2px solid #d9d9d9;">
+                            <div style="font-size: 13px; color: #6c757d; margin-bottom: 10px;">Last scan: 14 minutes ago</div>
+                            <div style="font-size: 15px; font-weight: 600;">✅ 47 new items found</div>
+                            <div style="font-size: 13px; color: #16a34a; margin-top: 5px;">Next scan in: 16 minutes</div>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="margin-top: 20px;" onclick="configureScraper()">⚙️ Configure Search Parameters</button>
+                </div>
+            </div>
+        `,
+        
+        rogersTransceiver: `
+            <h2>🎛️ Rogers Signal Transceiver</h2>
+            <p style="text-align: center;">100-Dial Frequency Braiding Engine • Healing Resonance Lab • Autopilot Mode</p>
+            <div style="max-width: 1400px; margin: 0 auto;">
+                <div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3 style="color: white; margin-bottom: 15px;">⚡ Experimental Sound Tool - Not a Medical Device</h3>
+                    <p style="font-size: 14px; line-height: 1.6;">
+                        <strong>SAFETY NOTICE:</strong> This is an experimental frequency tool. Use low volume (20-30%). Preferably use speakers, not headphones. 
+                        Each dial controls a base frequency with 3-strand braiding (±ΔHz detune). Stack only a few dials at a time, breathe 30-60s, then adjust.
+                    </p>
+                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; margin-top: 15px;">
+                        <strong>📡 System Status</strong>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 10px;">
+                            <div>🔊 Audio Engine: <span id="audioStatus" style="color: #fbbf24;">Initializing...</span></div>
+                            <div>🎤 Microphone: <span id="micStatus" style="color: #6c757d;">Off</span></div>
+                            <div>🤖 Autopilot: <span id="autopilotStatus" style="color: #6c757d;">Standby</span></div>
+                            <div>🔒 Security: <span id="securityStatus" style="color: #16a34a;">HTTPS ✓</span></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Master Controls -->
+                <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; align-items: center;">
+                        <div>
+                            <button id="powerBtn" class="btn-primary" onclick="toggleTransceiverPower()" style="font-size: 18px; padding: 15px 30px;">
+                                ⚡ POWER: <span id="powerState">OFF</span>
+                            </button>
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px;">Master Volume:</label>
+                            <input type="range" id="masterVolume" min="0" max="100" value="25" oninput="updateMasterVolume(this.value)" style="width: 100%;">
+                            <div style="text-align: center; font-size: 14px; color: #6c757d;"><span id="volumeDisplay">25</span>%</div>
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px;">Braid ΔHz:</label>
+                            <input type="number" id="braidDelta" value="0.5" step="0.1" min="0" max="10" oninput="updateBraidDelta(this.value)" style="width: 100%; padding: 10px; border: 2px solid #d9d9d9; border-radius: 8px;">
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px;">Wave Type:</label>
+                            <select id="waveType" onchange="updateWaveType(this.value)" style="width: 100%; padding: 10px; border: 2px solid #d9d9d9; border-radius: 8px;">
+                                <option value="sine">Sine (smooth)</option>
+                                <option value="triangle">Triangle</option>
+                                <option value="square">Square</option>
+                                <option value="sawtooth">Sawtooth</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Preset Modes -->
+                <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>🎛️ Healing Presets</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 15px;">
+                        <button class="btn-secondary" onclick="loadPreset('calm')">🧘 Calm</button>
+                        <button class="btn-secondary" onclick="loadPreset('heal')">💚 Heal</button>
+                        <button class="btn-secondary" onclick="loadPreset('energize')">⚡ Energize</button>
+                        <button class="btn-secondary" onclick="loadPreset('focus')">🎯 Focus</button>
+                        <button class="btn-secondary" onclick="loadPreset('sleep')">😴 Sleep</button>
+                        <button class="btn-secondary" onclick="loadPreset('ground')">🌍 Ground</button>
+                        <button class="btn-primary" onclick="toggleAutopilot()">🤖 Autopilot</button>
+                    </div>
+                    <div id="currentPreset" style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-radius: 8px; border-left: 4px solid #16a34a; display: none;">
+                        <strong>Active Preset:</strong> <span id="presetName">None</span>
+                        <div style="font-size: 12px; color: #6c757d; margin-top: 5px;">Autopilot will maintain healing frequencies</div>
+                    </div>
+                </div>
+                
+                <!-- 100-Dial Grid -->
+                <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>🎚️ 100-Dial Frequency Matrix</h3>
+                    <p style="color: #6c757d; font-size: 13px; margin-bottom: 15px;">Green LED = Active • Click dial to toggle • Pinned frequencies: 7.83 (Schumann), 23, 40, 174, 285, 432, 528, 639, 741, 783, 852, 963 Hz</p>
+                    <div id="dialGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 12px;">
+                        <!-- Dials will be generated dynamically -->
+                    </div>
+                    <button class="btn-primary" style="margin-top: 20px;" onclick="resetAllDials()">Reset All Dials</button>
+                </div>
+                
+                <!-- Body Map Panel -->
+                <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>🧍 Body Map - Quick Tune</h3>
+                    <p style="color: #6c757d; font-size: 13px; margin-bottom: 15px;">Tap a body area to auto-tune closest healing frequencies</p>
+                    <div id="bodyMap" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 600px; margin: 0 auto;">
+                        <button class="btn-secondary" onclick="tuneBodyArea('head')">🧠 Head</button>
+                        <button class="btn-secondary" onclick="tuneBodyArea('throat')">🗣️ Throat</button>
+                        <button class="btn-secondary" onclick="tuneBodyArea('heart')">❤️ Heart</button>
+                        <button class="btn-secondary" onclick="tuneBodyArea('solar')">☀️ Solar Plexus</button>
+                        <button class="btn-secondary" onclick="tuneBodyArea('sacral')">🔶 Sacral</button>
+                        <button class="btn-secondary" onclick="tuneBodyArea('root')">🔴 Root</button>
+                        <button class="btn-secondary" onclick="tuneBodyArea('arms')">💪 Arms</button>
+                        <button class="btn-secondary" onclick="tuneBodyArea('legs')">🦵 Legs</button>
+                        <button class="btn-secondary" onclick="tuneBodyArea('spine')">🦴 Spine</button>
+                    </div>
+                </div>
+                
+                <!-- Microphone & Diagnostics -->
+                <div style="background: white; padding: 25px; border-radius: 12px;">
+                    <h3>🔍 Diagnostics & Microphone</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                        <div>
+                            <h4 style="margin-bottom: 10px;">Self-Tests</h4>
+                            <div id="diagnostics" style="font-size: 13px; line-height: 2;">
+                                <div>HTTPS/Secure Context: <span id="diagHTTPS" style="color: #16a34a;">✓ PASS</span></div>
+                                <div>AudioContext Available: <span id="diagAudio" style="color: #16a34a;">✓ PASS</span></div>
+                                <div>Speech Recognition: <span id="diagSpeech" style="color: #fbbf24;">⚠ Checking...</span></div>
+                                <div>Microphone Permission: <span id="diagMic" style="color: #6c757d;">○ Not requested</span></div>
+                            </div>
+                            <button class="btn-primary" style="margin-top: 15px; width: 100%;" onclick="runDiagnostics()">🔄 Run Diagnostics</button>
+                        </div>
+                        <div>
+                            <h4 style="margin-bottom: 10px;">Microphone Control</h4>
+                            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 10px;">
+                                <div style="font-size: 14px; margin-bottom: 10px;">Status: <span id="micStatusDetail" style="font-weight: 600;">Mic off</span></div>
+                                <div style="font-size: 12px; color: #6c757d;">For biometric feedback and voice analysis</div>
+                            </div>
+                            <button id="micBtn" class="btn-primary" onclick="toggleMicrophone()" style="width: 100%; margin-bottom: 10px;">🎤 Enable Microphone</button>
+                            <button class="btn-secondary" onclick="retryMicPermission()" style="width: 100%;">🔄 Retry Mic Permission</button>
+                            <div id="micHelpText" style="font-size: 11px; color: #6c757d; margin-top: 10px; padding: 10px; background: #fef3c7; border-radius: 6px; display: none;">
+                                💡 If blocked: Click browser's lock icon → Site settings → Microphone → Allow
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 25px; padding: 20px; color: #64748b; font-size: 12px;">
+                    Rogers Signal Transceiver v2.0 • Experimental • Use responsibly • Not for medical use
+                </div>
+            </div>
+        `,
+        
+        eldercare: `
+            <h2>👴👵 ElderCore Guardian</h2>
+            <p style="text-align: center;">Comprehensive care management for elderly loved ones</p>
+            <div style="max-width: 1000px; margin: 0 auto;">
+                <div style="background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3 style="color: white; margin-bottom: 15px;">💜 Compassionate Elder Care Platform</h3>
+                    <p style="font-size: 15px;">Medication tracking, appointment scheduling, emergency contacts, daily check-ins, memory support, and family coordination.</p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>💊 Medication Schedule</h3>
+                        <div style="background: #fef3c7; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                            <div style="font-weight: 600; margin-bottom: 5px;">⏰ Next Dose: 2:00 PM</div>
+                            <div style="font-size: 13px; color: #6c757d;">Blood Pressure Medication (Lisinopril 10mg)</div>
+                        </div>
+                        <button class="btn-primary" style="width: 100%;" onclick="manageMedications()">Manage All Medications</button>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>📅 Upcoming Appointments</h3>
+                        <div style="background: #dbeafe; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                            <div style="font-weight: 600; margin-bottom: 5px;">Dr. Johnson - Cardiology</div>
+                            <div style="font-size: 13px; color: #6c757d;">Tomorrow, 10:30 AM</div>
+                            <div style="font-size: 12px; color: #3b82f6; margin-top: 5px;">📍 Memorial Hospital, Bldg C</div>
+                        </div>
+                        <button class="btn-primary" style="width: 100%;" onclick="viewAppointments()">View Calendar</button>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>🚨 Emergency Contacts</h3>
+                        <div style="background: #fee2e2; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                            <div style="font-weight: 600; color: #dc2626;">Primary: Sarah (Daughter)</div>
+                            <div style="font-size: 14px; margin-top: 5px;">📞 (555) 123-4567</div>
+                        </div>
+                        <button class="btn-primary" style="width: 100%; background: #dc2626;" onclick="callEmergencyContact()">📞 Call Emergency Contact</button>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>🧠 Memory Support & Daily Activities</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+                        <div style="background: #f0fdf4; padding: 20px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 32px; margin-bottom: 10px;">✅</div>
+                            <div style="font-weight: 600;">Morning Routine</div>
+                            <div style="font-size: 12px; color: #16a34a; margin-top: 5px;">Completed 8:45 AM</div>
+                        </div>
+                        <div style="background: #fef3c7; padding: 20px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 32px; margin-bottom: 10px;">⏳</div>
+                            <div style="font-weight: 600;">Lunch Reminder</div>
+                            <div style="font-size: 12px; color: #fbbf24; margin-top: 5px;">Due at 12:00 PM</div>
+                        </div>
+                        <div style="background: #dbeafe; padding: 20px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 32px; margin-bottom: 10px;">🎵</div>
+                            <div style="font-weight: 600;">Music Therapy</div>
+                            <div style="font-size: 12px; color: #3b82f6; margin-top: 5px;">3:00 PM Scheduled</div>
+                        </div>
+                        <div style="background: #fce7f3; padding: 20px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 32px; margin-bottom: 10px;">👨‍👩‍👧</div>
+                            <div style="font-weight: 600;">Family Visit</div>
+                            <div style="font-size: 12px; color: #ec4899; margin-top: 5px;">Sunday 2:00 PM</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px;">
+                    <h3>💬 AI Companion Check-In</h3>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 15px;">
+                        <div style="font-style: italic; color: #6c757d; margin-bottom: 10px;">"Good afternoon! How are you feeling today? Have you had your lunch?"</div>
+                        <button class="btn-secondary" onclick="respondToCheckIn('good')">I'm doing well</button>
+                        <button class="btn-secondary" style="margin-left: 10px;" onclick="respondToCheckIn('help')">I need help</button>
+                    </div>
+                    <button class="btn-primary" onclick="startVoiceCheckIn()">🎤 Voice Check-In</button>
+                </div>
+            </div>
+        `,
+        
+        greenhouse: `
+            <h2>🌿 Modular Greenhouse Builder</h2>
+            <p style="text-align: center;">Design, plan, and build your custom modular greenhouse system</p>
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <div style="background: linear-gradient(135deg, #16a34a 0%, #15803d 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3 style="color: white; margin-bottom: 15px;">🏗️ Build Your Dream Greenhouse</h3>
+                    <p style="font-size: 15px;">Modular panels, automated climate control, hydroponics integration, and AI-powered growth optimization.</p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>🎨 Design Canvas</h3>
+                        <div id="greenhouseCanvas" style="background: #f0fdf4; border: 2px solid #16a34a; border-radius: 8px; height: 400px; display: flex; align-items: center; justify-content: center;">
+                            <div style="text-align: center; color: #6c757d;">
+                                <div style="font-size: 48px; margin-bottom: 15px;">🏡</div>
+                                <div>Click modules below to add to your design</div>
+                                <div style="font-size: 13px; margin-top: 10px;">Current: 0 modules • 0 sq ft</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 10px; margin-top: 15px;">
+                            <button class="btn-secondary" onclick="rotateView()">🔄 Rotate</button>
+                            <button class="btn-secondary" onclick="clearDesign()">🗑️ Clear</button>
+                            <button class="btn-primary" onclick="saveDesign()">💾 Save Design</button>
+                            <button class="btn-primary" onclick="generate3DPreview()">🎭 3D Preview</button>
+                        </div>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>📦 Module Library</h3>
+                        <div style="max-height: 450px; overflow-y: auto;">
+                            <div class="module-item" onclick="addModule('base')" style="padding: 12px; background: #f8f9fa; border-radius: 8px; margin-bottom: 10px; cursor: pointer; border: 2px solid transparent;">
+                                <div style="font-weight: 600;">Base Panel (4x8 ft)</div>
+                                <div style="font-size: 12px; color: #6c757d;">Polycarbonate • $89</div>
+                            </div>
+                            <div class="module-item" onclick="addModule('roof')" style="padding: 12px; background: #f8f9fa; border-radius: 8px; margin-bottom: 10px; cursor: pointer; border: 2px solid transparent;">
+                                <div style="font-weight: 600;">Roof Panel (4x8 ft)</div>
+                                <div style="font-size: 12px; color: #6c757d;">UV-resistant • $95</div>
+                            </div>
+                            <div class="module-item" onclick="addModule('door')" style="padding: 12px; background: #f8f9fa; border-radius: 8px; margin-bottom: 10px; cursor: pointer; border: 2px solid transparent;">
+                                <div style="font-weight: 600;">Door Module</div>
+                                <div style="font-size: 12px; color: #6c757d;">Auto-close • $145</div>
+                            </div>
+                            <div class="module-item" onclick="addModule('window')" style="padding: 12px; background: #f8f9fa; border-radius: 8px; margin-bottom: 10px; cursor: pointer; border: 2px solid transparent;">
+                                <div style="font-weight: 600;">Ventilation Window</div>
+                                <div style="font-size: 12px; color: #6c757d;">Auto-open • $65</div>
+                            </div>
+                            <div class="module-item" onclick="addModule('hydro')" style="padding: 12px; background: #f8f9fa; border-radius: 8px; margin-bottom: 10px; cursor: pointer; border: 2px solid transparent;">
+                                <div style="font-weight: 600;">Hydroponic Rack</div>
+                                <div style="font-size: 12px; color: #6c757d;">6-tier • $180</div>
+                            </div>
+                            <div class="module-item" onclick="addModule('climate')" style="padding: 12px; background: #f8f9fa; border-radius: 8px; margin-bottom: 10px; cursor: pointer; border: 2px solid transparent;">
+                                <div style="font-weight: 600;">Climate Control</div>
+                                <div style="font-size: 12px; color: #6c757d;">Temp/Humidity • $220</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>🤖 AI Growth Optimizer</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+                        <div style="background: #dbeafe; padding: 15px; border-radius: 8px;">
+                            <div style="font-size: 11px; color: #6c757d;">Temperature</div>
+                            <div style="font-size: 24px; font-weight: 600; color: #3b82f6;">72°F</div>
+                            <div style="font-size: 11px; color: #16a34a;">Optimal ✓</div>
+                        </div>
+                        <div style="background: #dbeafe; padding: 15px; border-radius: 8px;">
+                            <div style="font-size: 11px; color: #6c757d;">Humidity</div>
+                            <div style="font-size: 24px; font-weight: 600; color: #3b82f6;">65%</div>
+                            <div style="font-size: 11px; color: #16a34a;">Optimal ✓</div>
+                        </div>
+                        <div style="background: #fef3c7; padding: 15px; border-radius: 8px;">
+                            <div style="font-size: 11px; color: #6c757d;">Light Hours</div>
+                            <div style="font-size: 24px; font-weight: 600; color: #fbbf24;">14.5h</div>
+                            <div style="font-size: 11px; color: #fbbf24;">Adjust +1h ⚠</div>
+                        </div>
+                        <div style="background: #dbeafe; padding: 15px; border-radius: 8px;">
+                            <div style="font-size: 11px; color: #6c757d;">CO2 Level</div>
+                            <div style="font-size: 24px; font-weight: 600; color: #3b82f6;">420 ppm</div>
+                            <div style="font-size: 11px; color: #16a34a;">Optimal ✓</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px;">
+                    <h3>💰 Cost Estimator</h3>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span>Materials:</span>
+                            <span style="font-weight: 600;">$0</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span>Labor (DIY discount):</span>
+                            <span style="font-weight: 600;">$0</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span>Automation:</span>
+                            <span style="font-weight: 600;">$0</span>
+                        </div>
+                        <div style="border-top: 2px solid #d9d9d9; margin: 15px 0; padding-top: 15px; display: flex; justify-content: space-between; font-size: 18px; font-weight: 700; color: #16a34a;">
+                            <span>Total Estimate:</span>
+                            <span>$0</span>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="width: 100%; margin-top: 15px;" onclick="downloadBuildPlan()">📥 Download Build Plan & Shopping List</button>
+                </div>
+            </div>
+        `,
+        
+        airadio: `
+            <h2>📻 AI Radio Voices & Podcasts</h2>
+            <p style="text-align: center;">Generate AI-powered radio shows and podcasts with synthetic voices</p>
+            <div style="max-width: 1000px; margin: 0 auto;">
+                <div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3 style="color: white; margin-bottom: 15px;">🎙️ AI Voice Broadcasting Platform</h3>
+                    <p style="font-size: 15px;">Create custom radio shows, podcasts, news broadcasts, and storytelling with lifelike AI voices. Powered by Gemini & ElevenLabs.</p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>🎤 Voice Selection</h3>
+                        <select id="aiVoice" style="width: 100%; padding: 12px; border: 2px solid #d9d9d9; border-radius: 8px; margin-bottom: 15px;">
+                            <option value="male-news">Professional Male (News)</option>
+                            <option value="female-news">Professional Female (News)</option>
+                            <option value="male-casual">Casual Male (Podcast)</option>
+                            <option value="female-casual">Casual Female (Podcast)</option>
+                            <option value="storyteller">Storyteller (Audiobook)</option>
+                            <option value="energetic">Energetic Host (Radio)</option>
+                        </select>
+                        <button class="btn-primary" style="width: 100%;" onclick="previewVoice()">▶️ Preview Voice</button>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>📝 Script Generator</h3>
+                        <select id="showType" style="width: 100%; padding: 12px; border: 2px solid #d9d9d9; border-radius: 8px; margin-bottom: 15px;">
+                            <option value="news">News Broadcast</option>
+                            <option value="podcast">Interview Podcast</option>
+                            <option value="story">Story/Fiction</option>
+                            <option value="educational">Educational Series</option>
+                            <option value="comedy">Comedy Show</option>
+                        </select>
+                        <button class="btn-primary" style="width: 100%;" onclick="generateScript()">✨ AI Generate Script</button>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>⏱️ Episode Length</h3>
+                        <div style="margin-bottom: 15px;">
+                            <input type="range" id="episodeLength" min="5" max="120" value="30" oninput="updateLengthDisplay(this.value)" style="width: 100%;">
+                            <div style="text-align: center; font-weight: 600; margin-top: 10px;"><span id="lengthDisplay">30</span> minutes</div>
+                        </div>
+                        <button class="btn-secondary" style="width: 100%;" onclick="setCustomLength()">Custom Duration</button>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>📻 Live Preview & Editor</h3>
+                    <textarea id="podcastScript" placeholder="Enter your script here or use AI generator..." style="width: 100%; min-height: 200px; padding: 15px; border: 2px solid #d9d9d9; border-radius: 8px; font-family: monospace; margin-bottom: 15px;"></textarea>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button class="btn-primary" onclick="generateAudio()">🎵 Generate Audio</button>
+                        <button class="btn-secondary" onclick="addMusicBed()">🎶 Add Music Bed</button>
+                        <button class="btn-secondary" onclick="addSoundEffects()">🔊 Sound Effects</button>
+                        <button class="btn-secondary" onclick="adjustPacing()">⏩ Adjust Pacing</button>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>🎧 Your Podcast Library</h3>
+                    <div id="podcastLibrary">
+                        <div style="padding: 20px; background: #f8f9fa; border-radius: 8px; margin-bottom: 15px;">
+                            <div style="display: flex; justify-content: space-between; align-items: start;">
+                                <div>
+                                    <h4 style="margin: 0 0 5px 0;">Infinity News Daily #47</h4>
+                                    <div style="font-size: 13px; color: #6c757d;">30 min • Professional Female • 2 hours ago</div>
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                    <button class="btn-secondary" onclick="playEpisode('ep47')">▶️ Play</button>
+                                    <button class="btn-secondary" onclick="downloadEpisode('ep47')">⬇️ Download</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="padding: 20px; background: #f8f9fa; border-radius: 8px; margin-bottom: 15px;">
+                            <div style="display: flex; justify-content: space-between; align-items: start;">
+                                <div>
+                                    <h4 style="margin: 0 0 5px 0;">Tech Talk Podcast #12</h4>
+                                    <div style="font-size: 13px; color: #6c757d;">45 min • Casual Male • Yesterday</div>
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                    <button class="btn-secondary" onclick="playEpisode('ep12')">▶️ Play</button>
+                                    <button class="btn-secondary" onclick="downloadEpisode('ep12')">⬇️ Download</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="width: 100%; margin-top: 15px;" onclick="createNewEpisode()">+ Create New Episode</button>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px;">
+                    <h3>📡 Publishing & Distribution</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+                        <button class="btn-secondary" onclick="publishTo('spotify')">🎵 Spotify</button>
+                        <button class="btn-secondary" onclick="publishTo('apple')">🍎 Apple Podcasts</button>
+                        <button class="btn-secondary" onclick="publishTo('youtube')">📺 YouTube</button>
+                        <button class="btn-secondary" onclick="publishTo('rss')">📻 RSS Feed</button>
+                        <button class="btn-primary" onclick="publishTo('infinity')">🌀 Infinity Network</button>
+                    </div>
+                </div>
+            </div>
+        `,
+        
+        cognitiveExo: `
+            <h2>🧠 Cognitive Exoskeleton Explorer</h2>
+            <p style="text-align: center;">AI-powered thought amplification and neural interface design</p>
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <div style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3 style="color: white; margin-bottom: 15px;">🚀 Augmented Cognition Platform</h3>
+                    <p style="font-size: 15px;">Design neural interfaces, brain-computer connections, thought amplifiers, and cognitive enhancement frameworks. Map mental landscapes and build exoskeletons for consciousness.</p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>🧬 Neural Interface Designer</h3>
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 15px;">
+                            <div style="font-size: 13px; color: #6c757d; margin-bottom: 10px;">Interface Type:</div>
+                            <select id="interfaceType" style="width: 100%; padding: 10px; border: 2px solid #d9d9d9; border-radius: 8px; margin-bottom: 15px;">
+                                <option value="eeg">EEG (Non-invasive)</option>
+                                <option value="fmri">fMRI (Imaging)</option>
+                                <option value="nirs">NIRS (Optical)</option>
+                                <option value="bci">Direct BCI (Experimental)</option>
+                                <option value="quantum">Quantum Entanglement (Theoretical)</option>
+                            </select>
+                            <div style="font-size: 13px; color: #6c757d;">Channels: <strong>64</strong> • Bandwidth: <strong>256 Hz</strong></div>
+                        </div>
+                        <button class="btn-primary" style="width: 100%;" onclick="designInterface()">🎨 Design Interface</button>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>💭 Thought Amplification</h3>
+                        <div style="background: #ede9fe; padding: 20px; border-radius: 8px; margin-bottom: 15px;">
+                            <div style="margin-bottom: 15px;">
+                                <div style="font-size: 13px; color: #6c757d; margin-bottom: 5px;">Clarity Boost:</div>
+                                <input type="range" id="clarityBoost" min="0" max="100" value="50" style="width: 100%;">
+                                <div style="text-align: center; font-size: 12px; color: #6366f1;"><span id="clarityVal">50</span>%</div>
+                            </div>
+                            <div style="margin-bottom: 15px;">
+                                <div style="font-size: 13px; color: #6c757d; margin-bottom: 5px;">Memory Bandwidth:</div>
+                                <input type="range" id="memoryBand" min="0" max="100" value="70" style="width: 100%;">
+                                <div style="text-align: center; font-size: 12px; color: #6366f1;"><span id="memoryVal">70</span>%</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 13px; color: #6c757d; margin-bottom: 5px;">Focus Intensity:</div>
+                                <input type="range" id="focusInt" min="0" max="100" value="85" style="width: 100%;">
+                                <div style="text-align: center; font-size: 12px; color: #6366f1;"><span id="focusVal">85</span>%</div>
+                            </div>
+                        </div>
+                        <button class="btn-primary" style="width: 100%;" onclick="activateAmplification()">⚡ Activate</button>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>🌐 Mental Landscape Mapper</h3>
+                        <div id="mindMap" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 2px solid #0ea5e9; border-radius: 8px; height: 200px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+                            <div style="text-align: center; color: #0369a1;">
+                                <div style="font-size: 36px; margin-bottom: 10px;">🧠</div>
+                                <div style="font-size: 14px;">Mapping neural pathways...</div>
+                                <div style="font-size: 12px; margin-top: 5px;">3,847 nodes • 12,394 connections</div>
+                            </div>
+                        </div>
+                        <button class="btn-primary" style="width: 100%;" onclick="scanMentalLandscape()">🔍 Deep Scan</button>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>🎯 Cognitive Enhancement Modules</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-top: 15px;">
+                        <div onclick="toggleModule('memory')" style="padding: 20px; background: #dbeafe; border-radius: 8px; cursor: pointer; text-align: center; border: 2px solid transparent;">
+                            <div style="font-size: 32px; margin-bottom: 10px;">🧠</div>
+                            <div style="font-weight: 600;">Memory Palace</div>
+                            <div style="font-size: 12px; color: #3b82f6; margin-top: 5px;">Status: Active ✓</div>
+                        </div>
+                        <div onclick="toggleModule('speed')" style="padding: 20px; background: #fef3c7; border-radius: 8px; cursor: pointer; text-align: center; border: 2px solid transparent;">
+                            <div style="font-size: 32px; margin-bottom: 10px;">⚡</div>
+                            <div style="font-weight: 600;">Speed Reading</div>
+                            <div style="font-size: 12px; color: #fbbf24; margin-top: 5px;">Status: Ready</div>
+                        </div>
+                        <div onclick="toggleModule('pattern')" style="padding: 20px; background: #f0fdf4; border-radius: 8px; cursor: pointer; text-align: center; border: 2px solid transparent;">
+                            <div style="font-size: 32px; margin-bottom: 10px;">🔮</div>
+                            <div style="font-weight: 600;">Pattern Recognition</div>
+                            <div style="font-size: 12px; color: #16a34a; margin-top: 5px;">Status: Active ✓</div>
+                        </div>
+                        <div onclick="toggleModule('language')" style="padding: 20px; background: #fce7f3; border-radius: 8px; cursor: pointer; text-align: center; border: 2px solid transparent;">
+                            <div style="font-size: 32px; margin-bottom: 10px;">🗣️</div>
+                            <div style="font-weight: 600;">Language Matrix</div>
+                            <div style="font-size: 12px; color: #ec4899; margin-top: 5px;">Status: Ready</div>
+                        </div>
+                        <div onclick="toggleModule('spatial')" style="padding: 20px; background: #ede9fe; border-radius: 8px; cursor: pointer; text-align: center; border: 2px solid transparent;">
+                            <div style="font-size: 32px; margin-bottom: 10px;">🗺️</div>
+                            <div style="font-weight: 600;">Spatial Navigator</div>
+                            <div style="font-size: 12px; color: #6366f1; margin-top: 5px;">Status: Active ✓</div>
+                        </div>
+                        <div onclick="toggleModule('creativity')" style="padding: 20px; background: #fff7ed; border-radius: 8px; cursor: pointer; text-align: center; border: 2px solid transparent;">
+                            <div style="font-size: 32px; margin-bottom: 10px;">🎨</div>
+                            <div style="font-weight: 600;">Creativity Boost</div>
+                            <div style="font-size: 12px; color: #f97316; margin-top: 5px;">Status: Ready</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px;">
+                    <h3>📊 Cognitive Performance Metrics</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 15px;">
+                        <div style="background: #f0fdf4; padding: 15px; border-radius: 8px; border-left: 4px solid #16a34a;">
+                            <div style="font-size: 11px; color: #6c757d;">Processing Speed</div>
+                            <div style="font-size: 24px; font-weight: 700; color: #16a34a;">147%</div>
+                            <div style="font-size: 11px; color: #16a34a;">+47% vs baseline ↑</div>
+                        </div>
+                        <div style="background: #dbeafe; padding: 15px; border-radius: 8px; border-left: 4px solid #3b82f6;">
+                            <div style="font-size: 11px; color: #6c757d;">Working Memory</div>
+                            <div style="font-size: 24px; font-weight: 700; color: #3b82f6;">9.2 items</div>
+                            <div style="font-size: 11px; color: #3b82f6;">+2.2 vs avg ↑</div>
+                        </div>
+                        <div style="background: #ede9fe; padding: 15px; border-radius: 8px; border-left: 4px solid #6366f1;">
+                            <div style="font-size: 11px; color: #6c757d;">Focus Duration</div>
+                            <div style="font-size: 24px; font-weight: 700; color: #6366f1;">87 min</div>
+                            <div style="font-size: 11px; color: #6366f1;">Deep work state ✓</div>
+                        </div>
+                        <div style="background: #fef3c7; padding: 15px; border-radius: 8px; border-left: 4px solid #fbbf24;">
+                            <div style="font-size: 11px; color: #6c757d;">Neural Plasticity</div>
+                            <div style="font-size: 24px; font-weight: 700; color: #fbbf24;">High</div>
+                            <div style="font-size: 11px; color: #fbbf24;">Learning optimal ⚡</div>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="width: 100%; margin-top: 20px;" onclick="exportCognitiveData()">📥 Export Session Data</button>
+                </div>
+            </div>
+        `,
+        
+        nwoProtector: `
+            <h2>🛡️ NWO President Protector</h2>
+            <p style="text-align: center;">Presidential security & protection coordination system</p>
+            <div style="max-width: 1000px; margin: 0 auto;">
+                <div style="background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3 style="color: white; margin-bottom: 15px;">🛡️ Presidential Protection Matrix</h3>
+                    <p style="font-size: 15px;">Advanced threat detection, security coordination, emergency protocols, and protective intelligence for global leadership.</p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>🚨 Threat Level Monitor</h3>
+                        <div style="background: #fee2e2; padding: 20px; border-radius: 8px; border-left: 4px solid #dc2626; margin-bottom: 15px;">
+                            <div style="font-size: 32px; font-weight: 700; color: #dc2626; text-align: center; margin-bottom: 10px;">ELEVATED</div>
+                            <div style="text-align: center; font-size: 13px; color: #6c757d;">Current Threat Assessment</div>
+                        </div>
+                        <div style="font-size: 13px; line-height: 2;">
+                            <div>Physical: <span style="color: #fbbf24;">⚠ Medium</span></div>
+                            <div>Cyber: <span style="color: #dc2626;">❌ High</span></div>
+                            <div>Intelligence: <span style="color: #16a34a;">✓ Low</span></div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>👥 Security Personnel</h3>
+                        <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 10px;">
+                            <div style="font-weight: 600; margin-bottom: 5px;">Active Detail: 24 agents</div>
+                            <div style="font-size: 13px; color: #6c757d;">Inner perimeter: 8 | Outer: 16</div>
+                        </div>
+                        <button class="btn-primary" style="width: 100%;" onclick="deploySecurityTeam()">Deploy Additional Team</button>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>📍 Location Security</h3>
+                        <div style="background: #f0fdf4; padding: 15px; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid #16a34a;">
+                            <div style="font-weight: 600; color: #16a34a;">Secure Facility ✓</div>
+                            <div style="font-size: 13px; color: #6c757d; margin-top: 5px;">All exits monitored • Airspace clear</div>
+                        </div>
+                        <button class="btn-primary" style="width: 100%;" onclick="scanPerimeter()">Scan Perimeter</button>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>⚡ Emergency Protocols</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 15px;">
+                        <button class="btn-secondary" style="background: #dc2626; color: white;" onclick="activateProtocol('evacuation')">🚁 Evacuation</button>
+                        <button class="btn-secondary" style="background: #f97316; color: white;" onclick="activateProtocol('lockdown')">🔒 Lockdown</button>
+                        <button class="btn-secondary" style="background: #fbbf24; color: #000;" onclick="activateProtocol('medical')">🏥 Medical Emergency</button>
+                        <button class="btn-secondary" style="background: #3b82f6; color: white;" onclick="activateProtocol('comms')">📡 Secure Comms</button>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px;">
+                    <h3>📊 Intelligence Dashboard</h3>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px;">
+                        <div style="font-size: 13px; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #d9d9d9;">
+                            <strong>Latest Intelligence Brief (Classified)</strong>
+                            <div style="color: #6c757d; margin-top: 5px;">Updated 14 minutes ago</div>
+                        </div>
+                        <div style="font-size: 13px; line-height: 1.8;">
+                            <div>• 3 potential threats neutralized in past 48h</div>
+                            <div>• Cyber defense systems upgraded</div>
+                            <div>• International cooperation status: Active</div>
+                            <div>• Robot security agents: 127 deployed</div>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="width: 100%; margin-top: 15px;" onclick="requestIntelBrief()">📥 Request Full Brief</button>
+                </div>
+            </div>
+        `,
+        
+        greySun: `
+            <h2>☀️ Grey Sun Theorist</h2>
+            <p style="text-align: center;">Alternative cosmology and stellar phenomena research</p>
+            <div style="max-width: 1000px; margin: 0 auto;">
+                <div style="background: linear-gradient(135deg, #64748b 0%, #475569 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3 style="color: white; margin-bottom: 15px;">🌑 Grey Sun Theory Lab</h3>
+                    <p style="font-size: 15px;">Research alternative stellar models, electromagnetic sun theories, plasma cosmology, and unconventional astrophysics.</p>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>📚 Core Theories</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 15px;">
+                        <div onclick="loadTheory('electric')" style="padding: 20px; background: #fef3c7; border-radius: 8px; cursor: pointer; border: 2px solid transparent;">
+                            <h4 style="margin: 0 0 10px 0;">⚡ Electric Universe</h4>
+                            <p style="font-size: 13px; color: #6c757d; margin: 0;">Sun as electrical phenomenon driven by galactic currents</p>
+                        </div>
+                        <div onclick="loadTheory('plasma')" style="padding: 20px; background: #dbeafe; border-radius: 8px; cursor: pointer; border: 2px solid transparent;">
+                            <h4 style="margin: 0 0 10px 0;">🌊 Plasma Cosmology</h4>
+                            <p style="font-size: 13px; color: #6c757d; margin: 0;">Universe dominated by electromagnetic forces</p>
+                        </div>
+                        <div onclick="loadTheory('hollow')" style="padding: 20px; background: #f0fdf4; border-radius: 8px; cursor: pointer; border: 2px solid transparent;">
+                            <h4 style="margin: 0 0 10px 0;">🔮 Hollow Sun Model</h4>
+                            <p style="font-size: 13px; color: #6c757d; margin: 0;">Shell structure with internal energy generation</p>
+                        </div>
+                        <div onclick="loadTheory('frequency')" style="padding: 20px; background: #ede9fe; border-radius: 8px; cursor: pointer; border: 2px solid transparent;">
+                            <h4 style="margin: 0 0 10px 0;">📻 Frequency Resonance</h4>
+                            <p style="font-size: 13px; color: #6c757d; margin: 0;">Sun as massive frequency generator/amplifier</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>🔬 Research Data</h3>
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px;">
+                            <div style="font-size: 13px; margin-bottom: 10px;">
+                                <strong>Solar Surface Temp:</strong> 5,778 K (mainstream)
+                            </div>
+                            <div style="font-size: 13px; margin-bottom: 10px;">
+                                <strong>Alternative Model:</strong> Variable 3,000-8,000 K
+                            </div>
+                            <div style="font-size: 13px; margin-bottom: 10px;">
+                                <strong>EM Field Strength:</strong> 1-3 Gauss (poles)
+                            </div>
+                            <div style="font-size: 13px;">
+                                <strong>Schumann Resonance:</strong> 7.83 Hz (Earth-Sun)
+                            </div>
+                        </div>
+                        <button class="btn-primary" style="width: 100%; margin-top: 15px;" onclick="runSimulation()">🎬 Run Simulation</button>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>📡 Observational Evidence</h3>
+                        <div style="max-height: 200px; overflow-y: auto;">
+                            <div style="padding: 12px; background: #f0fdf4; border-radius: 8px; margin-bottom: 10px;">
+                                <div style="font-weight: 600; font-size: 14px;">Coronal Heating Problem</div>
+                                <p style="font-size: 12px; color: #6c757d; margin: 5px 0 0 0;">Corona 200x hotter than surface - EM explanation</p>
+                            </div>
+                            <div style="padding: 12px; background: #dbeafe; border-radius: 8px; margin-bottom: 10px;">
+                                <div style="font-weight: 600; font-size: 14px;">Solar Wind Acceleration</div>
+                                <p style="font-size: 12px; color: #6c757d; margin: 5px 0 0 0;">Particles accelerate away from sun - electric field?</p>
+                            </div>
+                            <div style="padding: 12px; background: #fef3c7; border-radius: 8px; margin-bottom: 10px;">
+                                <div style="font-weight: 600; font-size: 14px;">Sunspot Magnetic Fields</div>
+                                <p style="font-size: 12px; color: #6c757d; margin: 5px 0 0 0;">Complex topology - filamentary currents</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px;">
+                    <h3>📖 Research Papers & References</h3>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-top: 15px;">
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <span class="source-badge">Thunderbolts Project</span>
+                            <span class="source-badge">IEEE Plasma Science</span>
+                            <span class="source-badge">Alternative Cosmology Group</span>
+                            <span class="source-badge">Electric Universe Theory</span>
+                            <span class="source-badge">Wal Thornhill Research</span>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="width: 100%; margin-top: 15px;" onclick="accessLibrary()">📚 Access Research Library</button>
+                </div>
+            </div>
+        `,
+        
+        nanoEnergy: `
+            <h2>⚛️ Nano Energy System Designer</h2>
+            <p style="text-align: center;">Design microscale energy harvesting and storage systems</p>
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <div style="background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3 style="color: white; margin-bottom: 15px;">⚡ Nanoscale Power Engineering</h3>
+                    <p style="font-size: 15px;">Design quantum batteries, piezoelectric harvesters, thermoelectric generators, and nano-scale energy systems.</p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>🔋 Energy Harvesting Methods</h3>
+                        <div style="margin-top: 15px;">
+                            <div onclick="selectMethod('piezo')" style="padding: 15px; background: #f0fdf4; border-radius: 8px; margin-bottom: 10px; cursor: pointer; border: 2px solid #16a34a;">
+                                <div style="font-weight: 600;">Piezoelectric ⚡</div>
+                                <div style="font-size: 12px; color: #6c757d;">Mechanical vibration → Electricity</div>
+                                <div style="font-size: 12px; color: #16a34a; margin-top: 5px;">Output: 10-100 µW/cm²</div>
+                            </div>
+                            <div onclick="selectMethod('thermo')" style="padding: 15px; background: #f8f9fa; border-radius: 8px; margin-bottom: 10px; cursor: pointer;">
+                                <div style="font-weight: 600;">Thermoelectric 🌡️</div>
+                                <div style="font-size: 12px; color: #6c757d;">Heat gradient → Electricity</div>
+                                <div style="font-size: 12px; color: #6c757d; margin-top: 5px;">Output: 1-50 µW/cm²</div>
+                            </div>
+                            <div onclick="selectMethod('solar')" style="padding: 15px; background: #f8f9fa; border-radius: 8px; margin-bottom: 10px; cursor: pointer;">
+                                <div style="font-weight: 600;">Nano-Solar ☀️</div>
+                                <div style="font-size: 12px; color: #6c757d;">Quantum dots photovoltaic</div>
+                                <div style="font-size: 12px; color: #6c757d; margin-top: 5px;">Output: 100-500 µW/cm²</div>
+                            </div>
+                            <div onclick="selectMethod('rf')" style="padding: 15px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
+                                <div style="font-weight: 600;">RF Harvesting 📡</div>
+                                <div style="font-size: 12px; color: #6c757d;">Ambient radio waves</div>
+                                <div style="font-size: 12px; color: #6c757d; margin-top: 5px;">Output: 0.1-10 µW/cm²</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>🎨 System Designer</h3>
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 15px;">
+                            <div style="margin-bottom: 15px;">
+                                <label style="display: block; font-size: 13px; margin-bottom: 5px;">Harvester Size (nm):</label>
+                                <input type="number" id="harvesterSize" value="1000" style="width: 100%; padding: 8px; border: 2px solid #d9d9d9; border-radius: 6px;">
+                            </div>
+                            <div style="margin-bottom: 15px;">
+                                <label style="display: block; font-size: 13px; margin-bottom: 5px;">Array Density:</label>
+                                <input type="range" id="arrayDensity" min="1" max="100" value="50" style="width: 100%;">
+                                <div style="text-align: center; font-size: 12px; color: #6c757d;"><span id="densityVal">50</span>%</div>
+                            </div>
+                            <div>
+                                <label style="display: block; font-size: 13px; margin-bottom: 5px;">Storage Type:</label>
+                                <select id="storageType" style="width: 100%; padding: 8px; border: 2px solid #d9d9d9; border-radius: 6px;">
+                                    <option>Quantum Battery</option>
+                                    <option>Supercapacitor</option>
+                                    <option>Nano-wire Array</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="btn-primary" style="width: 100%;" onclick="designNanoSystem()">⚙️ Design System</button>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>📊 Performance Calculator</h3>
+                        <div style="background: #f0fdf4; padding: 20px; border-radius: 8px; border-left: 4px solid #16a34a;">
+                            <div style="margin-bottom: 10px;">
+                                <div style="font-size: 12px; color: #6c757d;">Estimated Power Output:</div>
+                                <div style="font-size: 24px; font-weight: 700; color: #16a34a;">47.5 µW</div>
+                            </div>
+                            <div style="margin-bottom: 10px;">
+                                <div style="font-size: 12px; color: #6c757d;">Efficiency:</div>
+                                <div style="font-size: 20px; font-weight: 700; color: #16a34a;">23%</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 12px; color: #6c757d;">Charge Time (1mAh):</div>
+                                <div style="font-size: 20px; font-weight: 700; color: #16a34a;">2.1 hours</div>
+                            </div>
+                        </div>
+                        <button class="btn-primary" style="width: 100%; margin-top: 15px;" onclick="runPowerCalc()">🔢 Recalculate</button>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px;">
+                    <h3>🏗️ Fabrication Specs</h3>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-top: 15px;">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                            <div>
+                                <div style="font-size: 12px; color: #6c757d; margin-bottom: 5px;">Substrate Material:</div>
+                                <div style="font-weight: 600;">Silicon (100)</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 12px; color: #6c757d; margin-bottom: 5px;">Deposition Method:</div>
+                                <div style="font-weight: 600;">ALD + CVD</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 12px; color: #6c757d; margin-bottom: 5px;">Feature Size:</div>
+                                <div style="font-weight: 600;">5-100 nm</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 12px; color: #6c757d; margin-bottom: 5px;">Layer Count:</div>
+                                <div style="font-weight: 600;">12 layers</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="width: 100%; margin-top: 20px;" onclick="exportFabSpecs()">📥 Export Fabrication Plans</button>
+                </div>
+            </div>
+        `,
+        
+        futureEnergy: `
+            <h2>🚀 Futuristic Energy Systems Tech</h2>
+            <p style="text-align: center;">Next-generation power generation and distribution</p>
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3 style="color: white; margin-bottom: 15px;">⚡ Advanced Energy Technologies</h3>
+                    <p style="font-size: 15px;">Fusion reactors, antimatter storage, zero-point energy, quantum vacuum fluctuation harvesting, and wireless power transmission.</p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                    <div onclick="exploretech('fusion')" style="background: white; padding: 25px; border-radius: 12px; cursor: pointer; border: 2px solid transparent;">
+                        <div style="font-size: 42px; text-align: center; margin-bottom: 10px;">☢️</div>
+                        <h3 style="text-align: center;">Fusion Reactor</h3>
+                        <p style="font-size: 13px; color: #6c757d; text-align: center;">Tokamak / Stellarator designs</p>
+                        <div style="text-align: center; margin-top: 10px; color: #8b5cf6; font-weight: 600;">Q > 10 achieved</div>
+                    </div>
+                    
+                    <div onclick="exploretech('antimatter')" style="background: white; padding: 25px; border-radius: 12px; cursor: pointer; border: 2px solid transparent;">
+                        <div style="font-size: 42px; text-align: center; margin-bottom: 10px;">⚛️</div>
+                        <h3 style="text-align: center;">Antimatter Storage</h3>
+                        <p style="font-size: 13px; color: #6c757d; text-align: center;">Penning traps & magnetic bottles</p>
+                        <div style="text-align: center; margin-top: 10px; color: #8b5cf6; font-weight: 600;">10^9 J/kg potential</div>
+                    </div>
+                    
+                    <div onclick="exploretech('zeropoint')" style="background: white; padding: 25px; border-radius: 12px; cursor: pointer; border: 2px solid transparent;">
+                        <div style="font-size: 42px; text-align: center; margin-bottom: 10px;">🌌</div>
+                        <h3 style="text-align: center;">Zero-Point Energy</h3>
+                        <p style="font-size: 13px; color: #6c757d; text-align: center;">Quantum vacuum fluctuations</p>
+                        <div style="text-align: center; margin-top: 10px; color: #8b5cf6; font-weight: 600;">Theoretical unlimited</div>
+                    </div>
+                    
+                    <div onclick="exploretech('wireless')" style="background: white; padding: 25px; border-radius: 12px; cursor: pointer; border: 2px solid transparent;">
+                        <div style="font-size: 42px; text-align: center; margin-bottom: 10px;">📡</div>
+                        <h3 style="text-align: center;">Wireless Power Grid</h3>
+                        <p style="font-size: 13px; color: #6c757d; text-align: center;">Tesla resonance transmission</p>
+                        <div style="text-align: center; margin-top: 10px; color: #8b5cf6; font-weight: 600;">100km+ range</div>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>🔬 Active Research Projects</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin-top: 15px;">
+                        <div style="padding: 20px; background: #ede9fe; border-radius: 8px;">
+                            <h4 style="margin: 0 0 10px 0;">ITER Fusion Project</h4>
+                            <div style="font-size: 13px; color: #6c757d; margin-bottom: 10px;">International tokamak reactor - 500 MW output goal</div>
+                            <div style="background: #7c3aed; height: 8px; border-radius: 4px; overflow: hidden;">
+                                <div style="background: #22c55e; width: 73%; height: 100%;"></div>
+                            </div>
+                            <div style="font-size: 12px; color: #6c757d; margin-top: 5px;">73% complete</div>
+                        </div>
+                        
+                        <div style="padding: 20px; background: #dbeafe; border-radius: 8px;">
+                            <h4 style="margin: 0 0 10px 0;">Casimir Effect Harvesting</h4>
+                            <div style="font-size: 13px; color: #6c757d; margin-bottom: 10px;">Extracting energy from quantum vacuum</div>
+                            <div style="background: #3b82f6; height: 8px; border-radius: 4px; overflow: hidden;">
+                                <div style="background: #22c55e; width: 34%; height: 100%;"></div>
+                            </div>
+                            <div style="font-size: 12px; color: #6c757d; margin-top: 5px;">34% complete</div>
+                        </div>
+                        
+                        <div style="padding: 20px; background: #f0fdf4; border-radius: 8px;">
+                            <h4 style="margin: 0 0 10px 0;">Thorium Molten Salt Reactor</h4>
+                            <div style="font-size: 13px; color: #6c757d; margin-bottom: 10px;">Safe, clean nuclear - China leading development</div>
+                            <div style="background: #16a34a; height: 8px; border-radius: 4px; overflow: hidden;">
+                                <div style="background: #22c55e; width: 58%; height: 100%;"></div>
+                            </div>
+                            <div style="font-size: 12px; color: #6c757d; margin-top: 5px;">58% complete</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px;">
+                    <h3>💡 Design Your Energy System</h3>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-top: 15px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 15px;">
+                            <div>
+                                <label style="display: block; font-size: 13px; margin-bottom: 8px;">Primary Technology:</label>
+                                <select id="primaryTech" style="width: 100%; padding: 10px; border: 2px solid #d9d9d9; border-radius: 8px;">
+                                    <option>Fusion (Tokamak)</option>
+                                    <option>Thorium MSR</option>
+                                    <option>Solar (Orbital)</option>
+                                    <option>Geothermal (Deep)</option>
+                                    <option>Zero-Point (Experimental)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="display: block; font-size: 13px; margin-bottom: 8px;">Power Output (MW):</label>
+                                <input type="number" id="powerOutput" value="1000" style="width: 100%; padding: 10px; border: 2px solid #d9d9d9; border-radius: 8px;">
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: block; font-size: 13px; margin-bottom: 8px;">Distribution Method:</label>
+                            <select id="distribution" style="width: 100%; padding: 10px; border: 2px solid #d9d9d9; border-radius: 8px;">
+                                <option>Traditional Grid</option>
+                                <option>Wireless Transmission</option>
+                                <option>Superconducting Cable</option>
+                                <option>Hydrogen Fuel Cell Network</option>
+                            </select>
+                        </div>
+                        <button class="btn-primary" style="width: 100%;" onclick="simulateEnergySystem()">🎬 Run Simulation</button>
+                    </div>
+                </div>
+            </div>
+        `,
+        
+        snapFood: `
+            <h2>🌾 SNAP & Food Aid Network</h2>
+            <p style="text-align: center;">Big Farms to Table - Food assistance coordination</p>
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <div style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3 style="color: white; margin-bottom: 15px;">🍎 Farm-to-Table Aid Network</h3>
+                    <p style="font-size: 15px;">Connect surplus farm production directly to SNAP recipients, food banks, and communities in need. Zero waste, maximum impact.</p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>🚜 Farm Surplus Available</h3>
+                        <div style="max-height: 250px; overflow-y: auto;">
+                            <div style="padding: 15px; background: #f0fdf4; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid #16a34a;">
+                                <div style="font-weight: 600;">Johnson Farms - Iowa</div>
+                                <div style="font-size: 13px; color: #6c757d; margin-top: 5px;">15,000 lbs sweet corn • Ready now</div>
+                                <button class="btn-secondary" style="margin-top: 8px; font-size: 12px;" onclick="claimSurplus('corn')">Claim for Distribution</button>
+                            </div>
+                            <div style="padding: 15px; background: #fef3c7; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid #fbbf24;">
+                                <div style="font-weight: 600;">Valley Orchards - CA</div>
+                                <div style="font-size: 13px; color: #6c757d; margin-top: 5px;">8,000 lbs apples • Ready in 3 days</div>
+                                <button class="btn-secondary" style="margin-top: 8px; font-size: 12px;" onclick="claimSurplus('apples')">Reserve Pickup</button>
+                            </div>
+                            <div style="padding: 15px; background: #dbeafe; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid #3b82f6;">
+                                <div style="font-weight: 600;">Green Valley Dairy - WI</div>
+                                <div style="font-size: 13px; color: #6c757d; margin-top: 5px;">2,500 gallons milk • Daily surplus</div>
+                                <button class="btn-secondary" style="margin-top: 8px; font-size: 12px;" onclick="claimSurplus('milk')">Subscribe Daily</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>📍 Distribution Centers</h3>
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 15px;">
+                            <div style="font-weight: 600; margin-bottom: 10px;">Active Centers: 247</div>
+                            <div style="font-size: 13px; color: #6c757d; line-height: 1.8;">
+                                <div>Food Banks: 89</div>
+                                <div>Community Centers: 102</div>
+                                <div>SNAP Pickup Locations: 56</div>
+                            </div>
+                        </div>
+                        <button class="btn-primary" style="width: 100%;" onclick="findNearestCenter()">Find Nearest Center</button>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>📊 Impact Metrics</h3>
+                        <div style="background: #f0fdf4; padding: 20px; border-radius: 8px; border-left: 4px solid #16a34a;">
+                            <div style="margin-bottom: 15px;">
+                                <div style="font-size: 12px; color: #6c757d;">Food Distributed This Month:</div>
+                                <div style="font-size: 24px; font-weight: 700; color: #16a34a;">847K lbs</div>
+                            </div>
+                            <div style="margin-bottom: 15px;">
+                                <div style="font-size: 12px; color: #6c757d;">Families Served:</div>
+                                <div style="font-size: 24px; font-weight: 700; color: #16a34a;">12,394</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 12px; color: #6c757d;">Waste Prevented:</div>
+                                <div style="font-size: 24px; font-weight: 700; color: #16a34a;">98.7%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>🗺️ Live Network Map</h3>
+                    <div id="networkMap" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 2px solid #16a34a; border-radius: 8px; height: 300px; display: flex; align-items: center; justify-content: center;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 48px; margin-bottom: 15px;">🗺️</div>
+                            <div style="font-weight: 600; color: #16a34a;">Real-Time Distribution Network</div>
+                            <div style="font-size: 13px; color: #6c757d; margin-top: 10px;">247 active centers • 89 farms connected • 12K+ families</div>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="width: 100%; margin-top: 15px;" onclick="viewFullMap()">🌍 View Full Interactive Map</button>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px;">
+                    <h3>👥 For Recipients & Volunteers</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-top: 15px;">
+                        <button class="btn-secondary" onclick="registerRecipient()">📝 Register as Recipient</button>
+                        <button class="btn-secondary" onclick="volunteerDriver()">🚗 Volunteer as Driver</button>
+                        <button class="btn-secondary" onclick="donateFarm()">🌾 Register Farm Surplus</button>
+                        <button class="btn-primary" onclick="viewSchedule()">📅 Pickup Schedule</button>
+                    </div>
+                </div>
+            </div>
+        `,
+        
+        symbolBible: `
+            <h2>📖 Symbol Bible</h2>
+            <p style="text-align: center;">Universal symbol language decoder and spiritual symbology</p>
+            <div style="max-width: 1000px; margin: 0 auto;">
+                <div style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3 style="color: white; margin-bottom: 15px;">🔮 Sacred Symbol Encyclopedia</h3>
+                    <p style="font-size: 15px;">Decode ancient symbols, spiritual iconography, sacred geometry, and universal visual language across all cultures and traditions.</p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                    <div onclick="loadSymbolCategory('sacred')" style="background: white; padding: 25px; border-radius: 12px; text-align: center; cursor: pointer;">
+                        <div style="font-size: 48px; margin-bottom: 10px;">✡️</div>
+                        <div style="font-weight: 600;">Sacred Geometry</div>
+                        <div style="font-size: 12px; color: #6c757d; margin-top: 5px;">287 symbols</div>
+                    </div>
+                    <div onclick="loadSymbolCategory('christian')" style="background: white; padding: 25px; border-radius: 12px; text-align: center; cursor: pointer;">
+                        <div style="font-size: 48px; margin-bottom: 10px;">✝️</div>
+                        <div style="font-weight: 600;">Christian</div>
+                        <div style="font-size: 12px; color: #6c757d; margin-top: 5px;">412 symbols</div>
+                    </div>
+                    <div onclick="loadSymbolCategory('eastern')" style="background: white; padding: 25px; border-radius: 12px; text-align: center; cursor: pointer;">
+                        <div style="font-size: 48px; margin-bottom: 10px;">☯️</div>
+                        <div style="font-weight: 600;">Eastern</div>
+                        <div style="font-size: 12px; color: #6c757d; margin-top: 5px;">589 symbols</div>
+                    </div>
+                    <div onclick="loadSymbolCategory('ancient')" style="background: white; padding: 25px; border-radius: 12px; text-align: center; cursor: pointer;">
+                        <div style="font-size: 48px; margin-bottom: 10px;">𓂀</div>
+                        <div style="font-weight: 600;">Ancient Egypt</div>
+                        <div style="font-size: 12px; color: #6c757d; margin-top: 5px;">1,247 symbols</div>
+                    </div>
+                    <div onclick="loadSymbolCategory('alchemy')" style="background: white; padding: 25px; border-radius: 12px; text-align: center; cursor: pointer;">
+                        <div style="font-size: 48px; margin-bottom: 10px;">🜁</div>
+                        <div style="font-weight: 600;">Alchemy</div>
+                        <div style="font-size: 12px; color: #6c757d; margin-top: 5px;">203 symbols</div>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>🔍 Symbol Search & Decoder</h3>
+                    <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                        <input type="text" id="symbolSearch" placeholder="Search by name, meaning, or culture..." style="flex: 1; padding: 12px; border: 2px solid #d9d9d9; border-radius: 8px;">
+                        <button class="btn-primary" onclick="searchSymbols()">Search</button>
+                    </div>
+                    <div id="symbolResults" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px;">
+                        <div style="padding: 20px; background: #ede9fe; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 64px; margin-bottom: 10px;">☥</div>
+                            <div style="font-weight: 600; font-size: 14px;">Ankh</div>
+                            <div style="font-size: 11px; color: #6c757d; margin-top: 5px;">Life, Immortality</div>
+                        </div>
+                        <div style="padding: 20px; background: #fef3c7; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 64px; margin-bottom: 10px;">🜃</div>
+                            <div style="font-weight: 600; font-size: 14px;">Fire Triangle</div>
+                            <div style="font-size: 11px; color: #6c757d; margin-top: 5px;">Transformation</div>
+                        </div>
+                        <div style="padding: 20px; background: #dbeafe; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 64px; margin-bottom: 10px;">🕉️</div>
+                            <div style="font-weight: 600; font-size: 14px;">Om</div>
+                            <div style="font-size: 11px; color: #6c757d; margin-top: 5px;">Universal sound</div>
+                        </div>
+                        <div style="padding: 20px; background: #f0fdf4; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 64px; margin-bottom: 10px;">☮️</div>
+                            <div style="font-weight: 600; font-size: 14px;">Peace</div>
+                            <div style="font-size: 11px; color: #6c757d; margin-top: 5px;">Harmony</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>📐 Sacred Geometry Builder</h3>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 15px;">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
+                            <button class="btn-secondary" onclick="drawGeometry('flower')">🌸 Flower of Life</button>
+                            <button class="btn-secondary" onclick="drawGeometry('metatron')">✡️ Metatron's Cube</button>
+                            <button class="btn-secondary" onclick="drawGeometry('sri')">🔷 Sri Yantra</button>
+                            <button class="btn-secondary" onclick="drawGeometry('vesica')">⚪⚪ Vesica Piscis</button>
+                        </div>
+                    </div>
+                    <div id="geometryCanvas" style="background: white; border: 2px solid #d9d9d9; border-radius: 8px; height: 300px; display: flex; align-items: center; justify-content: center;">
+                        <div style="text-align: center; color: #6c757d;">
+                            <div style="font-size: 48px; margin-bottom: 10px;">📐</div>
+                            <div>Select a geometry pattern to visualize</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px;">
+                    <h3>📚 Cultural Cross-Reference</h3>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px;">
+                        <div style="font-size: 13px; line-height: 2;">
+                            <div><strong>Tree of Life:</strong> Kabbalah, Norse (Yggdrasil), Celtic, Ancient Egypt</div>
+                            <div><strong>Triple Spiral:</strong> Celtic, Neolithic, Buddhist</div>
+                            <div><strong>Serpent:</strong> Christianity, Hinduism, Aztec, Egyptian, Greek</div>
+                            <div><strong>Eye:</strong> Egyptian (Horus/Ra), Christian (Providence), Turkish (Nazar)</div>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="width: 100%; margin-top: 15px;" onclick="exploreCrossRef()">🌍 Explore Full Cross-Reference</button>
+                </div>
+            </div>
+        `,
+        
+        dinoCards: `
+            <h2>🦖 Dino Baseball & Relic Card Generation</h2>
+            <p style="text-align: center;">Create NFT trading cards with Infinity tokenization</p>
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <div style="background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3 style="color: white; margin-bottom: 15px;">⚾🦕 Infinity Card Generator</h3>
+                    <p style="font-size: 15px;">Design custom trading cards for dinosaurs, baseball players, ancient relics, or anything imaginable. Mint as Infinity Tokens for true ownership.</p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>🎨 Card Designer</h3>
+                        <div id="cardPreview" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 3px solid #0ea5e9; border-radius: 12px; padding: 30px; min-height: 400px; position: relative;">
+                            <div style="text-align: center; position: absolute; top: 20px; left: 0; right: 0;">
+                                <div style="background: white; display: inline-block; padding: 8px 20px; border-radius: 20px; font-weight: 700; color: #0ea5e9;">LEGENDARY</div>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 128px; margin-bottom: 20px;">🦖</div>
+                                    <div style="font-size: 32px; font-weight: 700; margin-bottom: 10px;">T-REX ROOKIE</div>
+                                    <div style="font-size: 18px; color: #6c757d;">Cretaceous Era • 68 Million BC</div>
+                                </div>
+                            </div>
+                            <div style="position: absolute; bottom: 20px; left: 20px; right: 20px; background: rgba(255,255,255,0.9); padding: 15px; border-radius: 8px;">
+                                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; text-align: center; font-size: 14px;">
+                                    <div><strong>Power:</strong> 98</div>
+                                    <div><strong>Speed:</strong> 85</div>
+                                    <div><strong>Rarity:</strong> 1/100</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>⚙️ Card Settings</h3>
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: block; font-size: 13px; margin-bottom: 5px; font-weight: 600;">Card Type:</label>
+                            <select id="cardType" onchange="updateCardType(this.value)" style="width: 100%; padding: 10px; border: 2px solid #d9d9d9; border-radius: 8px;">
+                                <option>Dinosaur</option>
+                                <option>Baseball Player</option>
+                                <option>Ancient Relic</option>
+                                <option>Historical Figure</option>
+                                <option>Custom</option>
+                            </select>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: block; font-size: 13px; margin-bottom: 5px; font-weight: 600;">Name:</label>
+                            <input type="text" id="cardName" value="T-REX ROOKIE" style="width: 100%; padding: 10px; border: 2px solid #d9d9d9; border-radius: 8px;">
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: block; font-size: 13px; margin-bottom: 5px; font-weight: 600;">Rarity:</label>
+                            <select id="rarity" style="width: 100%; padding: 10px; border: 2px solid #d9d9d9; border-radius: 8px;">
+                                <option>Common</option>
+                                <option>Uncommon</option>
+                                <option>Rare</option>
+                                <option selected>Legendary</option>
+                                <option>Mythic</option>
+                            </select>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: block; font-size: 13px; margin-bottom: 5px; font-weight: 600;">Edition Size:</label>
+                            <input type="number" id="edition" value="100" min="1" max="10000" style="width: 100%; padding: 10px; border: 2px solid #d9d9d9; border-radius: 8px;">
+                        </div>
+                        <button class="btn-secondary" style="width: 100%; margin-bottom: 10px;" onclick="uploadCardImage()">📷 Upload Custom Image</button>
+                        <button class="btn-primary" style="width: 100%;" onclick="generateWithAI()">✨ AI Generate Card</button>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>🪙 Mint as Infinity Token</h3>
+                    <div style="background: #f0fdf4; padding: 20px; border-radius: 8px; border-left: 4px solid #16a34a; margin-bottom: 15px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; text-align: center;">
+                            <div>
+                                <div style="font-size: 11px; color: #6c757d;">Minting Cost</div>
+                                <div style="font-size: 20px; font-weight: 700; color: #16a34a;">5 Tokens</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 11px; color: #6c757d;">Resale Royalty</div>
+                                <div style="font-size: 20px; font-weight: 700; color: #16a34a;">2.5%</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 11px; color: #6c757d;">Your Balance</div>
+                                <div style="font-size: 20px; font-weight: 700; color: #0ea5e9;" id="userTokenBalance">12.5</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="width: 100%; font-size: 18px; padding: 15px;" onclick="mintCard()">🪙 Mint Card as NFT</button>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px;">
+                    <h3>🃏 Your Card Collection</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; margin-top: 15px;">
+                        <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #fbbf24; border-radius: 8px; padding: 20px; text-align: center;">
+                            <div style="font-size: 64px; margin-bottom: 10px;">⚾</div>
+                            <div style="font-weight: 600; font-size: 14px;">Babe Ruth #7</div>
+                            <div style="font-size: 11px; color: #6c757d; margin-top: 5px;">Legendary • 1/50</div>
+                            <div style="font-size: 11px; color: #fbbf24; margin-top: 5px;">Token #0x7a3b...</div>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border: 2px solid #3b82f6; border-radius: 8px; padding: 20px; text-align: center;">
+                            <div style="font-size: 64px; margin-bottom: 10px;">🦕</div>
+                            <div style="font-weight: 600; font-size: 14px;">Velociraptor #23</div>
+                            <div style="font-size: 11px; color: #6c757d; margin-top: 5px;">Rare • 1/200</div>
+                            <div style="font-size: 11px; color: #3b82f6; margin-top: 5px;">Token #0x9f2c...</div>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 2px solid #16a34a; border-radius: 8px; padding: 20px; text-align: center;">
+                            <div style="font-size: 64px; margin-bottom: 10px;">🏺</div>
+                            <div style="font-weight: 600; font-size: 14px;">Roman Coin</div>
+                            <div style="font-size: 11px; color: #6c757d; margin-top: 5px;">Mythic • 1/10</div>
+                            <div style="font-size: 11px; color: #16a34a; margin-top: 5px;">Token #0x1e8d...</div>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="width: 100%; margin-top: 20px;" onclick="viewFullCollection()">📚 View Full Collection</button>
+                </div>
+            </div>
+        `,
+        
+        nwoMinting: `
+            <h2>🏛️ NWO Minting Station</h2>
+            <p style="text-align: center;">Global currency creation and token management system</p>
+            <div style="max-width: 1000px; margin: 0 auto;">
+                <div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3 style="color: white; margin-bottom: 15px;">💰 Presidential Minting Authority</h3>
+                    <p style="font-size: 15px;">Authorized token creation, global currency management, and economic stability protocols. Human Treasurer oversight required.</p>
+                </div>
+                
+                <div style="background: #fee2e2; padding: 20px; border-radius: 12px; border-left: 4px solid #dc2626; margin-bottom: 20px;">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="font-size: 36px;">⚠️</div>
+                        <div>
+                            <div style="font-weight: 700; color: #dc2626; margin-bottom: 5px;">AUTHORIZED ACCESS ONLY</div>
+                            <div style="font-size: 13px; color: #6c757d;">Human Treasurer: Kris | Authorization Level: Executive</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>🪙 Token Minting</h3>
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 15px;">
+                            <label style="display: block; font-size: 13px; margin-bottom: 8px; font-weight: 600;">Mint Quantity:</label>
+                            <input type="number" id="mintQuantity" value="1000" min="1" style="width: 100%; padding: 12px; border: 2px solid #d9d9d9; border-radius: 8px; margin-bottom: 15px;">
+                            <label style="display: block; font-size: 13px; margin-bottom: 8px; font-weight: 600;">Purpose:</label>
+                            <select id="mintPurpose" style="width: 100%; padding: 12px; border: 2px solid #d9d9d9; border-radius: 8px;">
+                                <option>Economic Stimulus</option>
+                                <option>Development Funding</option>
+                                <option>Community Rewards</option>
+                                <option>Infrastructure Investment</option>
+                            </select>
+                        </div>
+                        <button class="btn-primary" style="width: 100%;" onclick="requestMintApproval()">🔐 Request Approval to Mint</button>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>📊 Global Supply</h3>
+                        <div style="background: #f0fdf4; padding: 20px; border-radius: 8px; border-left: 4px solid #16a34a;">
+                            <div style="margin-bottom: 15px;">
+                                <div style="font-size: 12px; color: #6c757d;">Total Circulating Supply:</div>
+                                <div style="font-size: 28px; font-weight: 700; color: #16a34a;">10,247,893</div>
+                            </div>
+                            <div style="margin-bottom: 15px;">
+                                <div style="font-size: 12px; color: #6c757d;">Active Wallets:</div>
+                                <div style="font-size: 24px; font-weight: 700; color: #16a34a;">127,489</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 12px; color: #6c757d;">Treasury Reserve:</div>
+                                <div style="font-size: 24px; font-weight: 700; color: #3b82f6;">2,500,000</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 12px;">
+                        <h3>🤖 Robot Agents</h3>
+                        <div style="font-size: 13px; line-height: 2;">
+                            <div style="padding: 10px; background: #f0fdf4; border-radius: 6px; margin-bottom: 8px;">
+                                <strong>BOT-001 Watson:</strong> Treasury Manager
+                                <div style="font-size: 11px; color: #16a34a;">Status: Active ✓</div>
+                            </div>
+                            <div style="padding: 10px; background: #dbeafe; border-radius: 6px; margin-bottom: 8px;">
+                                <strong>BOT-002 Gemini:</strong> Fund Allocator
+                                <div style="font-size: 11px; color: #3b82f6;">Status: Active ✓</div>
+                            </div>
+                            <div style="padding: 10px; background: #ede9fe; border-radius: 6px;">
+                                <strong>BOT-003 Pewpi:</strong> Resource Monitor
+                                <div style="font-size: 11px; color: #6366f1;">Status: Active ✓</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3>📜 Pending Approvals</h3>
+                    <div id="approvalQueue" style="max-height: 300px; overflow-y: auto;">
+                        <div style="padding: 15px; background: #fef3c7; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid #fbbf24;">
+                            <div style="display: flex; justify-content: space-between; align-items: start;">
+                                <div>
+                                    <div style="font-weight: 600;">Community Rewards Mint</div>
+                                    <div style="font-size: 13px; color: #6c757d; margin-top: 5px;">Amount: 5,000 tokens • Requested by: BOT-001 Watson</div>
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                    <button class="btn-secondary" style="background: #16a34a; color: white; font-size: 12px;" onclick="approveM int('req1')">✓ Approve</button>
+                                    <button class="btn-secondary" style="background: #dc2626; color: white; font-size: 12px;" onclick="denyMint('req1')">✗ Deny</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 25px; border-radius: 12px;">
+                    <h3>📈 Economic Dashboard</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 15px;">
+                        <div style="background: #f0fdf4; padding: 15px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 11px; color: #6c757d;">Inflation Rate</div>
+                            <div style="font-size: 24px; font-weight: 700; color: #16a34a;">0.8%</div>
+                        </div>
+                        <div style="background: #dbeafe; padding: 15px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 11px; color: #6c757d;">Velocity</div>
+                            <div style="font-size: 24px; font-weight: 700; color: #3b82f6;">4.2x</div>
+                        </div>
+                        <div style="background: #ede9fe; padding: 15px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 11px; color: #6c757d;">Market Cap</div>
+                            <div style="font-size: 24px; font-weight: 700; color: #6366f1;">$1.2B</div>
+                        </div>
+                        <div style="background: #fef3c7; padding: 15px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 11px; color: #6c757d;">Daily Volume</div>
+                            <div style="font-size: 24px; font-weight: 700; color: #fbbf24;">847K</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         `
