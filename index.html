@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Infinity - Rogers Core System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="themes.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <!-- Google Sign-In Section -->
+    <div id="authSection" class="auth-section">
+        <div class="auth-container">
+            <div class="logo">
+                <h1>Infinity</h1>
+                <p class="tagline">Rogers Core System</p>
+            </div>
+            <div id="g_id_onload"
+                 data-client_id="16937806382-leqbaginj3igrhei58nsab7tb4hsb7435.apps.googleusercontent.com"
+                 data-callback="handleCredentialResponse"
+                 data-auto_prompt="false">
+            </div>
+            <div class="g_id_signin" 
+                 data-type="standard"
+                 data-size="large"
+                 data-theme="outline"
+                 data-text="sign_in_with"
+                 data-shape="rectangular"
+                 data-logo_alignment="left">
+            </div>
+            <p class="auth-info">Sign in to access all realms</p>
+            <p class="auth-email">Contact: marvaseater@gmail.com</p>
+            
+            <!-- Troubleshooting -->
+            <div style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.1); border-radius: 10px; font-size: 12px;">
+                <details>
+                    <summary style="cursor: pointer; font-weight: bold;">🔧 Troubleshooting Google Sign-In</summary>
+                    <div style="margin-top: 10px; text-align: left; line-height: 1.6;">
+                        <p><strong>If the Google button doesn't appear:</strong></p>
+                        <ol style="margin-left: 20px;">
+                            <li>Make sure you're accessing via HTTPS or localhost</li>
+                            <li>Check that third-party cookies are enabled</li>
+                            <li>Try clearing browser cache and cookies</li>
+                            <li>Disable ad blockers/privacy extensions temporarily</li>
+                            <li>Try a different browser (Chrome recommended)</li>
+                        </ol>
+                        <p style="margin-top: 10px;"><strong>For testing:</strong></p>
+                        <button onclick="bypassAuth()" style="padding: 8px 15px; background: #0070ba; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 5px;">
+                            🔓 Bypass Auth (Demo Mode)
+                        </button>
+                        <p style="margin-top: 8px; color: #ffd700; font-size: 11px;">
+                            ⚠️ Demo mode: Limited features, no token persistence
+                        </p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App (Hidden until authenticated) -->
+    <div id="mainApp" class="main-app" style="display: none;">
+        <!-- Sidebar Menu -->
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h2>Infinity</h2>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+            </div>
+            
+            <div class="sidebar-content">
+                <div class="sidebar-section">
+                    <h3>Navigation</h3>
+                    <button class="sidebar-btn" onclick="navigateToHome()">🏠 Home</button>
+                    <button class="sidebar-btn" onclick="showHub('portal')">🔧 Portal</button>
+                    <button class="sidebar-btn" onclick="showHub('marketplace')">🏪 Marketplace</button>
+                    <button class="sidebar-btn" onclick="showHub('socializer')">👥 Socializer</button>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3>Infinity Tools</h3>
+                    <button class="sidebar-btn" onclick="loadApp('peerlink')">📞 PeerLink P2P</button>
+                    <button class="sidebar-btn" onclick="loadApp('deployer')">🚀 Deployer</button>
+                    <button class="sidebar-btn" onclick="loadApp('funding')">💰 Funding Pad</button>
+                    <button class="sidebar-btn" onclick="loadApp('risk')">🎲 RISK Companion</button>
+                    <button class="sidebar-btn" onclick="loadApp('fieldlab')">🔬 Field Lab</button>
+                    <button class="sidebar-btn" onclick="showTreasuryMap()">🏛️ Treasury Map</button>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3>Chat Sessions</h3>
+                    <div id="chatSessions" class="chat-sessions">
+                        <button class="session-btn" onclick="loadChatSession('default')">💬 Main Chat</button>
+                        <button class="session-btn new-session" onclick="newChatSession()">+ New Chat</button>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3>Developer Tools</h3>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="devMode" onchange="toggleDevMode()">
+                        <span class="slider"></span>
+                        <span class="label-text">Rogers Dev Mode</span>
+                    </label>
+                    <button class="sidebar-btn" onclick="openConsole()">🔍 Console</button>
+                    <button class="sidebar-btn" onclick="viewLogs()">📋 View Logs</button>
+                    <button class="sidebar-btn" onclick="startTimeMachineAutoCycle()">⏰ Auto Theme Cycle</button>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3>Account</h3>
+                    <div class="user-profile">
+                        <img id="sidebarAvatar" class="sidebar-avatar" src="" alt="User">
+                        <div class="user-details">
+                            <div id="sidebarName" class="user-name"></div>
+                            <div id="sidebarTokens" class="user-tokens">Tokens: 0</div>
+                        </div>
+                    </div>
+                    <button class="sidebar-btn logout-btn" onclick="signOut()">🚪 Sign Out</button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Required Hook IDs for Scripts -->
+        <div id="rogers-button" style="display: none;"></div>
+        <div id="intake-agent" style="display: none;"></div>
+        <div id="infinity-deployer" style="display: none;"></div>
+        <div id="nwo-panel" style="display: none;"></div>
+        <div id="p2p-panel" style="display: none;"></div>
+        <div id="funding-pad" style="display: none;"></div>
+        <div id="marketplace-panel" style="display: none;"></div>
+        <div id="watson-core" style="display: none;"></div>
+        <div id="gemini-image-intake" style="display: none;"></div>
+
+        <!-- Vector Transition System -->
+        <div id="vectorTransition" class="vector-transition">
+            <div class="space-grid"></div>
+            <div class="hydrogen-cloud"></div>
+            <svg id="vectorCanvas" width="100%" height="100%" style="position: absolute; top: 0; left: 0;"></svg>
+            <div id="vectorGuide" class="vector-guide">🧠</div>
+            <div id="portal" class="portal" style="display: none;"></div>
+        </div>
+        
+        <!-- Loading Overlay -->
+        <div id="loadingOverlay" class="loading-overlay">
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <div class="loading-text" id="loadingText">Loading...</div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <header>
+            <div class="header-container">
+                <div class="logo">
+                    <h1>Infinity</h1>
+                    <span class="core-label">Rogers Core</span>
+                </div>
+                <div class="user-info">
+                    <img id="userAvatar" class="user-avatar" src="" alt="User">
+                    <button class="btn-logout" onclick="signOut()">Sign Out</button>
+                </div>
+            </div>
+        </header>
+
+    <main>
+        <!-- Main Hub - 3 Button Zoom Interface -->
+        <section id="mainHub" class="hub-selector">
+            <h2>Infinity Portal Hub</h2>
+            <p class="hub-subtitle">Choose Your Destination</p>
+            <div class="hub-grid">
+                <div class="hub-card zoom-card" onclick="showHub('portal')">
+                    <div class="hub-icon">🏠</div>
+                    <h3>Portal</h3>
+                    <p>Personal Daily Utilities</p>
+                    <ul class="hub-features">
+                        <li>Calculator & Alarm</li>
+                        <li>Bible Verses</li>
+                        <li>Pet Care & Garden</li>
+                        <li>Physical Therapy</li>
+                    </ul>
+                    <button class="btn-primary">Enter Portal</button>
+                </div>
+                
+                <div class="hub-card zoom-card" onclick="showHub('marketplace')">
+                    <div class="hub-icon">🏪</div>
+                    <h3>Marketplace</h3>
+                    <p>Trade & Infinity Tokens</p>
+                    <ul class="hub-features">
+                        <li>Token Trading (No USD)</li>
+                        <li>Clothing & Food Trade</li>
+                        <li>Glass Packaging</li>
+                        <li>Truth Database</li>
+                    </ul>
+                    <button class="btn-primary">Enter Marketplace</button>
+                </div>
+                
+                <div class="hub-card zoom-card" onclick="showHub('socializer')">
+                    <div class="hub-icon">👥</div>
+                    <h3>Socializer</h3>
+                    <p>People & Media</p>
+                    <ul class="hub-features">
+                        <li>Local Zip Chat</li>
+                        <li>Video Game Generator</li>
+                        <li>DIY & School</li>
+                        <li>Channel Generator</li>
+                    </ul>
+                    <button class="btn-primary">Enter Socializer</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portal Hub Apps -->
+        <section id="portalHub" class="app-hub" style="display: none;">
+            <h2>Portal - Personal Daily Utilities</h2>
+            <div class="hub-grid">
+                <div class="hub-card" onclick="loadApp('calculator')">
+                    <div class="hub-icon">🔢</div>
+                    <h3>Calculator</h3>
+                    <p>Standard & Token calculator</p>
+                    <button class="btn-primary">Open</button>
+                </div>
+                <div class="hub-card" onclick="loadApp('alarm')">
+                    <div class="hub-icon">⏰</div>
+                    <h3>Alarm Clock</h3>
+                    <p>Smart voice-enabled alarms</p>
+                    <button class="btn-primary">Open</button>
+                </div>
+                <div class="hub-card" onclick="loadApp('bible')">
+                    <div class="hub-icon">📖</div>
+                    <h3>Bible Verses</h3>
+                    <p>Rogers-analyzed divine messages</p>
+                    <button class="btn-primary">Open</button>
+                </div>
+                <div class="hub-card" onclick="loadApp('pets')">
+                    <div class="hub-icon">🐾</div>
+                    <h3>Pet Care</h3>
+                    <p>Feed schedules & health tracking</p>
+                    <button class="btn-primary">Open</button>
+                </div>
+                <div class="hub-card" onclick="loadApp('therapy')">
+                    <div class="hub-icon">💪</div>
+                    <h3>Physical Therapy</h3>
+                    <p>Exercise routines & tracking</p>
+                    <button class="btn-primary">Open</button>
+                </div>
+                <div class="hub-card" onclick="loadApp('garden')">
+                    <div class="hub-icon">🌱</div>
+                    <h3>Garden</h3>
+                    <p>Seed swapping & growing tips</p>
+                    <button class="btn-primary">Open</button>
+                </div>
+            </div>
+            <button class="btn-back" onclick="backToMainHub()">← Back to Main Hub</button>
+        </section>
+
+        <!-- Marketplace Hub Apps -->
+        <section id="marketplaceHub" class="app-hub" style="display: none;">
+            <h2>Marketplace - Trade & Infinity Tokens</h2>
+            <div class="hub-grid">
+                <div class="hub-card" onclick="loadApp('trade')">
+                    <div class="hub-icon">🏪</div>
+                    <h3>Infinity Token Trading</h3>
+                    <p>eBay-style marketplace - No USD</p>
+                    <button class="btn-primary">Open</button>
+                </div>
+                <div class="hub-card" onclick="loadApp('clothing')">
+                    <div class="hub-icon">👔</div>
+                    <h3>Clothing Design</h3>
+                    <p>Design & trade custom clothing</p>
+                    <button class="btn-primary">Open</button>
+                </div>
+                <div class="hub-card" onclick="loadApp('foodtextile')">
+                    <div class="hub-icon">🌾</div>
+                    <h3>Food & Textiles</h3>
+                    <p>Global trading platform</p>
+                    <button class="btn-primary">Open</button>
+                </div>
+                <div class="hub-card" onclick="loadApp('glass')">
+                    <div class="hub-icon">🏺</div>
+                    <h3>Glass Packaging</h3>
+                    <p>Standardized packaging system</p>
+                    <button class="btn-primary">Open</button>
+                </div>
+                <div class="hub-card" onclick="loadApp('banned')">
+                    <div class="hub-icon">⚠️</div>
+                    <h3>Truth Database</h3>
+                    <p>Banned products & transparency</p>
+                    <button class="btn-primary">Open</button>
+                </div>
+                <div class="hub-card" onclick="loadApp('leather')">
+                    <div class="hub-icon">🧤</div>
+                    <h3>Leather Craft</h3>
+                    <p>Tutorials & marketplace</p>
+                    <button class="btn-primary">Open</button>
+                </div>
+            </div>
+            <button class="btn-back" onclick="backToMainHub()">← Back to Main Hub</button>
+        </section>
+
+        <!-- Socializer Hub Apps -->
+        <section id="socializerHub" class="app-hub" style="display: none;">
+            <h2>Socializer - People & Media</h2>
+            <div class="hub-grid">
+                <div class="hub-card" onclick="loadApp('locals')">
+                    <div class="hub-icon">📍</div>
+                    <h3>Locals Chat</h3>
+                    <p>Zip code-based local connections</p>
+                    <button class="btn-primary">Open</button>
+                </div>
+                <div class="hub-card" onclick="loadApp('videogame')">
+                    <div class="hub-icon">🎮</div>
+                    <h3>Video Game Generator</h3>
+                    <p>AI-powered game creation</p>
+                    <button class="btn-primary">Open</button>
+                </div>
+                <div class="hub-card" onclick="loadApp('diy')">
+                    <div class="hub-icon">🔨</div>
+                    <h3>DIY Modeling</h3>
+                    <p>Instructables-style projects</p>
+                    <button class="btn-primary">Open</button>
+                </div>
+                <div class="hub-card" onclick="loadApp('school')">
+                    <div class="hub-icon">🎓</div>
+                    <h3>Infinity School</h3>
+                    <p>Lifelong learning platform</p>
+                    <button class="btn-primary">Open</button>
+                </div>
+                <div class="hub-card" onclick="loadApp('channel')">
+                    <div class="hub-icon">📺</div>
+                    <h3>Channel Generator</h3>
+                    <p>Merit-based TV programming</p>
+                    <button class="btn-primary">Open</button>
+                </div>
+            </div>
+            <button class="btn-back" onclick="backToMainHub()">← Back to Main Hub</button>
+        </section>
+
+        <!-- Dynamic App Content Area -->
+        <section id="appContent" class="app-content" style="display: none;">
+            <div id="appContainer"></div>
+            <button class="btn-back" onclick="backToHub()">← Back</button>
+        </section>
+    </main>
+        </div><!-- End main-content -->
+        
+        <!-- Time Machine Theme Switcher -->
+        <div class="time-machine">
+            <h4>⏰ TIME MACHINE</h4>
+            <div class="theme-buttons">
+                <button class="theme-btn" onclick="switchTheme('apple1')" title="1976 Apple I">76</button>
+                <button class="theme-btn" onclick="switchTheme('mac1984')" title="1984 Macintosh">84</button>
+                <button class="theme-btn" onclick="switchTheme('amiga')" title="1985 Amiga">85</button>
+                <button class="theme-btn" onclick="switchTheme('win31')" title="1990 Windows 3.1">90</button>
+                <button class="theme-btn" onclick="switchTheme('win95')" title="1995 Windows 95">95</button>
+                <button class="theme-btn" onclick="switchTheme('imac')" title="1998 iMac G3">98</button>
+                <button class="theme-btn" onclick="switchTheme('xp')" title="2001 Windows XP">01</button>
+                <button class="theme-btn" onclick="switchTheme('iphone')" title="2007 iPhone">07</button>
+                <button class="theme-btn" onclick="switchTheme('win7')" title="2009 Windows 7">09</button>
+                <button class="theme-btn" onclick="switchTheme('metro')" title="2011 Metro">11</button>
+                <button class="theme-btn" onclick="switchTheme('ios7')" title="2013 iOS 7">13</button>
+                <button class="theme-btn" onclick="switchTheme('material')" title="2014 Material">14</button>
+                <button class="theme-btn" onclick="switchTheme('dark')" title="2018 Dark Mode">18</button>
+                <button class="theme-btn" onclick="switchTheme('neuro')" title="2019 Neumorphism">19</button>
+                <button class="theme-btn" onclick="switchTheme('glass')" title="2020 Glass">20</button>
+                <button class="theme-btn" onclick="switchTheme('web3')" title="2021 Web3">21</button>
+                <button class="theme-btn" onclick="switchTheme('y2k')" title="2022 Y2K">22</button>
+                <button class="theme-btn" onclick="switchTheme('ai')" title="2024 AI Era">24</button>
+                <button class="theme-btn active" onclick="switchTheme('infinity')" title="2025 Infinity">25</button>
+            </div>
+        </div>
+    </div><!-- End mainApp -->
+
+    <footer>
+        <div class="footer-container">
+            <div class="powered-by">
+                <strong>Powered by Infinity</strong>
+            </div>
+            
+            <div class="footer-sections">
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: <a href="mailto:infinitystockinvesting@gmail.com">infinitystockinvesting@gmail.com</a></p>
+                    <p>Auth: <a href="mailto:marvaseater@gmail.com">marvaseater@gmail.com</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Credits & Partnerships</h4>
+                    <p>Chat got script design credits - Space available for advertisements</p>
+                    <p>OpenAI VP Program - Contributing to the future of AI</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <p><a href="#privacy">Privacy Policy</a></p>
+                    <p><a href="#terms">Terms of Service</a></p>
+                    <p>&copy; 2025 Infinity Platform. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
