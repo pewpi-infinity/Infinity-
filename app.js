@@ -24,41 +24,60 @@ const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/
 const vectorGuides = ['🚀', '⚡', '✨', '🌟', '💫', '🔮', '🎯', '🧭'];
 let currentGuideIndex = 0;
 
-// Google Authentication
-function handleCredentialResponse(response) {
-    const responsePayload = decodeJwtResponse(response.credential);
-    
-    currentUser = {
-        email: responsePayload.email,
-        name: responsePayload.name,
-        picture: responsePayload.picture,
-        sub: responsePayload.sub
-    };
-    
-    // Check if authorized email
-    if (currentUser.email === 'marvaseater@gmail.com') {
-        currentUser.isAdmin = true;
-        currentUser.tokens = 1000; // Admin starts with bonus tokens
-    } else {
-        currentUser.isAdmin = false;
-        currentUser.tokens = 10; // Regular users start with 10 tokens
+// Google Authentication - Must be global for callback
+window.handleCredentialResponse = function(response) {
+    try {
+        const responsePayload = decodeJwtResponse(response.credential);
+        
+        currentUser = {
+            email: responsePayload.email,
+            name: responsePayload.name,
+            picture: responsePayload.picture,
+            sub: responsePayload.sub
+        };
+        
+        // Check if authorized email
+        if (currentUser.email === 'marvaseater@gmail.com') {
+            currentUser.isAdmin = true;
+            currentUser.tokens = 1000; // Admin starts with bonus tokens
+        } else {
+            currentUser.isAdmin = false;
+            currentUser.tokens = 10; // Regular users start with 10 tokens
+        }
+        
+        userTokens = currentUser.tokens;
+        
+        // Hide auth section and show main app
+        document.getElementById('authSection').style.display = 'none';
+        document.getElementById('mainApp').style.display = 'block';
+        
+        // Update user info in header
+        const avatarEl = document.getElementById('userAvatar');
+        if (avatarEl) avatarEl.src = currentUser.picture;
+        
+        const sidebarAvatar = document.getElementById('sidebarAvatar');
+        if (sidebarAvatar) sidebarAvatar.src = currentUser.picture;
+        
+        const sidebarName = document.getElementById('sidebarName');
+        if (sidebarName) sidebarName.textContent = currentUser.name;
+        
+        updateTokenDisplay();
+        
+        // Save to localStorage
+        localStorage.setItem('infinityUser', JSON.stringify(currentUser));
+        
+        console.log('✅ User signed in:', currentUser);
+        showWelcomeMessage();
+        
+        // Initialize features after auth
+        if (typeof initializeVoiceUI === 'function') {
+            initializeVoiceUI();
+        }
+    } catch (error) {
+        console.error('❌ Google Auth Error:', error);
+        alert('Authentication failed. Please try again.\n\nError: ' + error.message);
     }
-    
-    userTokens = currentUser.tokens;
-    
-    // Hide auth section and show main app
-    document.getElementById('authSection').style.display = 'none';
-    document.getElementById('mainApp').style.display = 'block';
-    
-    // Update user info in header
-    document.getElementById('userAvatar').src = currentUser.picture;
-    
-    // Save to localStorage
-    localStorage.setItem('infinityUser', JSON.stringify(currentUser));
-    
-    console.log('User signed in:', currentUser);
-    showWelcomeMessage();
-}
+};
 
 function decodeJwtResponse(token) {
     const base64Url = token.split('.')[1];
@@ -70,51 +89,87 @@ function decodeJwtResponse(token) {
 }
 
 function signOut() {
-    google.accounts.id.disableAutoSelect();
+    if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+        google.accounts.id.disableAutoSelect();
+    }
     localStorage.removeItem('infinityUser');
     currentUser = null;
+    userTokens = 0;
     document.getElementById('mainApp').style.display = 'none';
     document.getElementById('authSection').style.display = 'flex';
     location.reload();
 }
 
 function showWelcomeMessage() {
-    alert(`Welcome to Infinity, ${currentUser.name}!\nYou have ${userTokens} Infinity Tokens.\n\nType "ti rigers" in chat to earn 1 token per reply!`);
+    const msg = `Welcome to Infinity, ${currentUser.name}!\n\nYou have ${userTokens} Infinity Tokens.\n\nType "ti rigers" in chat to earn 1 token per reply!`;
+    console.log('🎉 ' + msg);
+    
+    // Voice announcement if available
+    if (voiceSynthesis) {
+        const utterance = new SpeechSynthesisUtterance(`Welcome ${currentUser.name.split(' ')[0]}. You have ${userTokens} Infinity Tokens.`);
+        utterance.rate = 0.9;
+        utterance.pitch = 1.0;
+        voiceSynthesis.speak(utterance);
+    }
+    
+    // Visual welcome
+    setTimeout(() => {
+        if (typeof alert !== 'undefined') {
+            alert(msg);
+        }
+    }, 500);
 }
 
 // Check for existing session on load
 window.addEventListener('load', function() {
+    console.log('🚀 Infinity Platform Loading...');
+    
     const savedUser = localStorage.getItem('infinityUser');
     if (savedUser) {
-        currentUser = JSON.parse(savedUser);
-        userTokens = currentUser.tokens || 10;
-        document.getElementById('authSection').style.display = 'none';
-        document.getElementById('mainApp').style.display = 'block';
-        if (currentUser.picture) {
-            document.getElementById('userAvatar').src = currentUser.picture;
+        try {
+            currentUser = JSON.parse(savedUser);
+            userTokens = currentUser.tokens || 10;
+            
+            console.log('✅ Restored session for:', currentUser.email);
+            
+            document.getElementById('authSection').style.display = 'none';
+            document.getElementById('mainApp').style.display = 'block';
+            
+            if (currentUser.picture) {
+                const avatarEl = document.getElementById('userAvatar');
+                if (avatarEl) avatarEl.src = currentUser.picture;
+                
+                const sidebarAvatar = document.getElementById('sidebarAvatar');
+                if (sidebarAvatar) sidebarAvatar.src = currentUser.picture;
+            }
+            
+            if (currentUser.name) {
+                const sidebarName = document.getElementById('sidebarName');
+                if (sidebarName) sidebarName.textContent = currentUser.name;
+            }
+            
+            updateTokenDisplay();
+        } catch (e) {
+            console.error('❌ Failed to restore session:', e);
+            localStorage.removeItem('infinityUser');
         }
+    } else {
+        console.log('👤 No saved session - showing auth screen');
     }
 });
 
-// Google Authentication (continued from top)
-function handleCredentialResponse(response) {
-    const responsePayload = decodeJwtResponse(response.credential);
+// Bypass Auth for Testing/Demo
+window.bypassAuth = function() {
+    console.log('🔓 Bypassing authentication - Demo Mode');
     
     currentUser = {
-        email: responsePayload.email,
-        name: responsePayload.name,
-        picture: responsePayload.picture,
-        sub: responsePayload.sub
+        email: 'marvaseater@gmail.com',
+        name: 'Kris (Demo Mode)',
+        picture: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100"%3E%3Ccircle cx="50" cy="50" r="50" fill="%230070ba"/%3E%3Ctext x="50" y="65" text-anchor="middle" fill="white" font-size="40" font-family="Arial"%3EK%3C/text%3E%3C/svg%3E',
+        sub: 'demo-' + Date.now(),
+        isAdmin: true,
+        tokens: 1000
     };
-    
-    // Check if authorized email
-    if (currentUser.email === 'marvaseater@gmail.com') {
-        currentUser.isAdmin = true;
-        currentUser.tokens = 1000;
-    } else {
-        currentUser.isAdmin = false;
-        currentUser.tokens = 10;
-    }
     
     userTokens = currentUser.tokens;
     
@@ -122,31 +177,39 @@ function handleCredentialResponse(response) {
     document.getElementById('authSection').style.display = 'none';
     document.getElementById('mainApp').style.display = 'block';
     
-    // Update user info in header
-    document.getElementById('userAvatar').src = currentUser.picture;
+    // Update user info
+    const avatarEl = document.getElementById('userAvatar');
+    if (avatarEl) avatarEl.src = currentUser.picture;
+    
+    const sidebarAvatar = document.getElementById('sidebarAvatar');
+    if (sidebarAvatar) sidebarAvatar.src = currentUser.picture;
+    
+    const sidebarName = document.getElementById('sidebarName');
+    if (sidebarName) sidebarName.textContent = currentUser.name;
+    
     updateTokenDisplay();
     
     // Save to localStorage
     localStorage.setItem('infinityUser', JSON.stringify(currentUser));
     
-    console.log('User signed in:', currentUser);
-    showWelcomeMessage();
-    initializeVoiceUI();
-}
-
-function decodeJwtResponse(token) {
-    const base64Url = token.split('.')[1];
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-    return JSON.parse(jsonPayload);
-}
+    console.log('✅ Demo mode activated');
+    
+    // Voice announcement
+    if (voiceSynthesis) {
+        const utterance = new SpeechSynthesisUtterance('Demo mode activated. Welcome to Infinity.');
+        voiceSynthesis.speak(utterance);
+    }
+    
+    alert('🔓 Demo Mode Activated\n\nYou can now explore all 44 apps!\n\nNote: This is a demo login. For full features and token persistence, sign in with your Google account.');
+};
 
 function signOut() {
-    google.accounts.id.disableAutoSelect();
+    if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+        google.accounts.id.disableAutoSelect();
+    }
     localStorage.removeItem('infinityUser');
     currentUser = null;
+    userTokens = 0;
     document.getElementById('mainApp').style.display = 'none';
     document.getElementById('authSection').style.display = 'flex';
     location.reload();
