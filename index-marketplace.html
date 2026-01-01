@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>∞ Infinity-</title>
+  <title>∞ Infinity- Marketplace</title>
   <!-- your styles -->
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="themes.css">
@@ -42,7 +42,7 @@ body:not(.pewpi-live)>*:not(#pewpi-gate){filter:blur(6px);pointer-events:none}
   <meta charset="UTF-8">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>∞ Infinity-</title>
+  <title>∞ Infinity- Marketplace</title>
   <!-- your styles -->
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="themes.css">
@@ -245,33 +245,74 @@ body:not(.pewpi-live)>*:not(#pewpi-gate){filter:blur(6px);pointer-events:none}
       <main style="padding:12px;">
         <!-- Breadcrumb Navigation -->
         <nav style="font-size:.7rem; margin-bottom:12px; opacity:.7;">
-          <span>🏠 Home</span>
+          <a href="index.html" style="text-decoration:none; color:inherit;">🏠 Home</a> &gt; <span>🏪 Marketplace</span>
         </nav>
 
         <!-- MAIN HUB -->
-        <section id="mainHub" class="hub-selector">
+        <section id="mainHub" class="hub-selector" style="display:none;">
           <h2>Infinity Portal Hub</h2>
           <p class="hub-subtitle">Choose Your Destination</p>
           <div class="hub-grid" style="display:grid; gap:14px; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));">
-            <div class="hub-card zoom-card" onclick="window.location.href='index-portal.html'">
+            <div class="hub-card zoom-card" onclick="showHub('portal')">
               <div class="hub-icon">🏠</div>
               <h3>Portal</h3>
               <p>Personal Daily Utilities</p>
               <button class="btn-primary">Enter Portal</button>
             </div>
-            <div class="hub-card zoom-card" onclick="window.location.href='index-marketplace.html'">
+            <div class="hub-card zoom-card" onclick="showHub('marketplace')">
               <div class="hub-icon">🏪</div>
               <h3>Marketplace</h3>
               <p>Trade & Infinity Tokens</p>
               <button class="btn-primary">Enter Marketplace</button>
             </div>
-            <div class="hub-card zoom-card" onclick="window.location.href='index-socializer.html'">
+            <div class="hub-card zoom-card" onclick="showHub('socializer')">
               <div class="hub-icon">👥</div>
               <h3>Socializer</h3>
               <p>People & Media</p>
               <button class="btn-primary">Enter Socializer</button>
             </div>
           </div>
+        </section>
+
+        <!-- PORTAL HUB -->
+        <section id="portalHub" class="app-hub" style="display:none;">
+          <h2>Portal - Personal Daily Utilities</h2>
+          <div class="hub-grid" style="display:grid; gap:12px; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));">
+            <div class="hub-card" onclick="loadApp('calculator')"><div class="hub-icon">🔢</div><h3>Calculator</h3></div>
+            <div class="hub-card" onclick="loadApp('alarm')"><div class="hub-icon">⏰</div><h3>Alarm</h3></div>
+            <div class="hub-card" onclick="loadApp('bible')"><div class="hub-icon">📖</div><h3>Bible</h3></div>
+            <div class="hub-card" onclick="loadApp('pets')"><div class="hub-icon">🐾</div><h3>Pet Care</h3></div>
+            <div class="hub-card" onclick="loadApp('therapy')"><div class="hub-icon">💪</div><h3>Therapy</h3></div>
+            <div class="hub-card" onclick="loadApp('garden')"><div class="hub-icon">🌱</div><h3>Garden</h3></div>
+          </div>
+          <button class="btn-back" onclick="backToMainHub()">← Back to Main Hub</button>
+        </section>
+
+        <!-- MARKETPLACE HUB -->
+        <section id="marketplaceHub" class="app-hub" style="display:block;">
+          <h2>Marketplace - Trade & Infinity Tokens</h2>
+          <div class="hub-grid" style="display:grid; gap:12px; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));">
+            <div class="hub-card" onclick="loadApp('trade')"><div class="hub-icon">🏪</div><h3>Infinity Trading</h3></div>
+            <div class="hub-card" onclick="loadApp('clothing')"><div class="hub-icon">👔</div><h3>Clothing</h3></div>
+            <div class="hub-card" onclick="loadApp('foodtextile')"><div class="hub-icon">🌾</div><h3>Food & Textiles</h3></div>
+            <div class="hub-card" onclick="loadApp('glass')"><div class="hub-icon">🏺</div><h3>Glass Packaging</h3></div>
+            <div class="hub-card" onclick="loadApp('banned')"><div class="hub-icon">⚠️</div><h3>Truth DB</h3></div>
+            <div class="hub-card" onclick="loadApp('leather')"><div class="hub-icon">🧤</div><h3>Leather</h3></div>
+          </div>
+          <button class="btn-back" onclick="window.location.href='index.html'">← Back to Main Hub</button>
+        </section>
+
+        <!-- SOCIALIZER HUB -->
+        <section id="socializerHub" class="app-hub" style="display:none;">
+          <h2>Socializer - People & Media</h2>
+          <div class="hub-grid" style="display:grid; gap:12px; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));">
+            <div class="hub-card" onclick="loadApp('locals')"><div class="hub-icon">📍</div><h3>Locals Chat</h3></div>
+            <div class="hub-card" onclick="loadApp('videogame')"><div class="hub-icon">🎮</div><h3>Game Generator</h3></div>
+            <div class="hub-card" onclick="loadApp('diy')"><div class="hub-icon">🔨</div><h3>DIY</h3></div>
+            <div class="hub-card" onclick="loadApp('school')"><div class="hub-icon">🎓</div><h3>Infinity School</h3></div>
+            <div class="hub-card" onclick="loadApp('channel')"><div class="hub-icon">📺</div><h3>Channel Gen</h3></div>
+          </div>
+          <button class="btn-back" onclick="backToMainHub()">← Back to Main Hub</button>
         </section>
 
         <!-- DYNAMIC APP AREA -->
@@ -350,38 +391,43 @@ body:not(.pewpi-live)>*:not(#pewpi-gate){filter:blur(6px);pointer-events:none}
     }
 
     // ====== NAV / HUB LOGIC ======
+    function navigateToHome() {
+      document.getElementById("mainHub").style.display = "block";
+      document.getElementById("portalHub").style.display = "none";
+      document.getElementById("marketplaceHub").style.display = "none";
+      document.getElementById("socializerHub").style.display = "none";
+      document.getElementById("appContent").style.display = "none";
+    }
+
+    function showHub(which) {
+      document.getElementById("mainHub").style.display = "none";
+      document.getElementById("portalHub").style.display = (which === "portal") ? "block" : "none";
+      document.getElementById("marketplaceHub").style.display = (which === "marketplace") ? "block" : "none";
+      document.getElementById("socializerHub").style.display = (which === "socializer") ? "block" : "none";
+      document.getElementById("appContent").style.display = "none";
+    }
+
+    function backToMainHub() {
+      navigateToHome();
+    }
+
+    function backToHub() {
+      // just go back to main hub for now
+      navigateToHome();
+    }
+
     function loadApp(id) {
-      alert("App '" + id + "' would load here. Hook your real module.");
+      const box = document.getElementById("appContainer");
+      document.getElementById("appContent").style.display = "block";
+      document.getElementById("portalHub").style.display = "none";
+      document.getElementById("marketplaceHub").style.display = "none";
+      document.getElementById("socializerHub").style.display = "none";
+      box.innerHTML = "<p style='font-size:.6rem;'>Loaded app: <b>" + id + "</b>. Hook your real module here.</p>";
     }
 
     function toggleSidebar() {
       const sb = document.getElementById("sidebar");
       sb.classList.toggle("open");
-    }
-
-    function loadChatSession(id) {
-      alert("Chat session '" + id + "' would load here.");
-    }
-
-    function newChatSession() {
-      alert("New chat session would be created here.");
-    }
-
-    function toggleDevMode() {
-      const checked = document.getElementById("devMode").checked;
-      console.log("Dev mode:", checked);
-    }
-
-    function openConsole() {
-      alert("Console would open here.");
-    }
-
-    function viewLogs() {
-      alert("Logs would be shown here.");
-    }
-
-    function startTimeMachineAutoCycle() {
-      alert("Auto theme cycle would start here.");
     }
 
     // theme stub
